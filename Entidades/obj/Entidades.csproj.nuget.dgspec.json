@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Guilherme santos\\Trabalho Semestral\\Entidades\\Entidades.csproj": {}
+    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj": {}
   },
   "projects": {
-    "C:\\Guilherme santos\\Trabalho Semestral\\Entidades\\Entidades.csproj": {
+    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Guilherme santos\\Trabalho Semestral\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "C:\\Guilherme santos\\Trabalho Semestral\\Entidades\\Entidades.csproj",
+        "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\Alunos\\.nuget\\packages\\",
-        "outputPath": "C:\\Guilherme santos\\Trabalho Semestral\\Entidades\\obj\\",
+        "outputPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alunos\\AppData\\Roaming\\NuGet\\NuGet.Config",
