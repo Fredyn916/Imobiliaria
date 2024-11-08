@@ -2030,11 +2030,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj",
-      "projectName": "Entidades",
-      "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj",
+      "projectUniqueName": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj",
+      "projectName": "Core",
+      "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\Alunos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\obj\\",
+      "outputPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alunos\\AppData\\Roaming\\NuGet\\NuGet.Config",

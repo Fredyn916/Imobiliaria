@@ -1,1 +1,2 @@
-
+1- entidades herdadas de imovel: apartamento, casa, terreno, comercial, lote, rural
+2- fundir os dados, retornados do consumo da API de CEP, na propriedade "Endereço", tanto no POST do imóvel quanto no do usuário 
