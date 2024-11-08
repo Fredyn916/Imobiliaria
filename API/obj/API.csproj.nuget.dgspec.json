@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj": {}
+    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj": {
+    "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj",
-        "projectName": "Core",
-        "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Alunos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alunos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -77,6 +77,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

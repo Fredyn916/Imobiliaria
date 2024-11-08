@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0a4QwqYZ6Xx+/nW6MAyPCIXwS5mss3amLHR81TiClbaI8F9/H3N1mtSMJTff3xKIPeoNlF0L3zEaPu3QECc4mA==",
+  "dgSpecHash": "coQ9sNPpxDfblkjSwM6f9jl32WGK/9cca4Bn6vXcFQAb/cuf4fwKyz9oY6QjHPJuZmiUTlGEt5RALn1kaFrxMQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Core\\Core.csproj",
+  "projectFilePath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alunos\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Alunos\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
