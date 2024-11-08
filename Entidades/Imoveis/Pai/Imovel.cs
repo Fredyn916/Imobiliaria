@@ -6,6 +6,7 @@ public class Imovel
     public string Tipo { get; set; }
     public double Area { get; set; }
     public double Preco { get; set; }
+    public string CEP { get; set; }
     public string Rua { get; set; }
     public int Numero { get; set; }
     public string Bairro { get; set; }
