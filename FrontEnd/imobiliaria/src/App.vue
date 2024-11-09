@@ -1,3 +1,26 @@
+<template>
+  <div>
+    <header class="Nav__header">
+      <nav class="NavBar">
+        <MenusNav />
+        <ul class="Nav__actions">
+          <li class="li__Home">
+            <RouterLink to="/" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+            <RouterLink to="/" class="Entry__Bnt">Entrar</RouterLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <RouterView />
+    <section class="Hero__bg">
+    </section>
+
+    <section class="all">
+    </section>
+  </div>
+</template>
+
 <script>
 import MenusNav from './components/MenusNav.vue';
 
@@ -6,33 +29,41 @@ export default {
   components: {
     MenusNav
   }
-}
+};
 </script>
 
-<template>
-  <header>
-    <nav class="NavBar">
-      <MenusNav />
-      <ul>
-        <li class="li__Home">
-          <RouterLink to="/" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
-          <RouterLink to="/" class="Entry__Bnt">Entrar</RouterLink>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <RouterView />
-
-  <section class="all">
-  </section>
-</template>
-
 <style scoped>
-a{
+a {
   text-decoration: none;
 }
-.li__Home{
+
+.Nav__header{
+  margin: 0;
+  padding: 0;
+}
+
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px;
+  align-items: center;
+  height: 60px;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.Nav__actions {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.li__Home {
   display: flex;
   gap: 20px;
 }
@@ -41,12 +72,12 @@ a{
   background-color: transparent;
   border: none;
   color: black;
-  padding: 1rem 0.5rem;
+  padding: 0.90rem 1.5rem;
   text-align: center;
   text-decoration: none;
-  margin: 2px 1px;
+  font-size: 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: background-color 0.3s;
 }
 
@@ -59,14 +90,13 @@ a{
   background-color: #3C3024;
   border: none;
   color: white; 
-  padding: 1rem 2rem;
+  padding: 0.90rem 1.5rem;
   text-align: center; 
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 2px 1px;
+  font-size: 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: background-color 0.3s;
 }
 
@@ -74,14 +104,14 @@ a{
   background-color: #605346;
 }
 
-.NavBar {
-  display: flex;
-  justify-content: space-around;
+.Hero__bg {
+  width: 100%;
+  height: 300px;
 }
 
-.all{
+.all {
   background-color: black;
   width: 100%;
-  height: 100%;
+  height: 1000px;
 }
 </style>
