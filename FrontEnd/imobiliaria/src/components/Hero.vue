@@ -82,7 +82,7 @@ export default {
 
 .Hero__bg__container__box1 {
     background-color: #FFF;
-    width: 350px;
+    width: 400px;
     height: 70px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -93,7 +93,7 @@ export default {
 }
 
 .Hero__bg__container__box1__btn {
-    width: 30%;
+    width: 28%;
     height: 50px;
     background-color: #FFF;
     color: black;
@@ -174,7 +174,7 @@ export default {
     height: 50px;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     overflow-y: auto;
