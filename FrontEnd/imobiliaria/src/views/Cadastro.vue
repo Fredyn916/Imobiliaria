@@ -35,7 +35,8 @@
                 <!-- CEP -->
                 <div class="form-group">
                     <label for="CEP">Digite o seu CEP :</label>
-                    <input type="text" id="CEP" v-model="CEP" required /> <button type="button" @click="GetCep" class="cep-form">Buscar</button>
+                    <input type="text" id="CEP" v-model="CEP" required />
+                    <button type="button" @click="GetCep" class="cep-form">Buscar</button>
                 </div>
 
                 <!-- Identificação -->
@@ -74,30 +75,46 @@ export default {
             idade: '',
             genero: '',
             CEP: '',
+            Numero: '',
+            Bairro: '',
+            Cidade: '',
+            UnidadeFederativa: '',
             identificacao: '',
             username: '',
             password: '',
             message: '',
-            endereco: '', // Para armazenar o endereço do CEP
         };
     },
     methods: {
 
-        
         async CreateUsuario(e) {
             e.preventDefault();
-            const data__returned__CEP = []
+
+            // Primeiro, buscamos o CEP
+            const cepResponse = await this.GetCep();
+
+            if (!cepResponse) {
+                this.message = 'Erro ao buscar o CEP. Cadastro não realizado.';
+                return; // Se não conseguir buscar o CEP, não envia o formulário
+            }
+
+            // Dados do usuário, incluindo dados do CEP
             const data = {
                 nome: this.nome,
                 idade: this.idade,
                 genero: this.genero,
-                cep: this.cep,
+                CEP: this.CEP,
+                Numero: this.Numero,
+                Bairro: this.Bairro,
+                Cidade: this.Cidade,
+                UnidadeFederativa: this.UnidadeFederativa,
                 identificacao: this.identificacao,
                 username: this.username,
                 password: this.password,
             };
 
             const dataJson = JSON.stringify(data);
+            console.log(dataJson)
 
             const response = await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
                 method: 'POST',
@@ -110,21 +127,37 @@ export default {
             } else {
                 this.message = 'Erro ao Cadastrar o usuário.';
             }
+
         },
 
         async GetCep() {
             try {
                 const response = await fetch(`https://viacep.com.br/ws/${this.CEP}/json/`);
-                if (!response.ok) { throw new Error('Erro ao buscar o CEP'); }
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar o CEP');
+                }
                 const data = await response.json();
-                data__returned__CEP = data;
+
+                if (data.erro) {
+                    this.message = 'CEP não encontrado.';
+                    return false;
+                }
+
+                this.Bairro = data.bairro || '';
+                this.Cidade = data.localidade || '';
+                this.UnidadeFederativa = data.uf || '';
+
+                return true;
+            } catch (error) {
+                console.error('Erro ao buscar o CEP:', error);
+                this.message = 'Erro ao buscar o CEP.';
+                return false;
             }
-            catch (error) { console.error('Erro:', error); }
         }
+
     },
 };
 </script>
 
 <style scoped>
-/* Adicione seu estilo personalizado aqui */
 </style>
