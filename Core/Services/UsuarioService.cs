@@ -1,4 +1,5 @@
-﻿using Entidades.Interfaces.Usuarios;
+﻿using Entidades.DTOs.Usuarios;
+using Entidades.Interfaces.Usuarios;
 using Entidades.Usuarios;
 
 namespace Core.Services;
@@ -25,6 +26,11 @@ public class UsuarioService : IUsuarioService
     public Usuario BuscarUsuarioPorId(int id)
     {
         return _Repository.BuscarUsuarioPorId(id);
+    }
+
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        return _Repository.LogarUsuario(usuarioLogin);
     }
 
     public void Editar(Usuario usuarioEdit)

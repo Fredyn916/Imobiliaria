@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using Entidades.DTOs.Usuarios;
 using Entidades.Interfaces.Usuarios;
 using Entidades.Usuarios;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,21 @@ public class UsuarioRepository : IUsuarioRepository
         Usuario usuario = connection.Get<Usuario>(id);
 
         return usuario;
+    }
+
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        List<Usuario> usuarios = Listar();
+
+        foreach (Usuario usuario in usuarios)
+        {
+            if(usuarioLogin.Username == usuario.Username && usuarioLogin.Password == usuario.Password)
+            {
+                return usuario;
+            }
+        }
+
+        return null;
     }
 
     public void Editar(Usuario usuarioEdit)

@@ -41,6 +41,12 @@ public class UsuarioController : ControllerBase
         return _Service.BuscarUsuarioPorId(id);
     }
 
+    [HttpGet("LogarUsuario")]
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        return _Service.LogarUsuario(usuarioLogin);
+    }
+
     [HttpPut("EditarUsuario")]
     public void Editar(Usuario usuarioEdit)
     {
