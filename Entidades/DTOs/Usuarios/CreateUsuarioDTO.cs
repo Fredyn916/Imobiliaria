@@ -10,7 +10,7 @@ public class CreateUsuarioDTO
     public int Numero { get; set; }
     public string Bairro { get; set; }
     public string Cidade { get; set; }
-    public string Estado { get; set; }
+    public string UnidadeFederativa { get; set; }
     public string Identificacao { get; set; } // CPF, CNPJ, CNH, CTPS, RG, etc...
     public string Username { get; set; }
     public string Password { get; set; }

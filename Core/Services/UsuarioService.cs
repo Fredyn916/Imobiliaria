@@ -1,5 +1,45 @@
-﻿namespace Core.Services;
+﻿using Entidades.DTOs.Usuarios;
+using Entidades.Interfaces.Usuarios;
+using Entidades.Usuarios;
 
-public class UsuarioService
+namespace Core.Services;
+
+public class UsuarioService : IUsuarioService
 {
+    private readonly IUsuarioRepository _Repository;
+
+    public UsuarioService(IUsuarioRepository usuarioRepository)
+    {
+        _Repository = usuarioRepository;
+    }
+
+    public void Adicionar(Usuario usuario)
+    {
+        _Repository.Adicionar(usuario);
+    }
+
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        return _Repository.LogarUsuario(usuarioLogin);
+    }
+
+    public List<Usuario> Listar()
+    {
+        return _Repository.Listar();
+    }
+
+    public Usuario BuscarUsuarioPorId(int id)
+    {
+        return _Repository.BuscarUsuarioPorId(id);
+    }
+
+    public void Editar(Usuario usuarioEdit)
+    {
+        _Repository.Editar(usuarioEdit);
+    }
+
+    public void Remover(int id)
+    {
+        _Repository.Remover(id);
+    }
 }
