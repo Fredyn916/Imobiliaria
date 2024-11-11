@@ -18,6 +18,11 @@ public class UsuarioService : IUsuarioService
         _Repository.Adicionar(usuario);
     }
 
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        return _Repository.LogarUsuario(usuarioLogin);
+    }
+
     public List<Usuario> Listar()
     {
         return _Repository.Listar();
@@ -26,11 +31,6 @@ public class UsuarioService : IUsuarioService
     public Usuario BuscarUsuarioPorId(int id)
     {
         return _Repository.BuscarUsuarioPorId(id);
-    }
-
-    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
-    {
-        return _Repository.LogarUsuario(usuarioLogin);
     }
 
     public void Editar(Usuario usuarioEdit)

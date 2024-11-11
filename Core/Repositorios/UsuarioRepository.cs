@@ -23,6 +23,21 @@ public class UsuarioRepository : IUsuarioRepository
         connection.Insert<Usuario>(usuario);
     }
 
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        List<Usuario> usuarios = Listar();
+
+        foreach (Usuario usuario in usuarios)
+        {
+            if (usuarioLogin.Username == usuario.Username && usuarioLogin.Password == usuario.Password)
+            {
+                return usuario;
+            }
+        }
+
+        return null;
+    }
+
     public List<Usuario> Listar()
     {
         using var connection = new SQLiteConnection(_ConnectionString);
@@ -39,21 +54,6 @@ public class UsuarioRepository : IUsuarioRepository
         Usuario usuario = connection.Get<Usuario>(id);
 
         return usuario;
-    }
-
-    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
-    {
-        List<Usuario> usuarios = Listar();
-
-        foreach (Usuario usuario in usuarios)
-        {
-            if(usuarioLogin.Username == usuario.Username && usuarioLogin.Password == usuario.Password)
-            {
-                return usuario;
-            }
-        }
-
-        return null;
     }
 
     public void Editar(Usuario usuarioEdit)

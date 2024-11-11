@@ -29,6 +29,12 @@ public class UsuarioController : ControllerBase
         _Service.Adicionar(usuario);
     }
 
+    [HttpPost("LogarUsuario")]
+    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
+    {
+        return _Service.LogarUsuario(usuarioLogin);
+    }
+
     [HttpGet("ListarUsuarios")]
     public List<Usuario> Listar()
     {
@@ -39,12 +45,6 @@ public class UsuarioController : ControllerBase
     public Usuario BuscarUsuarioPorId(int id)
     {
         return _Service.BuscarUsuarioPorId(id);
-    }
-
-    [HttpGet("LogarUsuario")]
-    public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
-    {
-        return _Service.LogarUsuario(usuarioLogin);
     }
 
     [HttpPut("EditarUsuario")]
