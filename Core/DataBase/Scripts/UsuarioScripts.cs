@@ -1,9 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Cryptography;
-
-namespace Core.DataBase.Scripts;
+﻿namespace Core.DataBase.Scripts;
 
 public static class UsuarioScripts
 {
