@@ -15,6 +15,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+// Configuração do CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTudo",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 InicializadorDb.Inicializar();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -29,6 +41,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Permite requisições de qualquer origem (CORS)
+app.UseCors("PermitirTudo");
 
 app.UseHttpsRedirection();
 

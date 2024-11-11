@@ -10,48 +10,45 @@
                     {{ message }}
                 </div>
 
-                <!-- Nome -->
                 <div class="form-group">
                     <label for="nome">Nome :</label>
                     <input type="text" id="nome" v-model="nome" required />
                 </div>
 
-                <!-- Idade -->
                 <div class="form-group">
-                    <label for="Idade">Idade :</label>
-                    <input type="text" id="Idade" v-model="Idade" required />
+                    <label for="idade">Idade :</label>
+                    <input type="text" id="idade" v-model="idade" required />
                 </div>
 
-                <!-- Gênero -->
                 <div class="form-group">
-                    <label for="Genero">Genero :</label>
-                    <select id="Genero" v-model="Genero" required>
+                    <label for="genero">Genero :</label>
+                    <select id="genero" v-model="genero" required>
                         <option value="" disabled>Selecione...</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Feminino">Feminino</option>
                     </select>
                 </div>
 
-                <!-- CEP -->
                 <div class="form-group">
-                    <label for="CEP">Digite o seu CEP :</label>
-                    <input type="text" id="CEP" v-model="CEP" required />
-                    <button type="button" @click="GetCep" class="cep-form">Buscar</button>
+                    <label for="numero">Digite o seu numero :</label>
+                    <input type="text" id="numero" v-model="numero" />
                 </div>
 
-                <!-- Identificação -->
                 <div class="form-group">
-                    <label for="Identificacao">Identificação (CPF, CNPJ, CNH, CTPS, RG, etc...):</label>
-                    <input type="text" id="Identificacao" v-model="Identificacao" required />
+                    <label for="cep">Digite o seu CEP :</label>
+                    <input type="text" id="cep" v-model="cep" />
                 </div>
 
-                <!-- Username -->
+                <div class="form-group">
+                    <label for="identificacao">Identificação (CPF, CNPJ, CNH, CTPS, RG, etc...):</label>
+                    <input type="text" id="identificacao" v-model="identificacao" required />
+                </div>
+
                 <div class="form-group">
                     <label for="username">Username :</label>
                     <input type="text" id="username" v-model="username" required />
                 </div>
 
-                <!-- Password -->
                 <div class="form-group">
                     <label for="password">Password :</label>
                     <input type="password" id="password" v-model="password" required />
@@ -74,11 +71,12 @@ export default {
             nome: '',
             idade: '',
             genero: '',
-            CEP: '',
-            Numero: '',
-            Bairro: '',
-            Cidade: '',
-            UnidadeFederativa: '',
+            cep: '',
+            rua: '',
+            numero: '',
+            bairro: '',
+            cidade: '',
+            unidadeFederativa: '',
             identificacao: '',
             username: '',
             password: '',
@@ -90,33 +88,28 @@ export default {
         async CreateUsuario(e) {
             e.preventDefault();
 
-            // Primeiro, buscamos o CEP
             const cepResponse = await this.GetCep();
 
-            if (!cepResponse) {
-                this.message = 'Erro ao buscar o CEP. Cadastro não realizado.';
-                return; // Se não conseguir buscar o CEP, não envia o formulário
-            }
-
-            // Dados do usuário, incluindo dados do CEP
             const data = {
                 nome: this.nome,
                 idade: this.idade,
                 genero: this.genero,
-                CEP: this.CEP,
-                Numero: this.Numero,
-                Bairro: this.Bairro,
-                Cidade: this.Cidade,
-                UnidadeFederativa: this.UnidadeFederativa,
+                cep: cepResponse.cep,
+                rua: cepResponse.logradouro,
+                numero: this.numero,
+                bairro: cepResponse.bairro,
+                cidade: cepResponse.localidade,
+                unidadeFederativa: cepResponse.uf,
                 identificacao: this.identificacao,
                 username: this.username,
                 password: this.password,
             };
 
             const dataJson = JSON.stringify(data);
-            console.log(dataJson)
+            console.log(dataJson);
 
-            const response = await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
+            // Envia os dados para a API
+            const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: dataJson,
@@ -127,37 +120,28 @@ export default {
             } else {
                 this.message = 'Erro ao Cadastrar o usuário.';
             }
-
         },
 
+        // Função para buscar o CEP
         async GetCep() {
             try {
-                const response = await fetch(`https://viacep.com.br/ws/${this.CEP}/json/`);
+                const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
                 if (!response.ok) {
-                    throw new Error('Erro ao buscar o CEP');
+                    this.message = 'Erro ao buscar o CEP.';
+                    return null;
                 }
                 const data = await response.json();
-
-                if (data.erro) {
-                    this.message = 'CEP não encontrado.';
-                    return false;
-                }
-
-                this.Bairro = data.bairro || '';
-                this.Cidade = data.localidade || '';
-                this.UnidadeFederativa = data.uf || '';
-
-                return true;
+                return data;
             } catch (error) {
                 console.error('Erro ao buscar o CEP:', error);
                 this.message = 'Erro ao buscar o CEP.';
-                return false;
+                return null;
             }
         }
-
     },
 };
 </script>
 
 <style scoped>
+/* Seu estilo aqui */
 </style>
