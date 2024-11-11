@@ -1,9 +1,9 @@
 <template>
-  <RouterView />
+ssss
 </template>
 
 <script>
 export default{
-  name:'App'
+    name: 'test'
 }
 </script>

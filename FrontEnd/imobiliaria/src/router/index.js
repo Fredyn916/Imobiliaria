@@ -10,12 +10,20 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: '/MenusNav',
-      name: 'MenusNav',
+      path: '/Login',
+      name: 'Login',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/MenusNav.vue'),
+      component: () => import('@/views/Login.vue'),
+    },,
+    {
+      path: '/Cadastro',
+      name: 'Cadastro',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('@/views/Cadastro.vue'),
     },
   ],
 })
