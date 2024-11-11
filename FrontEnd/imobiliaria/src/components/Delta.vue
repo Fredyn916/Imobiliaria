@@ -47,7 +47,7 @@ export default {
     flex-direction: column;
     -webkit-box-align: center;
     align-items: center;
-    width: 300px;
+    width: 350px;
     height: 133px;
     background: rgb(255, 255, 255);
     border-radius: 12px;
@@ -58,17 +58,18 @@ export default {
 }
 
 .Delta__container__box__tittle {
+    max-width: 400px;
     font-weight: 600;
     font-size: 20px;
     position: relative;
-    top: 20px;
+    padding-top: 20px;
 }
 
 .Delta__container__box__text {
     font-weight: 500;
     font-size: 12px;
     position: relative;
-    top: 20px;
+    padding-top: 10px;
 }
 
 .Delta__container__tittle {
@@ -77,4 +78,110 @@ export default {
     position: relative;
     top: -15px;
 }
+
+
+@media(width < 1280px) {}
+
+
+/* Para dispositivos móveis (até 600px) */
+@media (min-width: 200px) and (max-width: 600px) {
+    .Delta__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .Delta__container__box__tittle {
+        font-weight: 400;
+        font-size: 16px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__box__text {
+        font-weight: 300;
+        font-size: 8px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__tittle {
+        font-weight: 400;
+        font-size: 16px;
+        position: relative;
+        top: -15px;
+    }
+}
+
+/* Para tablets (de 601px a 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .Delta__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .Delta__container__box__tittle {
+        font-weight: 400;
+        font-size: 16px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__box__text {
+        font-weight: 300;
+        font-size: 8px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__tittle {
+        font-weight: 400;
+        font-size: 16px;
+        position: relative;
+        top: -15px;
+    }
+}
+
+/* Para desktops menores (1025px a 1280px) */
+@media (min-width: 1025px) and (max-width: 1280px) {}
+
+@media (min-width: 1280px) and (max-width: 1600px) {
+    .Delta__container {
+        display: flex;
+        position: relative;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        top: 29px;
+        max-width: 1600px;
+    }
+
+
+    .Delta__container__box__tittle {
+        font-weight: 600;
+        font-size: 14px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__box__text {
+        font-weight: 500;
+        font-size: 9px;
+        position: relative;
+        top: 20px;
+    }
+
+    .Delta__container__tittle {
+        font-weight: 600;
+        font-size: 18px;
+        position: relative;
+        top: -15px;
+    }
+}
+
+/* Para desktops grandes (acima de 1280px) */
+@media (min-width: 1601px) {}
 </style>
