@@ -1,5 +1,8 @@
-﻿namespace Entidades.Usuarios;
+﻿using Dapper.Contrib.Extensions;
 
+namespace Entidades.Usuarios;
+
+[Table("Usuarios")]
 public class Usuario
 {
     public int Id { get; set; }
@@ -11,7 +14,7 @@ public class Usuario
     public int Numero { get; set; }
     public string Bairro { get; set; }
     public string Cidade { get; set; }
-    public string Estado { get; set; }
+    public string UnidadeFederativa { get; set; }
     public string Endereco { get; set; }
     public string Identificacao { get; set; } // CPF, CNPJ, CNH, CTPS, RG, etc...
     public string Username { get; set; }

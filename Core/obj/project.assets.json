@@ -631,6 +631,24 @@
             "rid": "win"
           }
         }
+      },
+      "Entidades/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "13.0.1",
+          "Dapper": "2.1.35",
+          "Dapper.Contrib": "2.0.78",
+          "Microsoft.Extensions.Configuration": "8.0.0",
+          "Swashbuckle.AspNetCore": "6.9.0",
+          "System.Data.SQLite": "1.0.119"
+        },
+        "compile": {
+          "bin/placeholder/Entidades.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entidades.dll": {}
+        }
       }
     }
   },
@@ -2012,6 +2030,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Entidades/1.0.0": {
+      "type": "project",
+      "path": "../Entidades/Entidades.csproj",
+      "msbuildProject": "../Entidades/Entidades.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2019,6 +2042,7 @@
       "AutoMapper >= 13.0.1",
       "Dapper >= 2.1.35",
       "Dapper.Contrib >= 2.0.78",
+      "Entidades >= 1.0.0",
       "Microsoft.Extensions.Configuration >= 8.0.0",
       "Swashbuckle.AspNetCore >= 6.9.0",
       "System.Data.SQLite >= 1.0.119"
@@ -2050,7 +2074,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj": {
+              "projectPath": "C:\\Users\\Alunos\\Desktop\\Fred Git (Turno Tarde)\\C#\\Imobiliaria\\Entidades\\Entidades.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
