@@ -4,7 +4,7 @@
         <ul class="Nav__actions">
             <li class="li__Home">
                 <RouterLink to="/" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
-                <RouterLink to="/" class="Entry__Bnt">Entrar</RouterLink>
+                <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
             </li>
         </ul>
     </nav>
