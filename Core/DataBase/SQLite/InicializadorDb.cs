@@ -1,8 +1,8 @@
-﻿using Core.DataBase.Scripts;
+﻿using Core.DataBase.SQLite.Scripts;
 using Dapper;
 using System.Data.SQLite;
 
-namespace Core.DataBase;
+namespace Core.DataBase.SQLite;
 
 public class InicializadorDb
 {

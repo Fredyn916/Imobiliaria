@@ -1,7 +1,9 @@
-using Core.DataBase;
+using Core.DataBase.MongoDb;
+using Core.DataBase.SQLite;
 using Core.Repositorios;
 using Core.Services;
 using Entidades.DTOs;
+using Entidades.Interfaces.Imoveis;
 using Entidades.Interfaces.Usuarios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,11 +29,15 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddSingleton<MongoDBService>();
+
 InicializadorDb.Inicializar();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IImovelRepository, ImovelRepository>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IImovelService, ImovelService>();
 
 var app = builder.Build();
 

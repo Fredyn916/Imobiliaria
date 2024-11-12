@@ -134,3 +134,9 @@ C:\Guilherme santos\Trabalho Semestral\API\obj\Debug\net6.0\refint\API.dll
 C:\Guilherme santos\Trabalho Semestral\API\obj\Debug\net6.0\API.pdb
 C:\Guilherme santos\Trabalho Semestral\API\obj\Debug\net6.0\API.genruntimeconfig.cache
 C:\Guilherme santos\Trabalho Semestral\API\obj\Debug\net6.0\ref\API.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\DnsClient.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\Snappier.dll
+C:\Users\Alunos\Desktop\Fred Git (Turno Tarde)\C#\Imobiliaria\API\bin\Debug\net6.0\ZstdSharp.dll

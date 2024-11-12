@@ -1,4 +1,4 @@
-﻿namespace Core.DataBase.Scripts;
+﻿namespace Core.DataBase.SQLite.Scripts;
 
 public static class UsuarioScripts
 {
