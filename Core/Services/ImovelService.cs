@@ -1,5 +1,7 @@
 ﻿using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace Core.Services;
 
@@ -12,27 +14,27 @@ public class ImovelService : IImovelService
         _Repository = imovelRepository;
 	}
 
-    public void Adicionar(Imovel imovel)
+    public async Task Adicionar([FromBody] Imovel imovel)
     {
         _Repository.Adicionar(imovel);
     }
 
-    public List<Imovel> Listar()
+    public async Task<List<Imovel>> Listar()
     {
-        return _Repository.Listar();
+        return await _Repository.Listar();
     }
 
-    public Imovel BuscarImovelPorId(string id)
+    public async Task<Imovel> BuscarImovelPorId(string id)
     {
-        return _Repository.BuscarImovelPorId(id);
+        return await _Repository.BuscarImovelPorId(id);
     }
 
-    public void Editar(Imovel imovel)
+    public async Task Editar(Imovel imovelEdit)
     {
-        _Repository.Editar(imovel);
+        _Repository.Editar(imovelEdit);
     }
 
-    public void Remover(string id)
+    public async Task Remover(string id)
     {
         _Repository.Remover(id);
     }

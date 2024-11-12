@@ -1,12 +1,13 @@
 ﻿using Entidades.Imoveis.Pai;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Entidades.Interfaces.Imoveis;
 
 public interface IImovelRepository
 {
-    void Adicionar(Imovel imovel);
-    List<Imovel> Listar();
-    Imovel BuscarImovelPorId(string id);
-    void Editar(Imovel imovel);
-    void Remover(string id);
+    Task Adicionar([FromBody] Imovel imovel);
+    Task<List<Imovel>> Listar();
+    Task<Imovel> BuscarImovelPorId(string id);
+    Task Editar(Imovel imovel);
+    Task Remover(string id);
 }

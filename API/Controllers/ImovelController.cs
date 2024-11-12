@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using Entidades.Imoveis.Pai;
+﻿using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]")] 
 public class ImovelController : ControllerBase
 {
     private readonly IImovelService _Service;
@@ -17,31 +16,31 @@ public class ImovelController : ControllerBase
     }
 
     [HttpPost("AdicionarImovel")]
-    public void Adicionar(Imovel imovel)
+    public async Task Adicionar([FromBody] Imovel imovel)
     {
         _Service.Adicionar(imovel);
     }
 
     [HttpGet("ListarImoveis")]
-    public List<Imovel> Listar()
+    public async Task<List<Imovel>> Listar()
     {
-        return _Service.Listar();
+        return await _Service.Listar();
     }
 
     [HttpGet("ListarImovelPorId")]
-    public Imovel BuscarImovelPorId(string id)
+    public async Task<Imovel> BuscarImovelPorId(string id)
     {
-        return _Service.BuscarImovelPorId(id);
+        return await _Service.BuscarImovelPorId(id);
     }
 
     [HttpPut("EditarImovel")]
-    public void Editar(Imovel imovelEdit)
+    public async Task Editar(Imovel imovelEdit)
     {
         _Service.Editar(imovelEdit);
     }
 
     [HttpDelete("RemoverImovel")]
-    public void Remover(string id)
+    public async Task Remover(string id)
     {
         _Service.Remover(id);
     }

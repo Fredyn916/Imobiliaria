@@ -1,4 +1,4 @@
-using Core.DataBase.MongoDb;
+using Core.DataBase.MongoDb.Extensoes;
 using Core.DataBase.SQLite;
 using Core.Repositorios;
 using Core.Services;
@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddSingleton<MongoDBService>();
+ExtensoesProgramMongo.AddConfiguracaoMongo(builder.Services, builder.Configuration);
 
 InicializadorDb.Inicializar();
 
