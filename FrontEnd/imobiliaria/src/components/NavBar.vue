@@ -3,7 +3,7 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="/" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
                 <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
             </li>
         </ul>
@@ -51,6 +51,7 @@ export default{
     background-color: transparent;
     border: none;
     color: black;
+    font-weight: bold;
     padding: 0.90rem 1.5rem;
     text-align: center;
     text-decoration: none;

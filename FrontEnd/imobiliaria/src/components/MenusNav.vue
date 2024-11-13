@@ -7,8 +7,8 @@
                 </div>
                 <li class="Nav__Li" @mouseover="showPopup" @mouseleave="hidePopup">Comprar</li>
                 <li class="Nav__Li" @mouseover="showPopup" @mouseleave="hidePopup">Alugar</li>
-                <li class="Nav__Li">Imovel Novo</li>
-                <li class="Nav__Li">Buscar Imobiliarias</li>
+                <li class="Nav__Li">Contato</li>
+                <li class="Nav__Li">Sobre nos</li>
             </ul>
         </nav>
     </header>

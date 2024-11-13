@@ -36,7 +36,6 @@ export default {
     MobileNavBar
   },
   mounted() {
-    // Script Menus
     const navMenu = document.getElementById("navMenu");
     const navToggle = document.getElementById("navToggle");
 
@@ -50,6 +49,7 @@ export default {
 </script>
 
 <style scoped>
+/* Reset Global Styles */
 *,
 *::before,
 *::after {
@@ -69,12 +69,13 @@ a {
 .Nav__header {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .Hero__bg {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 500px;
   background: url('@/Images/bg.png') no-repeat center center;
   background-size: cover;
   display: flex;
@@ -101,20 +102,18 @@ a {
 .Delta {
   background-color: #C1B49C;
   width: 100%;
-  height: 300px;
   color: #FFF;
-  padding-inline: 10rem;
-  padding-top: 2.5rem;
+  padding-inline: 5rem;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1280px) {
+
   .Delta {
-    background-color: #C1B49C;
-    width: 100%;
-    height: 700px;
-    color: #FFF;
-    padding-inline: 12rem;
-    padding-top: 2.5rem;
+    height: 650px;
   }
 
   .hideNavBar {
@@ -126,24 +125,67 @@ a {
   }
 }
 
-@media (min-width: 1280px) {
-  .hideNavBar {
-    display: block;
+@media (max-width: 1024px) {
+
+  .Hero__bg {
+    height: 500px;
   }
 
-  .ShowNavBar {
-    display: none;
+  .Delta {
+    height: 600px;
   }
 }
 
 @media (max-width: 768px) {
+
+  .Hero__bg {
+    height: 400px;
+  }
+
   .Delta {
-    background-color: #C1B49C;
-    width: 100%;
+    height: 500px;
+  }
+
+  .hideNavBar {
+    display: none;
+  }
+
+  .ShowNavBar {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {}
+
+@media (max-width: 480px) {
+
+  .Hero__bg {
+    height: 400px;
+  }
+
+  .Delta {
+    height: 1000px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .Delta {
     height: 900px;
-    color: #FFF;
-    padding-inline: 0;
-    padding-top: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .hideNavBar {
+    display: block;
+  }
+
+  .ShowNavBar {
+    display: none;
+  }
+
+  .Hero__bg {
+    height: 450px;
   }
 }
 </style>

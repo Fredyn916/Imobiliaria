@@ -206,6 +206,98 @@ input[type="search"]:focus {
     background-color: #59808b;
 }
 
+@media (min-width: 0px) and (max-width: 768px) {
+    .Hero__bg__Tittle {
+        display: none;
+    }
+
+    .Hero__bg__container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .Hero__bg__container__box1 {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+
+    .Hero__bg__container__box1__btn {
+        width: 33%;
+        height: 50px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .Hero__bg__container__box2 {
+        width: 90%;
+        height: auto;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .Hero__bg__container__box2__label,
+    .Hero__bg__container__box2__item1,
+    .Hero__bg__container__box2__item2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .Hero__bg__container__box2__label select {
+        width: 100%;
+        height: 50px;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="search"] {
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    .Hero__bg__container__box2__Search__Btn {
+        background-color: #8CB9C5;
+        border: none;
+        color: white;
+        padding: 1rem 2em;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+
+    .Hero__bg__container__box2__Search__Btn:hover {
+        background-color: #59808b;
+    }
+}
+
+
 @media (max-width: 768px) {
     .Hero__bg__Tittle {
         max-width: 400px;
