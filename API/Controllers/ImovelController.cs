@@ -32,7 +32,7 @@ public class ImovelController : ControllerBase
     {
         return await _Service.BuscarImovelPorId(id);
     }
-
+    
     [HttpGet("ListarURLsImagensPorId")]
     public async Task<List<string>> BuscarURLsImagensPorId(string id)
     {
