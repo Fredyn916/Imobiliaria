@@ -18,4 +18,5 @@ public class Imovel
     public string Cidade { get; set; }
     public string UnidadeFederativa { get; set; }
     public string Endereco { get; set;}
+    public List<string> URLsImagens { get; set; }
 }

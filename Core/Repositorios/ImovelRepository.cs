@@ -58,6 +58,20 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
+    public async Task<List<string>> BuscarURLsImagensPorId(string id)
+    {
+        try
+        {
+            Imovel i = _Imoveis.Find<Imovel>(imovel => imovel.Id == id).FirstOrDefault();
+
+            return i.URLsImagens;
+        }
+        catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public async Task Editar(Imovel imovel)
     {
         try

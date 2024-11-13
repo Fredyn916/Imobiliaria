@@ -29,6 +29,11 @@ public class ImovelService : IImovelService
         return await _Repository.BuscarImovelPorId(id);
     }
 
+    public async Task<List<string>> BuscarURLsImagensPorId(string id)
+    {
+        return await _Repository.BuscarURLsImagensPorId(id);
+    }
+
     public async Task Editar(Imovel imovelEdit)
     {
         _Repository.Editar(imovelEdit);
