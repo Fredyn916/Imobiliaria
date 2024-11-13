@@ -67,7 +67,7 @@ export default{
 }
 
 .Entry__Bnt {
-    background-color: #8CB9C5;
+    background-color: #59808b;
     border: none;
     color: white;
     padding: 0.90rem 1.5rem;
@@ -78,11 +78,16 @@ export default{
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s;
+    transition: .3s;
 }
 
 .Entry__Bnt:hover {
-    background-color: #59808b;
+    background-color: #8CB9C5;
+    color: #333;
+    font-weight: bold;
 }
+
+
 
 @media (min-width: 200px) and (max-width: 600px) {
     .NavBar {

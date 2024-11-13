@@ -122,11 +122,25 @@ export default {
     margin-bottom: 20px;
 }
 
+@media (min-width: 0px) and (max-width: 480px) {
+    .Delta__container__box__tittle {
+        font-size: 14px;
+    }
+
+    .Delta__container__box__text {
+        font-size: 8px;
+    }
+
+    .Delta__container__tittle {
+        font-size: 14px;
+    }
+}
+
 @media (min-width: 481px) and (max-width: 768px) {
     .Delta__container {
         display: flex;
         flex-wrap: wrap;
-        justify-content:center;
+        justify-content: center;
         gap: 20px;
         padding: 0 20px;
         width: 100%;
@@ -134,17 +148,16 @@ export default {
     }
 }
 
+
 @media (max-width: 1024px) {
     .Delta__container__box {
         width: 48%;
-        /* 2 caixas por linha */
     }
 }
 
 @media (max-width: 768px) {
     .Delta__container__box {
         width: 70%;
-        /* 1 caixa por linha */
     }
 
     .Delta__container__box__img {
@@ -159,52 +172,6 @@ export default {
 
     .Delta__container__box__text {
         font-size: 12px;
-    }
-}
-
-@media (max-width: 600px) {
-    .Delta__container {
-        flex-direction: column;
-        align-items: center;
-        gap: 50px;
-    }
-
-    .Delta__container__box {
-        width: 90%;
-        height: auto;
-        padding-top: 40px;
-    }
-
-    .Delta__container__box__img {
-        width: 70px;
-        height: 70px;
-        top: -20px;
-    }
-
-    .Delta__container__box__tittle {
-        font-size: 16px;
-    }
-
-    .Delta__container__box__text {
-        font-size: 10px;
-    }
-
-    .Delta__container__tittle {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 375px) {
-    .Delta__container__box__tittle {
-        font-size: 14px;
-    }
-
-    .Delta__container__box__text {
-        font-size: 8px;
-    }
-
-    .Delta__container__tittle {
-        font-size: 14px;
     }
 }
 </style>

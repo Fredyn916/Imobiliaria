@@ -136,6 +136,7 @@ export default {
     background-color: #FFF;
     width: 90%;
     height: 80px;
+    border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: flex;
@@ -192,7 +193,7 @@ input[type="search"]:focus {
 }
 
 .Hero__bg__container__box2__Search__Btn {
-    background-color: #8CB9C5;
+    background-color: #59808b;
     border: none;
     color: white;
     padding: 1.2rem 3em;
@@ -200,10 +201,13 @@ input[type="search"]:focus {
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s;
+    transition: .3s;
 }
 
 .Hero__bg__container__box2__Search__Btn:hover {
-    background-color: #59808b;
+    background-color: #8CB9C5;
+    color: #333;
+    font-weight: bold;
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
@@ -298,7 +302,7 @@ input[type="search"]:focus {
 }
 
 
-@media (max-width: 768px) {
+@media (width: 768px) {
     .Hero__bg__Tittle {
         max-width: 400px;
         font-size: 1.5rem;
