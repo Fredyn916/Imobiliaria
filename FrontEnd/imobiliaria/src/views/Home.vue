@@ -1,12 +1,8 @@
 <template>
   <div>
     <header class="Nav__header">
-      <div class="hideNavBar">
-        <NavBar />
-      </div>
-      <div class="ShowNavBar">
-        <MobileNavBar />
-      </div>
+      <NavBar v-show="!isMobile" />
+      <MobileNavBar v-show="isMobile" />
     </header>
 
     <RouterView />
@@ -17,14 +13,18 @@
     <section class="Delta">
       <Delta />
     </section>
+
+    <section class="Echo">
+      <Echo />
+    </section>
   </div>
 </template>
 
 <script>
 import Hero from '@/components/Hero.vue';
 import Delta from '@/components/Delta.vue';
+import Echo from '@/components/Echo.vue';
 import NavBar from '@/components/NavBar.vue';
-import '@/assets/main.css';
 import MobileNavBar from '@/components/MobileNavBar.vue';
 
 export default {
@@ -32,17 +32,25 @@ export default {
   components: {
     Hero,
     Delta,
+    Echo,
     NavBar,
     MobileNavBar
   },
+  data() {
+    return {
+      isMobile: false,
+    };
+  },
   mounted() {
-    const navMenu = document.getElementById("navMenu");
-    const navToggle = document.getElementById("navToggle");
-
-    if (navToggle) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("show");
-      });
+    this.updateNavbarVisibility();
+    window.addEventListener("resize", this.updateNavbarVisibility);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.updateNavbarVisibility);
+  },
+  methods: {
+    updateNavbarVisibility() {
+      this.isMobile = window.innerWidth < 1280;
     }
   }
 };
@@ -67,8 +75,6 @@ a {
 }
 
 .Nav__header {
-  margin: 0;
-  padding: 0;
   width: 100%;
 }
 
@@ -104,6 +110,14 @@ a {
   width: 100%;
   color: #FFF;
   padding-inline: 5rem;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Echo {
+  width: 100%;
   height: 700px;
   display: flex;
   justify-content: center;
@@ -111,22 +125,12 @@ a {
 }
 
 @media (max-width: 1280px) {
-
   .Delta {
     height: 650px;
-  }
-
-  .hideNavBar {
-    display: none;
-  }
-
-  .ShowNavBar {
-    display: block;
   }
 }
 
 @media (max-width: 1024px) {
-
   .Hero__bg {
     height: 500px;
   }
@@ -137,7 +141,6 @@ a {
 }
 
 @media (max-width: 768px) {
-
   .Hero__bg {
     height: 400px;
   }
@@ -145,20 +148,9 @@ a {
   .Delta {
     height: 500px;
   }
-
-  .hideNavBar {
-    display: none;
-  }
-
-  .ShowNavBar {
-    display: block;
-  }
 }
 
-@media (max-width: 600px) {}
-
 @media (max-width: 480px) {
-
   .Hero__bg {
     height: 400px;
   }
@@ -175,15 +167,6 @@ a {
 }
 
 @media (min-width: 1280px) {
-
-  .hideNavBar {
-    display: block;
-  }
-
-  .ShowNavBar {
-    display: none;
-  }
-
   .Hero__bg {
     height: 450px;
   }

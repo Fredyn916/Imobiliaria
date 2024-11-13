@@ -151,7 +151,7 @@ export default {
 }
 
 .Hero__bg__container__box2__item1 {
-    width: 40%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
