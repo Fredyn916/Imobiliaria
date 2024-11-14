@@ -1,10 +1,4 @@
 <template>
-    <div class="hideNavBar">
-        <NavBar />
-    </div>
-    <div class="ShowNavBar">
-        <MobileNavBar />
-    </div>
     <div class="page-container">
         <div class="form-container">
             <h1 class="form-title">Cadastre-se</h1>
@@ -152,28 +146,4 @@ export default {
 };
 </script>
 
-<style scoped>
-@media(width < 1280px) {
-
-    .hideNavBar {
-        display: none;
-    }
-
-    .ShowNavBar {
-        display: block;
-    }
-
-}
-
-@media(width > 1280px) {
-
-    .hideNavBar {
-        display: block;
-    }
-
-    .ShowNavBar {
-        display: none;
-    }
-
-}
-</style>
+<style scoped></style>

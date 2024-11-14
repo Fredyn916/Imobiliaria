@@ -1,10 +1,4 @@
 <template>
-  <div class="hideNavBar">
-    <NavBar />
-  </div>
-  <div class="ShowNavBar">
-    <MobileNavBar />
-  </div>
   <div class="login-container">
     <div class="form-container">
       <h1>Faça Login</h1>
@@ -29,7 +23,7 @@ import NavBar from '@/components/NavBar.vue';
 import MobileNavBar from '@/components/MobileNavBar.vue';
 export default {
   name: 'Login',
-  components:{
+  components: {
     NavBar,
     MobileNavBar
   },
@@ -95,30 +89,6 @@ export default {
 </script>
 
 <style scoped>
-@media(width < 1280px) {
-
-  .hideNavBar {
-    display: none;
-  }
-
-  .ShowNavBar {
-    display: block;
-  }
-
-}
-
-@media(width > 1280px) {
-
-  .hideNavBar {
-    display: block;
-  }
-
-  .ShowNavBar {
-    display: none;
-  }
-
-}
-
 .message {
   margin-top: 15px;
   font-size: 16px;

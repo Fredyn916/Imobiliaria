@@ -1,11 +1,4 @@
 <template>
-    <div class="hideNavBar">
-        <NavBar />
-    </div>
-    <div class="ShowNavBar">
-        <MobileNavBar />
-    </div>
-
     <div>
         <select name="" id="">
             <option value="Apartamento" disabled>Apartamento</option>
@@ -25,35 +18,11 @@ import NavBar from '@/components/NavBar.vue';
 import MobileNavBar from '@/components/MobileNavBar.vue';
 export default {
     name: 'Anunciar',
-    components:{
+    components: {
         MobileNavBar,
         NavBar
     }
 }
 </script>
 
-<style>
-@media(width < 1280px) {
-
-    .hideNavBar {
-        display: none;
-    }
-
-    .ShowNavBar {
-        display: block;
-    }
-
-}
-
-@media(width > 1280px) {
-
-    .hideNavBar {
-        display: block;
-    }
-
-    .ShowNavBar {
-        display: none;
-    }
-
-}
-</style>
+<style></style>
