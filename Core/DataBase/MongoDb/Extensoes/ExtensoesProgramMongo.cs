@@ -10,7 +10,7 @@ public static class ExtensoesProgramMongo
     public static IServiceCollection AddConfiguracaoMongo(this IServiceCollection services, IConfiguration config)
     {
         services.Configure<MongoDbSettings>(config.GetSection("MongoDbSettings"));
-        Console.WriteLine();
+
         services.AddSingleton<IMongoClient, MongoClient>(sp =>
         {
             var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
