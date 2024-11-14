@@ -1,6 +1,7 @@
 ﻿using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace Core.Services;
 
@@ -26,6 +27,11 @@ public class ImovelService : IImovelService
     public async Task<Imovel> BuscarImovelPorId(string id)
     {
         return await _Repository.BuscarImovelPorId(id);
+    }
+
+    public async Task<List<Imovel>> BuscarImoveisPorTipo(string tipo)
+    {
+        return await _Repository.BuscarImoveisPorTipo(tipo);
     }
 
     public async Task<List<string>> BuscarURLsImagensPorId(string id)

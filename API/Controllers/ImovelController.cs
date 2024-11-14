@@ -32,7 +32,13 @@ public class ImovelController : ControllerBase
     {
         return await _Service.BuscarImovelPorId(id);
     }
-    
+
+    [HttpGet("ListarImoveisPorTipo")]
+    public async Task<List<Imovel>> BuscarImoveisPorTipo(string tipo)
+    {
+        return await _Service.BuscarImoveisPorTipo(tipo);
+    }
+
     [HttpGet("ListarURLsImagensPorId")]
     public async Task<List<string>> BuscarURLsImagensPorId(string id)
     {

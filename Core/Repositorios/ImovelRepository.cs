@@ -1,7 +1,9 @@
-﻿using Entidades.Imoveis.Pai;
+﻿using Entidades.Imoveis.Filho;
+using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Security.Cryptography;
 
 namespace Core.Repositorios;
 
@@ -58,6 +60,18 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
+    public async Task<List<Imovel>> BuscarImoveisPorTipo(string tipo)
+    {
+        try
+        {
+            return await _Imoveis.Find<Imovel>(imovel => imovel.Tipo == tipo).ToListAsync();
+        }
+        catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public async Task<List<string>> BuscarURLsImagensPorId(string id)
     {
         try
@@ -94,5 +108,27 @@ public class ImovelRepository : IImovelRepository
         {
             throw new Exception(ex.Message);
         }
+    }
+
+    public static void AdicionarImoveisPreDefinidos()
+    {
+        List<Imovel> imoveisPreDefinidos;
+        {
+            new Apartamento
+            {
+                Id = null,
+                Tipo = "Apartamento",
+                Area = 66.0,
+                Preco = 475000.00,
+                Anos = 2,
+                CEP = "12900-430",
+                Rua = "Rua Dom Aguirre",
+                Numero = 329,
+                Bairro = "Centro",
+                Cidade = "Bragança Paulista",
+                UnidadeFederativa = "SP",
+                Endereco = "{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}",
+            };
+        };
     }
 }
