@@ -105,6 +105,10 @@ a {
 
 .Alpha {
   height: 400px;
+  background-color: #C1B49C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1280px) {

@@ -70,6 +70,7 @@ export default {
     background-color: #FFF;
     border-radius: 10px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .Echo__Box__rigth {
