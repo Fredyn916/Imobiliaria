@@ -2,7 +2,7 @@
   <footer class="footer">
     <!-- Logo no topo do footer -->
     <div class="footer__logo-container">
-      <img src="" alt="Logo Do Site" class="footer__logo" />
+      <img src="@/Images/logo.png" alt="Logo Do Site" class="footer__logo" />
     </div>
 
     <!-- Seções do footer em colunas -->
@@ -67,11 +67,11 @@ export default {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .footer__logo-container {
   margin-bottom: 1.5rem;
+  padding-left: 11rem;
 }
 
 .footer__logo {
@@ -104,7 +104,7 @@ export default {
 }
 
 .footer__section a {
-  color: #007bff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -119,7 +119,7 @@ export default {
 }
 
 .footer__bottom a {
-  color: #007bff;
+  color: #000;
   text-decoration: none;
 }
 

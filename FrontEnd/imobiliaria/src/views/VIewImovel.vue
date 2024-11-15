@@ -1,160 +1,172 @@
 <template>
-    <div class="container">
-        <h1>Filtros de Produtos</h1>
-        <div class="filter-container">
-            <label for="categoryFilter">Categoria:</label>
-            <select id="categoryFilter" v-model="selectedCategory" class="filter-select">
-                <option value="">Todas</option>
-                <option value="iphone">Apple</option>
-                <option value="Samsung">Samsung</option>
-            </select>
-        </div>
-
-        <div class="filter-container">
-            <label for="searchBar">Pesquisar Produto:</label>
-            <input type="text" id="searchBar" v-model="searchQuery" @input="filterProducts"
-                placeholder="Digite o nome do produto..." class="filter-input" />
-        </div>
-
-        <ul class="product-list">
-            <li v-for="product in filteredProducts" :key="product.id" class="product-item">
-                <strong>{{ product.nome }}</strong><br>
-                Preço: R$ {{ product.preco.toFixed(2) }}<br>
-                Descrição: {{ product.descricao }}<br>
-                Quantidade em estoque: {{ product.quantidadeEmEstoque }} unidades<br>
-                FornecedorId: {{ product.fornecedorId }}
-            </li>
-        </ul>
+  <div class="container">
+    <div class="filter-container">
+      <input type="text" id="searchBar" v-model="searchQuery" @input="filterImoveis"
+        placeholder="Digite o nome do imóvel..." class="filter-input" />
     </div>
+
+    <div class="filter-container">
+      <select id="categoryFilter" v-model="selectedCategory" class="filter-select">
+        <option value="">Todas</option>
+        <option value="Estiloso">Estiloso</option>
+        <option value="Fred">Fred</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="Imovel__container">
+
+    <ul class="imovel__container__list">
+      <li v-for="Imovel in filteredImoveis" :key="Imovel.id" class="imovel__container__item">
+        <div class="Imovel__Container__internal__container">
+          <div class="Imovel__Container__box__Left"></div>
+          <div class="Imovel__Container__box__Right">
+            <strong> R$ {{ Imovel.preco }}</strong><br>
+            Rua: {{ Imovel.rua }}<br>
+            Endereço: {{ Imovel.endereco }}<br>
+            Número: {{ Imovel.numero }}<br>
+            Área: {{ Imovel.area }} m²<br>
+            CEP: {{ Imovel.cep }}<br>
+            Bairro: {{ Imovel.bairro }}<br>
+            Cidade: {{ Imovel.cidade }}<br>
+            Unidade Federativa: {{ Imovel.unidadeFederativa }}<br>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'ViewImovel',
-    data() {
-        return {
-            products: [],
-            searchQuery: "",
-            selectedCategory: "",
-            filteredProducts: []
-        };
-    },
-    methods: {
-        async fetchProducts() {
-            const apiUrl = "https://localhost:7248/Produto/visualizar-produto";
+  name: 'ViewImovel',
+  data() {
+    return {
+      imoveis: [],
+      searchQuery: "",
+      selectedCategory: "",
+      filteredImoveis: []
+    };
+  },
+  methods: {
+    async fetchImoveis() {
+      const apiUrl = "https://localhost:7082/Imovel/ListarImoveis";
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: "GET",
-                    headers: {
-                        Accept: "application/json",
-                    },
-                });
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
 
-                if (!response.ok) {
-                    throw new Error('Erro ao buscar produtos.');
-                }
-
-                const data = await response.json();
-                this.products = data;
-                this.filteredProducts = data;
-            } catch (error) {
-                console.error('Erro ao carregar produtos:', error);
-            }
-        },
-
-        filterProducts() {
-            this.filteredProducts = this.products.filter((product) => {
-                const matchesCategory = this.selectedCategory
-                    ? product.nome.toLowerCase().includes(this.selectedCategory.toLowerCase())
-                    : true;
-                const matchesSearch = product.nome.toLowerCase().includes(this.searchQuery.toLowerCase());
-
-                return matchesCategory && matchesSearch;
-            });
+        if (!response.ok) {
+          throw new Error('Erro ao buscar imóveis.');
         }
+
+        const data = await response.json();
+        this.imoveis = data;
+        this.filteredImoveis = data;
+      } catch (error) {
+        console.error('Erro ao carregar imóveis:', error);
+      }
     },
-    watch: {
-        selectedCategory() {
-            this.filterProducts();
-        },
-        searchQuery() {
-            this.filterProducts();
-        }
-    },
-    mounted() {
-        this.fetchProducts();
+
+    filterImoveis() {
+      this.filteredImoveis = this.imoveis.filter((imovel) => {
+        const matchesCategory = this.selectedCategory
+          ? imovel.tipo.toLowerCase().includes(this.selectedCategory.toLowerCase())
+          : true;
+        const matchesSearch = imovel.tipo.toLowerCase().includes(this.searchQuery.toLowerCase());
+
+        return matchesCategory && matchesSearch;
+      });
     }
+  },
+  watch: {
+    selectedCategory() {
+      this.filterImoveis();
+    },
+    searchQuery() {
+      this.filterImoveis();
+    }
+  },
+  mounted() {
+    this.fetchImoveis();
+  }
 };
 </script>
 
 <style scoped>
 .container {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    background-color: #f9f9f9;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5rem;
+  height: 100px;
+  gap: 10px;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.filter-container {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.filter-select,
 .filter-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+  padding: 1rem 2rem;
+  border-radius: 8px;
 }
 
 .filter-select {
-    cursor: pointer;
+  padding: 15px 34px 14px 14px;
+  border: 1px solid #7c98a7;
+  border-radius: 8px;
+  background: #fff;
+  font-family: Hind, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 17px;
+  color: #000;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.product-list {
-    list-style-type: none;
-    padding: 0;
+.Imovel__container {
+  height: auto;
+  width: 100%;
 }
 
-.product-item {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.product-item:hover {
-    cursor: pointer;
-}
-.product-item strong {
-    color: #333;
+.Imovel__Container__internal__container {
+  display: flex;
 }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
+.Imovel__Container__box__Left {
+  flex: 1;
+  border: 1px solid black;
+  max-width: 30%;
+  max-height: 100%;
+}
 
-    .filter-select,
-    .filter-input {
-        width: 100%;
-        box-sizing: border-box;
-    }
+.Imovel__Container__box__Right {
+  flex: 1;
+  border: 1px solid black;
+  max-width: 70%;
+  padding: 2rem;
+}
+
+.imovel__container__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.imovel__container__item {
+  width: 90%;
+  max-height: 400px;
+  height: auto;
+  border: 5px solid #ededed;
+  color: #000;
+  border-radius: 10px;
 }
 </style>

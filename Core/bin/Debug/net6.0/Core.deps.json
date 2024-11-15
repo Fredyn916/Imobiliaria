@@ -409,10 +409,7 @@
           "System.Data.SQLite": "1.0.119"
         },
         "runtime": {
-          "Entidades.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Entidades.dll": {}
         }
       }
     }
