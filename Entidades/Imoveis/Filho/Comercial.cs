@@ -4,10 +4,7 @@ namespace Entidades.Imoveis.Filho;
 
 public class Comercial : Imovel
 {
-    public int Banheiros { get; set; }
-    public int Vagas { get; set; }
-
-    public Comercial()
+	public Comercial()
 	{
 		base.Tipo = "Comercial";
 	}
