@@ -33,6 +33,8 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+ImovelRepository.AdicionarImoveisPreDefinidos();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
