@@ -41,7 +41,7 @@ public class UsuarioController : ControllerBase
         return _Service.Listar();
     }
 
-    [HttpGet("ListarUsuarioPorId")]
+    [HttpGet("ListarUsuariosPorId")]
     public Usuario BuscarUsuarioPorId(int id)
     {
         return _Service.BuscarUsuarioPorId(id);

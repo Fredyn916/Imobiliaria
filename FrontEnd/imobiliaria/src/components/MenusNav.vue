@@ -106,7 +106,7 @@ export default {
     display: block;
 }
 
-@media (min-width: 200px) and (max-width: 600px) {
+@media (width: 768px) {
     .Popup {
         display: none;
     }
