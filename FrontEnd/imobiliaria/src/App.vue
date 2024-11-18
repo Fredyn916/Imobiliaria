@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .Nav__header {
   width: 100%;
   position: sticky;

@@ -3,40 +3,36 @@
         <p class="Delta__container__tittle">Acompanhamos você a cada passo</p>
         <div class="Delta__container">
             <div class="Delta__container__box">
-                <div class="Delta__container__box__img"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAAA1BMVEUAAACnej3aAAAAPklEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIcBnKwAAXyxvCsAAAAASUVORK5CYII="
-                        alt="Busca clara e rápida"></div>
+                <div class="Delta__container__box__img">
+                    <img src="@/Images/1.png" alt="Busca clara e rápida">
+                </div>
                 <p class="Delta__container__box__tittle">Busca clara e rápida</p>
                 <p class="Delta__container__box__text">Pensamos em nossos filtros e mapas para simplificar sua
-                    experiência
-                    em nosso portal.</p>
+                    experiência em nosso portal.</p>
             </div>
             <div class="Delta__container__box">
-                <div class="Delta__container__box__img"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAAA1BMVEUAAACnej3aAAAAPklEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIcBnKwAAXyxvCsAAAAASUVORK5CYII="
-                        alt="Você tem sua própria seção"></div>
+                <div class="Delta__container__box__img">
+                    <img src="@/Images/2.png" alt="Você tem sua própria seção">
+                </div>
                 <p class="Delta__container__box__tittle">Você tem sua própria seção</p>
                 <p class="Delta__container__box__text">Acesse com facilidade e segurança os avisos de contato,
-                    favoritos,
-                    notas que você criou e muito mais.</p>
+                    favoritos, notas que você criou e muito mais.</p>
             </div>
             <div class="Delta__container__box">
-                <div class="Delta__container__box__img"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAAA1BMVEUAAACnej3aAAAAPklEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIcBnKwAAXyxvCsAAAAASUVORK5CYII="
-                        alt="Variedade de anunciantes"></div>
+                <div class="Delta__container__box__img">
+                    <img src="@/Images/3.png" alt="Variedade de anunciantes">
+                </div>
                 <p class="Delta__container__box__tittle">Variedade de anunciantes</p>
                 <p class="Delta__container__box__text">Corretores de imóveis e proprietários diretos de todo o país
-                    oferecem
-                    as melhores opções de imóveis para você.</p>
+                    oferecem as melhores opções de imóveis para você.</p>
             </div>
             <div class="Delta__container__box">
-                <div class="Delta__container__box__img"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAAA1BMVEUAAACnej3aAAAAPklEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIcBnKwAAXyxvCsAAAAASUVORK5CYII="
-                        alt="Somos o Casa Mineira!"></div>
+                <div class="Delta__container__box__img">
+                    <img src="@/Images/4.png" alt="Somos o Casa Mineira!">
+                </div>
                 <p class="Delta__container__box__tittle">Somos o Casa Mineira!</p>
                 <p class="Delta__container__box__text">39 anos no mercado e um milhão de imóveis oferecidos nos apoiam
-                    na
-                    busca pela sua casa.</p>
+                    na busca pela sua casa.</p>
             </div>
         </div>
     </section>
@@ -44,7 +40,7 @@
 
 <script>
 export default {
-    name: 'Delta'
+    name: 'Delta',
 }
 </script>
 
@@ -53,16 +49,18 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    justify-content: center;
     padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .Delta__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 0 20px;
+    justify-content: center;
+    gap: 30px;
+    /* Usando gap para separar os itens de maneira mais controlada */
     width: 100%;
     margin-top: 30px;
 }
@@ -71,27 +69,28 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 22%;
-    min-width: 240px;
+    width: 23%;
+    min-width: 250px;
+    /* Garante que as caixas não fiquem muito pequenas em telas grandes */
     height: auto;
-    background: rgb(255, 255, 255);
+    background: #fff;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding-top: 50px;
+    padding: 20px;
     position: relative;
 }
 
 .Delta__container__box__img {
     position: absolute;
     top: -30px;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     background-size: cover;
     background-position: center;
     border-radius: 50%;
     border: 4px solid white;
-    transform: translateY(-20%);
 }
 
 .Delta__container__box__img img {
@@ -103,16 +102,17 @@ export default {
 
 .Delta__container__box__tittle {
     font-weight: 600;
-    font-size: 20px;
-    margin-top: 50px;
+    font-size: 18px;
     color: #000;
+    margin-top: 20px;
 }
 
 .Delta__container__box__text {
     font-weight: 500;
-    font-size: 14px;
-    padding-top: 10px;
+    font-size: 13px;
+    padding-top: 2em;
     color: #000;
+    text-align: justify;
 }
 
 .Delta__container__tittle {
@@ -122,42 +122,17 @@ export default {
     margin-bottom: 20px;
 }
 
-@media (min-width: 0px) and (max-width: 480px) {
-    .Delta__container__box__tittle {
-        font-size: 14px;
-    }
-
-    .Delta__container__box__text {
-        font-size: 8px;
-    }
-
-    .Delta__container__tittle {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .Delta__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding: 0 20px;
-        width: 100%;
-        margin-top: 30px;
-    }
-}
-
-
 @media (max-width: 1024px) {
     .Delta__container__box {
         width: 48%;
+        /* 2 colunas no tablet */
     }
 }
 
 @media (max-width: 768px) {
     .Delta__container__box {
         width: 70%;
+        /* 1.5 colunas no tablet pequeno */
     }
 
     .Delta__container__box__img {
@@ -172,6 +147,29 @@ export default {
 
     .Delta__container__box__text {
         font-size: 12px;
+    }
+
+    .Delta__container__tittle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Delta__container__box {
+        width: 100%;
+        /* Caixa ocupa toda a largura da tela no celular */
+    }
+
+    .Delta__container__box__tittle {
+        font-size: 16px;
+    }
+
+    .Delta__container__box__text {
+        font-size: 12px;
+    }
+
+    .Delta__container__tittle {
+        font-size: 16px;
     }
 }
 </style>

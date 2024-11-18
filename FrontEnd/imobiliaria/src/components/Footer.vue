@@ -48,7 +48,7 @@
 
     <!-- Copyright no final -->
     <div class="footer__bottom">
-      <span>© Copyright 2024 casamineira.com.br</span>
+      <span>© Copyright 2024 {Nome do site}.com.br</span>
       <a href="#">Termos e condições de uso</a> | <a href="#">Aviso de Privacidade</a>
     </div>
   </footer>

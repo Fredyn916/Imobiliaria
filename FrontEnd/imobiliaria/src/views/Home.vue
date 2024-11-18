@@ -68,7 +68,6 @@ a {
   background: url('@/Images/bg.png') no-repeat center center;
   background-size: cover;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -101,6 +100,9 @@ a {
 .Echo {
   height: 700px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Alpha {
@@ -123,6 +125,10 @@ a {
     align-items: center;
   }
 
+  .Echo {
+    height: 700px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -131,10 +137,13 @@ a {
   }
 
   .Delta {
-    height: 600px;
+    height: 1000px;
   }
 
-
+  .Echo {
+    height: 700px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -144,6 +153,11 @@ a {
 
   .Delta {
     height: 500px;
+  }
+
+  .Echo {
+    height: 1000px;
+    width: 100%;
   }
 
 }

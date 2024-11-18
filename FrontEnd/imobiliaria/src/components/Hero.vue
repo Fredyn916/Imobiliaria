@@ -71,8 +71,11 @@ export default {
 .Hero__bg__container {
     text-align: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .Hero__bg__Tittle {
