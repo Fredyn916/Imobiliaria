@@ -6,6 +6,7 @@ public class Comercial : Imovel
 {
     public int Banheiros { get; set; }
     public int Vagas { get; set; }
+    public string TipoNegocio { get; set; }
 
     public Comercial()
 	{
