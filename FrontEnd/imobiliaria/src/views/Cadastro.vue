@@ -1,4 +1,6 @@
 <template>
+    <NavBar />
+    <NavBarUsuarios />
     <div class="page-container">
         <div class="form-container">
             <h1 class="form-title">Cadastre-se</h1>
@@ -62,14 +64,8 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
-import MobileNavBar from '@/components/MobileNavBar.vue';
 export default {
     name: 'FormPostUsuario',
-    components: {
-        NavBar,
-        MobileNavBar
-    },
     data() {
         return {
             nome: '',
@@ -146,4 +142,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Seu estilo aqui */
+</style>

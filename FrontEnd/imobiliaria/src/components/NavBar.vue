@@ -3,8 +3,8 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
-                <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
+                <RouterLink to="/" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <RouterLink to="/" class="Entry__Bnt">Entrar</RouterLink>
             </li>
         </ul>
     </nav>
@@ -51,7 +51,6 @@ export default{
     background-color: transparent;
     border: none;
     color: black;
-    font-weight: bold;
     padding: 0.90rem 1.5rem;
     text-align: center;
     text-decoration: none;
@@ -67,7 +66,7 @@ export default{
 }
 
 .Entry__Bnt {
-    background-color: #59808b;
+    background-color: #8CB9C5;
     border: none;
     color: white;
     padding: 0.90rem 1.5rem;
@@ -78,16 +77,11 @@ export default{
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s;
-    transition: .3s;
 }
 
 .Entry__Bnt:hover {
-    background-color: #8CB9C5;
-    color: #333;
-    font-weight: bold;
+    background-color: #59808b;
 }
-
-
 
 @media (min-width: 200px) and (max-width: 600px) {
     .NavBar {
