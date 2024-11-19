@@ -27,19 +27,22 @@
             </div>
           </div>
           <div class="Imovel__Container__box__Right">
-            <strong> R$ {{ Imovel.preco }}</strong><br>
-            Rua: {{ Imovel.rua }}<br>
-            Endereço: {{ Imovel.endereco }}<br>
-            Número: {{ Imovel.numero }}<br>
-            Área: {{ Imovel.area }} m²<br>
-            CEP: {{ Imovel.cep }}<br>
-            Bairro: {{ Imovel.bairro }}<br>
-            Cidade: {{ Imovel.cidade }}<br>
-            Unidade Federativa: {{ Imovel.unidadeFederativa }}<br>
-          </div>
-        </div>
-      </li>
-    </ul>
+            <div class="Imovel__item__container">
+              <div class="Imovel__preco"><strong> R$ {{ Imovel.preco }}</strong></div>
+              <div class="Imovel__rua">{{ Imovel.rua }}</div>
+              <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
+              <div class="Imovel__areasComuns">
+      <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
+  </div>
+  <div class="Imovel__area">{{ Imovel.area }} m²</div>
+  <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+  </div>
+  <br>
+  </div>
+
+  </div>
+  </li>
+  </ul>
   </div>
 </template>
 
@@ -159,7 +162,7 @@ export default {
   display: flex;
 }
 
-.Imovel__Container__box__images img{
+.Imovel__Container__box__images img {
   width: 100%;
   height: 100%;
 }
@@ -169,6 +172,17 @@ export default {
   max-width: 70%;
   padding: 2rem;
   background: #fff;
+}
+
+.Imovel__item__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Imovel__descricao {
+  max-height: 17px;
+  overflow: hidden;
 }
 
 .imovel__container__list {

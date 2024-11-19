@@ -111,12 +111,23 @@ export default {
 
 .NavBar__icon-btn {
     display: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    display: inline-block;
 }
 
-.header__icon {
+.NavBar__icon-btn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.Header__icon {
     width: 1.75rem;
     height: 1.75rem;
 }
+
 
 @media (max-width: 1280px) {
     .NavBar__icon-btn {
