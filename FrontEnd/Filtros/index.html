@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtros de Produtos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Filtros de Produtos</h1>
+
+  <!-- Filtro por categoria (Dropdown) -->
+  <div>
+    <label for="categoryFilter">Categoria:</label>
+    <select id="categoryFilter" class="categoryFilter">
+      <option value="">Todas</option>
+      <option value="iphone">Apple</option>
+      <option value="Samsung">Samsung</option>
+      <!-- Se tiver outras categorias, adicione mais opções -->
+    </select>
+  </div>
+
+  <!-- Barra de Pesquisa para nome de produto -->
+  <div>
+    <label for="searchBar">Pesquisar Produto:</label>
+    <input type="text" id="searchBar" placeholder="Digite o nome do produto..." />
+  </div>
+
+  <!-- Lista de Produtos -->
+  <ul id="productList">
+    <!-- A lista de produtos será gerada dinamicamente aqui -->
+  </ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
