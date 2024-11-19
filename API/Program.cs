@@ -5,6 +5,8 @@ using Core.Services;
 using Entidades.DTOs;
 using Entidades.Interfaces.Imoveis;
 using Entidades.Interfaces.Usuarios;
+using MongoDB.Driver;
+using System.Data.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 

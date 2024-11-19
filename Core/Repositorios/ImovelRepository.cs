@@ -3,7 +3,7 @@ using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using System.Security.Cryptography;
+using System.Data.Entity;
 
 namespace Core.Repositorios;
 
@@ -550,9 +550,207 @@ public class ImovelRepository : IImovelRepository
                 AreasComuns = new List<string> { }
             };
 
-            // Rural
+            new Rural
+            {
+                Id = null,
+                Tipo = "Rural",
+                Area = 4800.0,
+                Preco = 19000.00,
+                Anos = 1,
+                CEP = "13212-863",
+                Rua = "Rua Raymundo Lucente",
+                Numero = 810,
+                Bairro = "Vale dos Cebrantes",
+                Cidade = "Jundiaí",
+                UnidadeFederativa = "SP",
+                Endereco = "Rua Raymundo Lucente, 810, Vale dos Cebrantes, Jundiaí, SP - 13212-863",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Chacara No Interior de Sp Entre Jundiaí E Itu (50 Min de São Paulo) Com 6 Suítes\r\nReferência: 810 - Chacara no interior de Sp entre Jundiaí e Itu (50min de São Paulo) 100m da rodovia, com acesso em estrada asfaltada Guarita com segurança 24h em frente ao imóvel Área total do terreno: 4.800 m2 Área construída: 700 m2 Imóvel para hospedar 14 pessoas 6 suítes, sendo: 1 suíte master com banheira hidromassagem  2 suites internas 1 suíte externa (frente piscina) 2 demi-suites (banheiros independentes em frente)  Mobiliado  8 TVs Cozinha completa Despensa com geladeira e freezer Área interna e externa totalmente mobiliada Área de churrasco com forno a lenha Quiosque  Campo de futebol Pomar formado Piscina  Aquecimento solar  2 poços (sendo um semi artesiano) Água potável na casa toda 4 vagas cobertas e mais 6 descobertas  2 banheiros independentes para área da piscina  Área de depósito separada da casa principal Canil  Capela  Casa separada para caseiro",
+                AreasComuns = new List<string> { "Churrasqueira (parrilla)" },
+                Quartos = 6,
+                Suites = 6,
+                Banheiros = 9,
+                Vagas = 8
+            };
+            new Rural
+            {
+                Id = null,
+                Tipo = "Rural",
+                Area = 16000.0,
+                Preco = 15000.00,
+                Anos = 2,
+                CEP = "13098-500",
+                Rua = "Estrada Municipal",
+                Numero = null,
+                Bairro = "Fazenda Monte D'Este",
+                Cidade = "Campinas",
+                UnidadeFederativa = "SP",
+                Endereco = "Estrada Municipal, S.N.º, Fazenda Monte D'Este, Campinas, SP - 13098-500",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "OPORTUNIDADE\r\n\r\nVenha desfrutar de momentos inesquecíveis em uma linda chácara para locação definitiva!! Com uma infraestrutura completa e espaços amplos, esta propriedade é perfeita para reunir familiares e amigos em um ambiente tranquilo e cercado pela natureza, podendo ainda ser utilizada para uma clinica de repouso ou algo de interesse comercial.\r\n\r\nA casa principal, conta com 5 quartos, sendo 3 suítes, todos decorados com bom gosto, você e seus convidados terão todo o conforto necessário para descansar e recarregar as energias. As suítes contam com banheiros privativos, proporcionando ainda mais comodidade sem contar a suite master com hidro.\r\n\r\nConta com uma casa de caseiro, com 2 quartos , cozinha, sala, banheiro, lavanderia e varanda\r\n\r\nAs 3 salas espaçosas e aconchegantes são ideais para momentos de descontração e integração. Neles, você poderá aproveitar para assistir a filmes, jogar jogos de tabuleiro ou simplesmente conversar e compartilhar momentos especiais com seus entes queridos.\r\n\r\nPara maior praticidade, a chácara possui 5 banheiros, evitando filas e proporcionando mais conforto para todos. Além disso, há 4 vagas de garagem coberta e podendo superar 30 vagas descobertas, garantindo segurança e comodidade para os veículos de todos os visitantes.\r\n\r\nCom uma área de 16.000 m2 e mais de 800 m² de construção, esse espaço é perfeito para quem busca tranquilidade e privacidade. Aqui, você poderá aproveitar ao máximo a piscina, o jardim e a área gourmet, que conta com churrasqueira , fogão a lenha, forno e um amplo espaço para confraternizações ao ar livre. Conta ainda com uma bela quadra poliesportiva.\r\n\r\nLocalizada em um local privilegiado, a chácara está próxima a áreas verdes, trilhas ecológicas e belas paisagens, proporcionando uma estadia única e revigorante. Além disso, está a poucos minutos do centro de Barão Geraldo e a Unicamp, onde você encontrará uma ampla variedade de comércios, restaurantes e atividades culturais.\r\n\r\nSe você procura um local para relaxar e aproveitar momentos especiais com seus entes queridos, essa chácara é a escolha perfeita. Garanta já a sua reserva e desfrute de uma experiência única em um ambiente acolhedor e repleto de conforto. Entre em contato conosco e agende uma visita para conhecer pessoalmente todos os encantos que essa propriedade tem a oferecer. - 04/07/2024",
+                AreasComuns = new List<string> { "Churrasqueira (parrilla)" },
+                Quartos = 5,
+                Suites = 3,
+                Banheiros = 5,
+                Vagas = 3
+            };
+            new Rural
+            {
+                Id = null,
+                Tipo = "Rural",
+                Area = 313.00,
+                Preco = 4000.00,
+                Anos = 24,
+                CEP = "13252-504",
+                Rua = "Rua Maria Amélia de Morais",
+                Numero = null,
+                Bairro = "Vivendas do Engenho D'Água",
+                Cidade = "Itatiba",
+                UnidadeFederativa = "SP",
+                Endereco = "Rua Maria Amélia de Morais, S.N.º, Vivendas do Engenho D'Água, Itatiba, SP - 13252-504",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Encante - Se Com Esta Maravilhosa Chácara No Engenho D'água Em Itatiba, Sp\r\nExplore o encanto desta incrível chácara situada no prestigiado bairro Vivendas do Engenho d'Água em Itatiba, SP. Com fácil acesso a serviços essenciais como UBS e mercados, esta propriedade oferece uma experiência única, combinando natureza, comodidade e lazer.\r\nCaracterísticas Principais:\r\nTerreno Amplo: 3.000 m2Lazer CompletoPavimento Térreo com Garagem para 4 Automóveis, Varanda Coberta, Sala de Jantar, Sala de Estar, Dormitório, Banheiro, Cozinha com Copa e LavanderiaPavimento Intermediário com Dormitório (podendo ser transformado em suíte) e BanheiroPavimento Superior com Dormitório e Varanda CobertaÁrea de Lazer com Piscina, Mini Campo de Futebol, Churrasqueira, Salão de Jogos com Cozinha, Vestiário e Quarto de HóspedesAmpla Área Verde com Jardim Paisagístico, Balanço, Área para Fogueira, Hortas Elevadas, Pomar com Mangueiras e AbacateiroReservatório de Água: 6.500 litros e Rede de Água da SabespObservações: Esta chácara proporciona uma harmoniosa combinação de conforto, entretenimento e contato direto com a natureza, ideal para quem busca qualidade de vida e momentos inesquecíveis em família.\r\nCaracterísticas Adicionais:\r\nVagas de garagemJardimPiscinaVarandaParcialmente MobiliadaSala de JogosLocal SossegadoPróximo à AutoestradaPróximo a Escolas e HospitaisResidencialTransporte Público PróximoEletricidadeRegistro de Água IndividualAgende sua visita e descubra o paraíso que esta chácara oferece! Entre em contato para mais informações.\r\nFlavio Lima\r\nCreci 247012",
+                AreasComuns = new List<string> { "Vigilância 24h" },
+                Quartos = 4,
+                Suites = 1,
+                Banheiros = 3,
+                Vagas = 1
+            };
+            new Rural
+            {
+                Id = null,
+                Tipo = "Rural",
+                Area = 474.00,
+                Preco = 4700.00,
+                Anos = 14,
+                CEP = "36406-380",
+                Rua = "Rua Geraldo Plaza",
+                Numero = null,
+                Bairro = "Amaro Ribeiro",
+                Cidade = "Conselheiro Lafaiete",
+                UnidadeFederativa = "MG",
+                Endereco = "Rua Geraldo Plaza, S.N.º, Amaro Ribeiro, Conselheiro Lafaiete, MG - 36406-380",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Rurais À Venda - Em Amaro Ribeiro\r\nChácara à venda e locação no bairro Amaro ribeiro, composta por 1.400 m², com poço artesiano, internet fibra óptica, piscina, área gourmet com churrasqueira, 02 residências com 02 banheiro,02 quartos,01 sala,01 cozinha.\r\nChácara Localizada à 1,5 KM do bairro Amaro Ribeiro.",
+                AreasComuns = new List<string> { "Vigilância 24h", "Churrasqueira (parrilla)", "Piscina" },
+                Quartos = 2,
+                Suites = 1,
+                Banheiros = 2,
+                Vagas = 10
+            };
+            new Rural
+            {
+                Id = null,
+                Tipo = "Rural",
+                Area = 250.00,
+                Preco = 2700.00,
+                Anos = 8,
+                CEP = "07662-870",
+                Rua = "Via de Acesso km 54 Rod Fernão Dias",
+                Numero = null,
+                Bairro = "Terra Preta",
+                Cidade = "Mairiporã",
+                UnidadeFederativa = "SP",
+                Endereco = "Via de Acesso km 54 Rod Fernão Dias, S.N.º, Terra Preta, Mairiporã, SP - 07662-870",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Linda Chácara Mairiporã Para Locação!\r\n\r\nLinda Chácara para Locação em Mairiporã com muito verde e ar puro em volta, vista para as montanhas, só chácaras, com 1.000 m² de terreno e 250 m² aproximadamente de área construída, piscina com hidromassagem, casa avarandada, campo de futebol, pomar, gruta e cascata, salão e área gourmet.\r\nValor de Locação R$ 3.000,00 mensais + IPTU! Baixou o valor hoje R$ 2.700,00!!",
+                AreasComuns = new List<string> { "Vigilância 24h", "Piscina" },
+                Quartos = 2,
+                Suites = 1,
+                Banheiros = 2,
+                Vagas = 10
+            };
 
-            // Terreno
+            new Terreno
+            {
+                Id = null,
+                Tipo = "Terreno",
+                Area = 210000.00,
+                Preco = 37800000.00,
+                Anos = 2,
+                CEP = "12916-400",
+                Rua = "Avenida Salvador Markowicz",
+                Numero = 33,
+                Bairro = "Lagos de Santa Helena",
+                Cidade = "Bragança Paulista",
+                UnidadeFederativa = "SP",
+                Endereco = "Avenida Salvador Markowicz, 33, Lagos de Santa Helena, Bragança Paulista, SP - 12916-400",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Terreno À Venda, m² por R$ - Lagos de Santa Helena - Bragança Paulista/sp\r\nO terreno de 210.000,00 m² às margens da Fernão Dias, localizado em área nobre de Bragança Paulista, realmente representa uma oportunidade excepcional para diversos tipos de empreendimentos de alto padrão, como condomínios residenciais, shopping centers, restaurantes, hotéis, entre outros. A localização privilegiada às margens da rodovia proporciona excelente visibilidade e acessibilidade, fatores essenciais para o sucesso de projetos comerciais e residenciais de grande porte.\r\n\r\nSe você está interessado em explorar essa oportunidade ou precisa de mais informações sobre o terreno, incluindo detalhes específicos sobre condições de venda, viabilidade de projetos e agendamento de visitas para ver pessoalmente o local, recomendo entrar em contato diretamente com a. Eles têm a expertise necessária para fornecer todo o suporte necessário e ajudá-lo a tomar decisões informadas nesse processo de aquisição ou investimento imobiliário.\r\n\r\nPara mais novidades, lançamentos e atualizações do mercado imobiliário, você pode seguir a nas redes sociais:\r\n\r\nInstagram: @123mudei.imoveis, @aurelioprz, @klebermartellibroker\r\nFacebook: 123mudei Imóveis\r\nEles compartilham informações importantes e oportunidades de investimento que podem ser do seu interesse.",
+                AreasComuns = new List<string> { }
+            };
+            new Terreno
+            {
+                Id = null,
+                Tipo = "Terreno",
+                Area = 452.00,
+                Preco = 37800000.00,
+                Anos = 3,
+                CEP = "12916-352",
+                Rua = "Alameda do Porto",
+                Numero = 79,
+                Bairro = "Condomínio Residencial Fazenda Santa Helena",
+                Cidade = "Bragança Paulista",
+                UnidadeFederativa = "SP",
+                Endereco = "Alameda do Porto, 79, Condomínio Residencial Fazenda Santa Helena, Bragança Paulista, SP - 12916-352",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem28.jpg", "http://exemplo.com/imagem29.jpg", "http://exemplo.com/imagem30.jpg" },
+                Descricao = "Terreno À Venda No Condomínio Portal Horizonte Em Bragança Paulista - Sp.\r\nTerreno à venda no condomínio fechado Portal Bragança Horizonte em Bragança Paulista-SP.\r\n\r\nÓtima oportunidade de construir a casa dos sonhos nesse terreno com leve aclive em um dos condomínios mais desejados de Bragança.\r\n\r\nCondomínio com infraestrutura completa , próximo dos principais pontos da cidade como Universidade, Lago do Taboão e fácil acesso à Rod. Fernão Dias.\r\n\r\nAgende já sua visita e conheça esse belo terreno.",
+                AreasComuns = new List<string> { }
+            };
+            new Terreno
+            {
+                Id = null,
+                Tipo = "Terreno",
+                Area = 500.00,
+                Preco = 45000000.00,
+                Anos = 5,
+                CEP = "12345-678",
+                Rua = "Rua das Flores",
+                Numero = 50,
+                Bairro = "Jardim Primavera",
+                Cidade = "São Paulo",
+                UnidadeFederativa = "SP",
+                Endereco = "Rua das Flores, 50, Jardim Primavera, São Paulo, SP - 12345-678",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem31.jpg", "http://exemplo.com/imagem32.jpg", "http://exemplo.com/imagem33.jpg" },
+                Descricao = "Terreno excelente em localização privilegiada com fácil acesso às principais vias da cidade.",
+                AreasComuns = new List<string> { "Parque", "Área de Lazer" }
+            };
+            new Terreno
+            {
+                Id = null,
+                Tipo = "Terreno",
+                Area = 300.00,
+                Preco = 30000000.00,
+                Anos = 2,
+                CEP = "87654-321",
+                Rua = "Avenida Central",
+                Numero = 200,
+                Bairro = "Centro",
+                Cidade = "Rio de Janeiro",
+                UnidadeFederativa = "RJ",
+                Endereco = "Avenida Central, 200, Centro, Rio de Janeiro, RJ - 87654-321",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem34.jpg", "http://exemplo.com/imagem35.jpg", "http://exemplo.com/imagem36.jpg" },
+                Descricao = "Terreno no centro do Rio de Janeiro, perfeito para construção de edifício comercial.",
+                AreasComuns = new List<string> { "Estacionamento", "Praça" }
+            };
+            new Terreno
+            {
+                Id = null,
+                Tipo = "Terreno",
+                Area = 750.00,
+                Preco = 60000000.00,
+                Anos = 10,
+                CEP = "56789-012",
+                Rua = "Estrada do Campo",
+                Numero = 150,
+                Bairro = "Zona Rural",
+                Cidade = "Belo Horizonte",
+                UnidadeFederativa = "MG",
+                Endereco = "Estrada do Campo, 150, Zona Rural, Belo Horizonte, MG - 56789-012",
+                URLsImagens = new List<string> { "http://exemplo.com/imagem37.jpg", "http://exemplo.com/imagem38.jpg", "http://exemplo.com/imagem39.jpg" },
+                Descricao = "Terreno amplo na zona rural de Belo Horizonte, ideal para agricultura ou criação de animais.",
+                AreasComuns = new List<string> { "Lago", "Área Verde" }
+            };
         };
     }
 }
