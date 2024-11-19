@@ -44,11 +44,12 @@ export default {
 .NavBar {
     display: flex;
     justify-content: space-between;
+    padding-inline: 12rem;
     align-items: center;
     height: 60px;
+    margin: 0 auto;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding-inline: 4rem;
 }
 
 .Nav__actions {
@@ -64,21 +65,17 @@ export default {
     gap: 20px;
 }
 
-.Anunce__Bnt,
-.Entry__Bnt {
+.Anunce__Bnt {
+    background-color: transparent;
+    border: none;
+    color: black;
     padding: 0.90rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
     font-size: 12px;
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s;
-    text-align: center;
-    text-decoration: none;
-}
-
-.Anunce__Bnt {
-    background-color: transparent;
-    color: black;
-    border: none;
 }
 
 .Anunce__Bnt:hover {
@@ -88,8 +85,16 @@ export default {
 
 .Entry__Bnt {
     background-color: #8CB9C5;
-    color: white;
     border: none;
+    color: white;
+    padding: 0.90rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
 .Entry__Bnt:hover {
@@ -99,41 +104,32 @@ export default {
 .Menu__icon__container {
     display: flex;
     justify-content: space-between;
+    /* Garante que a logo e o ícone de menu fiquem em lados opostos */
     align-items: center;
     width: 100%;
 }
 
 .NavBar__icon-btn {
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    display: none;
 }
 
-.NavBar__icon-btn:hover {
-    background-color: rgba(140, 185, 197, 0.2);
+.header__icon {
+    width: 1.75rem;
+    height: 1.75rem;
 }
-
-.Header__icon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-
 
 @media (max-width: 1280px) {
-    .NavBar {
-        padding-inline: 2rem;
-    }
-
     .NavBar__icon-btn {
         display: block;
     }
 
     .InsideNavBar {
         display: none;
+    }
+
+    .NavBar {
+        display: flex;
+        justify-content: space-between;
     }
 
     .InsideNavBar.show {
@@ -162,40 +158,15 @@ export default {
         display: flex;
         align-items: center;
         gap: 20px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 }
 
 @media (max-width: 768px) {
-    .NavBar {
-        padding-inline: 1rem;
-    }
-
     .InsideNavBar.show {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        top: 60px;
-        right: 0;
-        width: 60%;
-        height: 100vh;
-        max-height: 100vh;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-    }
-
-    .li__Home {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .Nav__actions {
-        display: flex;
-        align-items: center;
-        gap: 20px;
+        display: block;
     }
 }
 </style>
