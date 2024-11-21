@@ -233,6 +233,10 @@ export default {
   list-style: none;
 }
 
+.imovel__container__item:hover{
+  cursor: pointer;
+}
+
 @media(max-width: 768px) {
   .container {
     padding: 10px;
