@@ -8,7 +8,7 @@
                 <RouterLink to="ViewImovel" class="Nav__Li">Comprar</RouterLink>
                 <RouterLink to="ViewImovel" class="Nav__Li">Alugar</RouterLink>
                 <li class="Nav__Li">Contato</li>
-                <li class="Nav__Li">Sobre nos</li>
+                <li class="Nav__Li">Sobre nós</li>
             </ul>
         </nav>
     </header>

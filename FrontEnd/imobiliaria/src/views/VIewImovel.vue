@@ -18,7 +18,8 @@
 
   <div class="Imovel__container">
     <ul class="imovel__container__list">
-      <li v-for="Imovel in filteredImoveis" :key="Imovel.id" class="imovel__container__item">
+      <li v-for="Imovel in filteredImoveis" :key="Imovel.id" class="imovel__container__item"
+        @click="selecionarImovel(Imovel.id)">
         <div class="Imovel__Container__internal__container">
           <div class="Imovel__Container__box__Left">
             <div class="Imovel__Container__box__images">
@@ -37,13 +38,12 @@
   <div class="Imovel__area">{{ Imovel.area }} m²</div>
   <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
   </div>
-  <br>
   </div>
-
   </div>
   </li>
   </ul>
   </div>
+
 </template>
 
 <script>
@@ -54,7 +54,8 @@ export default {
       imoveis: [],
       searchQuery: "",
       selectedCategory: "",
-      filteredImoveis: []
+      filteredImoveis: [],
+      selectedImovelId: null,  // Variável para armazenar o ID do imóvel selecionado
     };
   },
   methods: {
@@ -95,6 +96,14 @@ export default {
           : true;
 
         return matchesCategory && matchesSearch;
+      });
+    },
+
+    selecionarImovel(imovelId) {
+      this.selectedImovelId = imovelId;
+      this.$router.push({
+        name: 'ViewOneImovelCasa',
+        query: { id: this.selectedImovelId } // Passando o ID corretamente
       });
     }
   },
