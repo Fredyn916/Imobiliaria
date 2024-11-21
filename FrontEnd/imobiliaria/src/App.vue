@@ -13,6 +13,8 @@
 import Footer from './components/Footer.vue';
 import NavBar from './components/NavBar.vue';
 import MobileNavBar from './components/MobileNavBar.vue';
+import '@/assets/main.css';
+
 
 export default {
   name: 'App',
@@ -53,6 +55,6 @@ export default {
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Funnel Display", sans-serif;
 }
 </style>

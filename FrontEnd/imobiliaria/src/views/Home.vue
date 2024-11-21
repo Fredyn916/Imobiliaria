@@ -141,7 +141,7 @@ a {
   }
 
   .Echo {
-    height: 700px;
+    height: 1000px;
     width: 100%;
   }
 }

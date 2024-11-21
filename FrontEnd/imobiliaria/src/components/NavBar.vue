@@ -3,23 +3,35 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
-                <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
+                <RouterLink to="teste" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <div v-if="!usuario">
+                    <RouterLink to="CadastroLogin" class="Entry__Bnt">Cadastre-se</RouterLink>
+                </div>
+                <div v-else>
+                    <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
+                </div>
             </li>
         </ul>
     </nav>
 </template>
 
+
 <script>
 import MenusNav from '@/components/MenusNav.vue';
 
-export default{
-    name:'NavBar',
-    components:{
+export default {
+    name: 'NavBar',
+    components: {
         MenusNav
+    },
+    computed: {
+        usuario() {
+            return this.$store.getters.getUsuario;
+        }
     }
 }
 </script>
+
 <style scoped>
 .NavBar {
     display: flex;
@@ -104,8 +116,8 @@ export default{
     }
 }
 
-@media(width < 1280px){
-    .NavBar{
+@media(width < 1280px) {
+    .NavBar {
         display: none;
     }
 }

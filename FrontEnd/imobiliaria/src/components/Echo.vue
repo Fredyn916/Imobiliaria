@@ -191,6 +191,7 @@ export default {
     margin-bottom: 20px;
 }
 
+
 .filters button {
     padding: 10px 20px;
     border-radius: 5px;
@@ -206,6 +207,10 @@ export default {
     font-weight: 600;
 }
 
+.filters button:hover{
+    background-color: #59808b;
+    font-weight: 600;
+}
 .carousel-container {
     display: flex;
     align-items: center;
@@ -289,6 +294,7 @@ export default {
     .Echo__Box {
         flex-direction: column;
         padding: 15px;
+        height: 1000px;
     }
 
     .Echo__Box__left {
@@ -317,7 +323,6 @@ export default {
     .Echo__Box {
         width: 100%;
         height: auto;
-        flex-direction: column;
         border: none;
     }
 
