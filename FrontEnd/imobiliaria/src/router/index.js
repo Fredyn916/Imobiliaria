@@ -47,6 +47,11 @@ const router = createRouter({
       component: () => import('@/views/ViewOneImovelCasa.vue'),
       props: true,
     },
+    {
+      path: "/UsuarioPage",
+      name: "UsuarioPage",
+      component: () => import('@/views/UsuarioPage.vue')
+    },
   ],
 })
 
