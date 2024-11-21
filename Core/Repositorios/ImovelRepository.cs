@@ -1,5 +1,4 @@
-﻿using Entidades.Imoveis.Filho;
-using Entidades.Imoveis.Pai;
+﻿using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
