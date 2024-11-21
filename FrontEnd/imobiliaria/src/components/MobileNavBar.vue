@@ -5,8 +5,12 @@
             <ul class="Nav__actions">
                 <li class="li__Home">
                     <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
-                    <RouterLink to="Cadastro" class="Entry__Bnt">Entrar</RouterLink>
-                    <RouterLink to="UsuarioPage" >Usuario</RouterLink>
+                    <div v-if="usuario === null">
+                        <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
+                    </div>
+                    <div v-else>
+                        <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -32,6 +36,14 @@ export default {
             menuVisible: false // Controla a visibilidade do menu
         };
     },
+    computed: {
+        // Acessando o getter de usuário da store
+        usuario() {
+            const usuario = this.$store.getters.getUsuario;
+            console.log('usuario:', usuario); // Depuração para verificar o valor
+            return usuario;
+        }
+    },
     methods: {
         // Alterna a visibilidade do menu
         toggleMenu() {
@@ -40,6 +52,7 @@ export default {
     }
 }
 </script>
+
 
 <style scoped>
 .NavBar {
@@ -119,7 +132,7 @@ export default {
     display: inline-block;
 }
 
-.NavBar__icon-btn:hover{
+.NavBar__icon-btn:hover {
     cursor: pointer;
     transform: scale(1.1);
 }

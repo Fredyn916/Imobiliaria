@@ -12,6 +12,10 @@
         <option value="">Todas</option>
         <option value="Apartamento">Apartamento</option>
         <option value="Casa">Casa</option>
+        <option value="Lote">Lote</option>
+        <option value="Comercial">Comercial</option>
+        <option value="Rural">Rural</option>
+        <option value="Terreno">Terreno</option>
       </select>
     </div>
   </div>
@@ -19,7 +23,7 @@
   <div class="Imovel__container">
     <ul class="imovel__container__list">
       <li v-for="Imovel in filteredImoveis" :key="Imovel.id" class="imovel__container__item"
-        @click="selecionarImovel(Imovel.id)">
+        @click="selecionarImovel(Imovel)">
         <div class="Imovel__Container__internal__container">
           <div class="Imovel__Container__box__Left">
             <div class="Imovel__Container__box__images">
@@ -36,6 +40,7 @@
       <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
   </div>
   <div class="Imovel__area">{{ Imovel.area }} m²</div>
+  <div class="Imovel__area">{{ Imovel.tipo }} </div>
   <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
   </div>
   </div>
@@ -43,7 +48,6 @@
   </li>
   </ul>
   </div>
-
 </template>
 
 <script>
@@ -99,12 +103,26 @@ export default {
       });
     },
 
-    selecionarImovel(imovelId) {
-      this.selectedImovelId = imovelId;
-      this.$router.push({
-        name: 'ViewOneImovelCasa',
-        query: { id: this.selectedImovelId } // Passando o ID corretamente
-      });
+    selecionarImovel(imovel) {
+      this.selectedImovelId = imovel.id;
+      const tipoImovel = imovel.tipo.toLowerCase();
+
+      if (tipoImovel === "casa") {
+        this.$router.push({
+          name: 'ViewOneImovelCasa',
+          query: { id: this.selectedImovelId }
+        });
+      } else if (tipoImovel === "apartamento") {
+        this.$router.push({
+          name: 'ViewOneImovelApartamento',
+          query: { id: this.selectedImovelId }
+        });
+      } else if (tipoImovel === "lote" || tipoImovel === "comercial" || tipoImovel === "rural" || tipoImovel === "terreno") {
+        this.$router.push({
+          name: 'ViewOneImovelOutro',
+          query: { id: this.selectedImovelId }
+        });
+      }
     }
   },
   watch: {

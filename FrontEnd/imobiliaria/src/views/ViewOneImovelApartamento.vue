@@ -1,9 +1,20 @@
 <template>
-    <h1>Casa</h1>
+    <h1>Apartamento</h1>
+    <div class="imovel-box-images">
+        <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index">
+            <img v-if="imagem" :src="imagem" alt="Imagem do imóvel" class="imovel-image" />
+        </div>
+    </div>
+
+
     <div v-if="Imovel && Object.keys(Imovel).length > 0">
+
         <div class="Imovel__preco"><strong> R$ {{ Imovel.preco }}</strong></div>
         <div class="Imovel__rua">{{ Imovel.rua }}</div>
-        <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
+        <div class="Imovel__anos">{{ Imovel.anos }}</div>
+        <div class="Imovel__cep">{{ Imovel.cep }}</div>
+        <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+        <div class="Imovel__endereco">{{ Imovel.endereco }}</div>
         <div class="Imovel__areasComuns">
             <ul>
                 <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
@@ -11,6 +22,7 @@
         </div>
         <div class="Imovel__area">{{ Imovel.area }} m²</div>
         <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+
     </div>
     <div v-else>
         <p>Carregando detalhes do imóvel...</p>
@@ -19,7 +31,7 @@
 
 <script>
 export default {
-    name: 'ViewOneImovelCasa',
+    name: 'ViewOneImovelApartamento',
     data() {
         return {
             Imovel: {}
