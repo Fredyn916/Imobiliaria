@@ -110,7 +110,7 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
-    public async Task InicializarImoveisAsync()
+    public async Task InicializarImoveisPreDefinidos()
     {
         var quantidade = await _Imoveis.CountDocumentsAsync(Builders<Imovel>.Filter.Empty);
 
@@ -760,5 +760,4 @@ public class ImovelRepository : IImovelRepository
             await _Imoveis.InsertManyAsync(imoveisPreDefinidos);
         }
     }
-
 }

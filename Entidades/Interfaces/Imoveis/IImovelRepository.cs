@@ -12,4 +12,5 @@ public interface IImovelRepository
     Task<List<string>> BuscarURLsImagensPorId(string id);
     Task Editar(Imovel imovel);
     Task Remover(string id);
+    Task InicializarImoveisPreDefinidos();
 }
