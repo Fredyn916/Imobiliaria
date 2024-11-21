@@ -1,3 +1,4 @@
+using Core.DataBase.MongoDb;
 using Core.DataBase.MongoDb.Extensoes;
 using Core.DataBase.SQLite;
 using Core.Repositorios;
@@ -5,8 +6,6 @@ using Core.Services;
 using Entidades.DTOs;
 using Entidades.Interfaces.Imoveis;
 using Entidades.Interfaces.Usuarios;
-using MongoDB.Driver;
-using System.Data.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,8 +39,6 @@ builder.Services.AddScoped<IImovelRepository, ImovelRepository>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IImovelService, ImovelService>();
-
-ImovelRepository.AdicionarImoveisPreDefinidos();
 
 var app = builder.Build();
 
