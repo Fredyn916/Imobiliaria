@@ -3,9 +3,9 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <RouterLink to="teste" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
                 <div v-if="!usuario">
-                    <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
+                    <RouterLink to="CadastroLogin" class="Entry__Bnt">Cadastre-se</RouterLink>
                 </div>
                 <div v-else>
                     <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
