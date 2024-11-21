@@ -1,4 +1,5 @@
-﻿using Entidades.Imoveis.Pai;
+﻿using Entidades.Imoveis.Filho;
+using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -47,5 +48,10 @@ public class ImovelService : IImovelService
     public async Task Remover(string id)
     {
         _Repository.Remover(id);
+    }
+
+    public async Task InicializarImoveisPreDefinidos()
+    {
+        _Repository.InicializarImoveisPreDefinidos();
     }
 }

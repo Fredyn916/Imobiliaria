@@ -14,4 +14,5 @@ public class CreateUsuarioDTO
     public string Identificacao { get; set; } // CPF, CNPJ, CNH, CTPS, RG, etc...
     public string Username { get; set; }
     public string Password { get; set; }
+    public string FotoDePerfilURL { get; set; }
 }

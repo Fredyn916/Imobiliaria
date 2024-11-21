@@ -20,4 +20,5 @@ public class Usuario
     public string Username { get; set; }
     public string Password { get; set; }
     public string Tipo { get; set; } // Administrador ou Usuário Convencional
+    public string FotoDePerfilURL { get; set; }
 }

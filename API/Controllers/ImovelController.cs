@@ -56,4 +56,10 @@ public class ImovelController : ControllerBase
     {
         _Service.Remover(id);
     }
+
+    [HttpPost("InicializarImoveis")]
+    public async Task InicializarImoveisPreDefinidos()
+    {
+        _Service.InicializarImoveisPreDefinidos();
+    }
 }
