@@ -8,3 +8,8 @@ https://dashboard.emailjs.com/admin
 email:guilhermesantossousa08@gmail.com
 
 senha:guigabri13
+
+
+comando vue:
+
+npm install emailjs-com
