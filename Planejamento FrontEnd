@@ -1,6 +1,5 @@
 https://viacep.com.br/ws/{CEP}/json/
 
-
 site que envia os emails:
 
 https://dashboard.emailjs.com/admin
@@ -8,7 +7,6 @@ https://dashboard.emailjs.com/admin
 email:guilhermesantossousa08@gmail.com
 
 senha:guigabri13
-
 
 comando vue:
 
