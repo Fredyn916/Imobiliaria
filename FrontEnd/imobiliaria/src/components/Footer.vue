@@ -1,6 +1,16 @@
 <template>
   <footer class="footer">
-    <!-- Logo no topo do footer -->
+    <!-- Seção de Newsletter -->
+    <div class="footer__newsletter">
+      <h2>Inscreva-se na nossa Newsletter</h2>
+      <p>Receba as últimas novidades e ofertas diretamente no seu e-mail.</p>
+      <div class="newsletter__form">
+        <input type="email" placeholder="Digite seu e-mail" class="newsletter__input" v-model="email" />
+        <button class="newsletter__button" @click="sendEmail">Inscrever</button>
+      </div>
+    </div>
+
+    <!-- Logo no centro do footer -->
     <div class="footer__logo-container">
       <img src="@/Images/logo.png" alt="Logo Do Site" class="footer__logo" />
     </div>
@@ -18,11 +28,6 @@
           <li><a href="#">Quem somos</a></li>
           <li><a href="#">Central de Ajuda</a></li>
           <li><a href="#">Mapa do site</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Precificador</a></li>
-          <li><a href="#">Condomínios</a></li>
-          <li><a href="#">Ruas e avenidas</a></li>
-          <li><a href="#">Pontos de interesse</a></li>
         </ul>
       </div>
 
@@ -30,48 +35,137 @@
         <h3>Anunciantes</h3>
         <ul>
           <li><a href="#">Imobiliárias</a></li>
+          <li><a href="#">Parcerias</a></li>
         </ul>
       </div>
 
       <div class="footer__section">
-        <h3>Países</h3>
+        <h3>Links Úteis</h3>
         <ul>
-          <li>Argentina: <a href="#">Zonaprop</a></li>
-          <li>Brasil: <a href="#">Imovelweb</a> · <a href="#">Wimoveis</a> · <a href="#">QuintoAndar</a></li>
-          <li>Mexico: <a href="#">Inmuebles24</a> · <a href="#">Vivanuncios</a></li>
-          <li>Perú: <a href="#">Urbania</a> · <a href="#">Adondevivir</a></li>
-          <li>Ecuador: <a href="#">Plusvalía</a></li>
-          <li>Panamá: <a href="#">Compreoalquile</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Precificador</a></li>
+          <li><a href="#">Condomínios</a></li>
+          <li><a href="#">Ruas e avenidas</a></li>
+          <li><a href="#">Pontos de interesse</a></li>
         </ul>
       </div>
     </div>
 
+    <!-- Seção de Redes Sociais -->
+    <div class="footer__social">
+      <a href="#"><img src="" alt="Facebook" class="social__icon"></a>
+      <a href="#"><img src="" alt="Twitter" class="social__icon"></a>
+      <a href="#"><img src="" alt="Instagram" class="social__icon"></a>
+    </div>
+
     <!-- Copyright no final -->
     <div class="footer__bottom">
-      <span>© Copyright 2024 {Nome do site}.com.br</span>
-      <a href="#">Termos e condições de uso</a> | <a href="#">Aviso de Privacidade</a>
+      <span>© 2024 Nome do site. Todos os direitos reservados.</span>
+      <a href="#">Termos de uso</a> | <a href="#">Privacidade</a>
     </div>
   </footer>
 </template>
-
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
-  name: 'Footer'
-}
+  name: 'Footer',
+  data() {
+    return {
+      email: '',
+    };
+  },
+  methods: {
+    async sendEmail() {
+      if (!this.email) {
+        alert('Por favor, insira um email válido.');
+        return;
+      }
+
+      try {
+        const templateParams = {
+          User__Email: this.email,
+          subject: 'Novos imóveis disponíveis para você!',
+          message: `
+        Olá, temos novidades para você!
+        Confira os imóveis disponíveis na sua região com condições exclusivas.
+        Não perca essa oportunidade de encontrar o imóvel dos seus sonhos.
+      `,
+        };
+
+        const response = await emailjs.send(
+          'service_a15zhqh', // Substitua pelo seu Service ID do EmailJS
+          'template_f0t2ea8', // Substitua pelo seu Template ID do EmailJS
+          templateParams,
+          'sMDnLAmKs04K02KCr' // Substitua pelo seu User ID do EmailJS
+        );
+
+        alert('Email enviado com sucesso! Verifique sua caixa de entrada.');
+        this.email = ''; // Limpa o campo
+      } catch (error) {
+        alert('Ocorreu um erro ao enviar o email.');
+        console.error(error);
+      }
+    }
+  },
+};
 </script>
+
 
 <style scoped>
 .footer {
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: #f3f7f8;
+  color: #2C3E50;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__newsletter {
+  margin-bottom: 2rem;
+}
+
+.footer__newsletter h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer__newsletter p {
+  margin-bottom: 1rem;
+}
+
+.newsletter__form {
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter__input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.newsletter__button {
+  padding: 10px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(0, 43, 82);
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: .3s;
+}
+
+.newsletter__button:hover {
+  transform: scale(1.2);
 }
 
 .footer__logo-container {
-  margin-bottom: 1.5rem;
-  padding-left: 11rem;
+  margin: 2rem 0;
 }
 
 .footer__logo {
@@ -80,17 +174,17 @@ export default {
 
 .footer__sections {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
 }
 
 .footer__section {
-  margin: 0 1rem;
-  text-align: left;
+  margin: 1rem;
 }
 
 .footer__section h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
@@ -100,11 +194,11 @@ export default {
 }
 
 .footer__section li {
-  margin: 0.3rem 0;
+  margin: 0.5rem 0;
 }
 
 .footer__section a {
-  color: #000;
+  color: #2C3E50;
   text-decoration: none;
 }
 
@@ -112,14 +206,22 @@ export default {
   text-decoration: underline;
 }
 
+.footer__social {
+  margin: 2rem 0;
+}
+
+.social__icon {
+  width: 30px;
+  margin: 0 10px;
+}
+
 .footer__bottom {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 0.9rem;
-  text-align: center;
 }
 
 .footer__bottom a {
-  color: #000;
+  color: #2C3E50;
   text-decoration: none;
 }
 
@@ -135,6 +237,19 @@ export default {
 
   .footer__section {
     margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter__form {
+    flex-direction: column;
+  }
+
+  .newsletter__input,
+  .newsletter__button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
   }
 }
 </style>

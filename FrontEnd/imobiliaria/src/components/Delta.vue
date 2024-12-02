@@ -60,7 +60,6 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    /* Usando gap para separar os itens de maneira mais controlada */
     width: 100%;
     margin-top: 30px;
 }
@@ -71,7 +70,6 @@ export default {
     align-items: center;
     width: 23%;
     min-width: 250px;
-    /* Garante que as caixas não fiquem muito pequenas em telas grandes */
     height: auto;
     background: #fff;
     border-radius: 12px;
@@ -90,7 +88,6 @@ export default {
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    border: 4px solid white;
 }
 
 .Delta__container__box__img img {
@@ -102,17 +99,23 @@ export default {
 
 .Delta__container__box__tittle {
     font-weight: 600;
-    font-size: 18px;
-    color: #000;
+    font-size: 16px;
+    color: #2C3E50;
     margin-top: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .Delta__container__box__text {
     font-weight: 500;
     font-size: 13px;
     padding-top: 2em;
-    color: #000;
+    color: #2C3E50;
     text-align: justify;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .Delta__container__tittle {
@@ -120,24 +123,23 @@ export default {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
+    color: #2C3E50;
 }
 
 @media (max-width: 1024px) {
     .Delta__container__box {
-        width: 48%;
-        /* 2 colunas no tablet */
+        width: 47%;
     }
 }
 
 @media (max-width: 768px) {
     .Delta__container__box {
         width: 70%;
-        /* 1.5 colunas no tablet pequeno */
     }
 
     .Delta__container__box__img {
-        width: 80px;
-        height: 80px;
+        width: 40px;
+        height: 40px;
         top: -25px;
     }
 
@@ -157,7 +159,6 @@ export default {
 @media (max-width: 480px) {
     .Delta__container__box {
         width: 100%;
-        /* Caixa ocupa toda a largura da tela no celular */
     }
 
     .Delta__container__box__tittle {
@@ -165,11 +166,11 @@ export default {
     }
 
     .Delta__container__box__text {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .Delta__container__tittle {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 </style>

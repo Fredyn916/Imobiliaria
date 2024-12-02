@@ -55,7 +55,7 @@ export default {
             filteredImoveis: [],
             currentIndex: 0,
             maxItemsPerSlide: 2,
-            categories: ['Todos', 'Apartamento', 'Casa'],
+            categories: ['Todos', 'Comprar', 'Alugar'],
             selectedCategory: 'Todos',
         };
     },
@@ -94,7 +94,7 @@ export default {
             if (this.selectedCategory === 'Todos') {
                 this.filteredImoveis = this.imoveis;
             } else {
-                this.filteredImoveis = this.imoveis.filter(imovel => imovel.tipo === this.selectedCategory);
+                this.filteredImoveis = this.imoveis.filter(imovel => imovel.tipoServico === this.selectedCategory);
             }
             this.currentIndex = 0;
         },
@@ -195,7 +195,7 @@ export default {
 .filters button {
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #8CB9C5;
+    background-color: #1A5276;
     color: white;
     font-size: 1rem;
     cursor: pointer;
@@ -203,14 +203,19 @@ export default {
 }
 
 .filters button.active {
-    background-color: #59808b;
+    font-weight: 600;
+    background-color: rgb(0, 43, 82);
+}
+
+.filters button:hover {
+    background-color: rgb(0, 43, 82);
     font-weight: 600;
 }
 
-.filters button:hover{
-    background-color: #59808b;
-    font-weight: 600;
+.filters button:focus {
+    outline: none;
 }
+
 .carousel-container {
     display: flex;
     align-items: center;
@@ -359,12 +364,10 @@ export default {
     .Echo__Box__rigth {
         width: 100%;
         height: 150px;
-        background-color: #e0e0e0;
     }
 
     .carousel-item {
         flex: 0 0 100%;
-        /* Um item por slide em telas menores */
     }
 
     .carousel-button {

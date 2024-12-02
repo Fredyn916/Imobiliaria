@@ -3,9 +3,9 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="teste" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <RouterLink to="AnunciarSeuImovel" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
                 <div v-if="!usuario">
-                    <RouterLink to="CadastroLogin" class="Entry__Bnt">Cadastre-se</RouterLink>
+                    <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
                 </div>
                 <div v-else>
                     <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
@@ -62,7 +62,7 @@ export default {
 .Anunce__Bnt {
     background-color: transparent;
     border: none;
-    color: black;
+    color: #2C3E50;
     font-weight: bold;
     padding: 0.90rem 1.5rem;
     text-align: center;
@@ -70,16 +70,17 @@ export default {
     font-size: 12px;
     cursor: pointer;
     border-radius: 10px;
-    transition: background-color 0.3s;
+    transition: 0.2s;
 }
 
 .Anunce__Bnt:hover {
-    background-color: #505050;
+    background-color: rgb(0, 43, 82);
     color: #FFF;
+    transform: scale(1.05);
 }
 
 .Entry__Bnt {
-    background-color: #59808b;
+    background-color: rgb(0, 43, 82);
     border: none;
     color: white;
     padding: 0.90rem 1.5rem;
@@ -94,8 +95,8 @@ export default {
 }
 
 .Entry__Bnt:hover {
-    background-color: #8CB9C5;
-    color: #333;
+    background-color: #1A5276;
+    transform: scale(1.05);
     font-weight: bold;
 }
 
