@@ -212,8 +212,9 @@ h2 {
 }
 
 .select-status-btn.active {
-    background-color: #1A5276;
-    color: white;
+    background-color: #FFF;
+    border: 1px solid rgb(0, 43, 82);
+    color: #000;
 }
 
 .property-select {
@@ -241,9 +242,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button:hover:not(:disabled) {
-    background-color: #154360;
-}
 
 .property-inputs {
     display: flex;
