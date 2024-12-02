@@ -16,11 +16,11 @@ public class UsuarioRepository : IUsuarioRepository
         _ConnectionString = connection.GetConnectionString("DefaultConnection");
     }
 
-    public void Adicionar(Usuario usuario)
+    public async Task Adicionar(Usuario usuario)
     {
         using var connection = new SQLiteConnection(_ConnectionString);
 
-        connection.Insert<Usuario>(usuario);
+        await connection.InsertAsync<Usuario>(usuario);
     }
 
     public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
