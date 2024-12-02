@@ -3,7 +3,7 @@
         <MenusNav />
         <ul class="Nav__actions">
             <li class="li__Home">
-                <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                <RouterLink to="AnunciarSeuImovel" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
                 <div v-if="!usuario">
                     <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
                 </div>
