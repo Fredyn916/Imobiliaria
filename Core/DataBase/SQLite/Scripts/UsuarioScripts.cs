@@ -15,14 +15,14 @@ public static class UsuarioScripts
                 (Nome, Idade, Genero,
                  CEP, Rua, Numero, Bairro, Cidade, 
                  UnidadeFederativa, Endereco, Identificacao,
-                 Username, Password, Tipo)
+                 Username, Password, Tipo, FotoDePerfilURL)
 
             VALUES
                 ('Administrador', '', 'Masculino', '34505-730',
                  'Praça Getúlio Vargas', 168, 'Centro', 'Sabará', 'MG',
                  'Praça Getúlio Vargas, 168, Centro, Sabará, MG - 34505-730',
                  '00.000.000/0001-00', 'Admin', 'Admin',
-                 'Administrador');";
+                 'Administrador', 'https://res.cloudinary.com/fredmarques/image/upload/v1733105742/AdmImage_fzfael.png');";
 
         return InsertCommand;
     }
