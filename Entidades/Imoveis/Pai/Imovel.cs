@@ -21,6 +21,7 @@ public class Imovel
     public string UnidadeFederativa { get; set; }
     public string Endereco { get; set;}
     public List<string> URLsImagens { get; set; }
+    public string Titulo { get; set; }
     public string Descricao { get; set; }
     public List<string> AreasComuns { get; set; }
 }
