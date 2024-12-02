@@ -1,5 +1,6 @@
 <template>
     <h1>Casa</h1>
+    <RouterLink to="ViewImovel">Voltar</RouterLink>
     <div v-if="Imovel && Object.keys(Imovel).length > 0">
         <div class="Imovel__preco"><strong> R$ {{ Imovel.preco }}</strong></div>
         <div class="Imovel__rua">{{ Imovel.rua }}</div>

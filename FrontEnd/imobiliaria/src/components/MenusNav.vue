@@ -5,19 +5,23 @@
                 <div class="logo">
                     <RouterLink to="/"><img src="@/Images/logo.png" alt="logo" width="20px"></RouterLink>
                 </div>
-                <RouterLink to="ViewImovel" class="Nav__Li">Comprar</RouterLink>
-                <RouterLink to="ViewImovel" class="Nav__Li">Alugar</RouterLink>
-                <li class="Nav__Li">Contato</li>
-                <li class="Nav__Li">Sobre nós</li>
+                <RouterLink to="ViewImovel" class="Nav__Li" @click="handleClick">Comprar</RouterLink>
+                <RouterLink to="ViewImovel" class="Nav__Li" @click="handleClick">Alugar</RouterLink>
+                <RouterLink to="Contato" class="Nav__Li" @click="handleClick">Contato</RouterLink>
+                <RouterLink to="SobreNos" class="Nav__Li" @click="handleClick">Sobre nós</RouterLink>
             </ul>
         </nav>
     </header>
-
 </template>
 
 <script>
 export default {
-    name: 'MenusNav'
+    name: 'MenusNav',
+    methods: {
+        handleClick() {
+            this.$emit('menuClicked'); // Emitir evento para fechar o menu
+        }
+    }
 }
 </script>
 
@@ -32,7 +36,7 @@ export default {
     display: inline-block;
     padding-bottom: 2px;
     position: relative;
-    gap: 20px;
+    text-decoration: none;
 }
 
 .Nav__Li:hover {
@@ -54,8 +58,7 @@ export default {
     display: block;
 }
 
-@media (width: 768px) {
-
+@media (max-width: 768px) {
     .Nav__ul {
         display: flex;
         flex-direction: column;
