@@ -20,7 +20,8 @@ public static class DataBaseScripts
                 Identificacao TEXT NOT NULL,
                 Username TEXT NOT NULL,
                 Password TEXT NOT NULL,
-                Tipo TEXT NOT NULL
+                Tipo TEXT NOT NULL,
+                FotoDePerfilURL TEXT NOT NULL
             );";
 
         return CreateCommand;
