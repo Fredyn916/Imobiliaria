@@ -28,9 +28,19 @@ export default {
       isMobile: false,
     };
   },
-  mounted() {
+  async mounted() {
     this.updateNavbarVisibility();
     window.addEventListener("resize", this.updateNavbarVisibility);
+
+    const data = {}
+
+    const Response = await fetch('https://localhost:7082/Imovel/InicializarImoveis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: data,
+      });
+
+      console.log(Response)
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.updateNavbarVisibility);

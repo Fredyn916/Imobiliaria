@@ -1,15 +1,16 @@
 <template>
     <nav class="NavBar">
         <div class="InsideNavBar" :class="{ show: menuVisible }">
-            <MenusNav />
+            <RouterLink to="/" class="Home__Bnt" @click="hideMenu">Inicio</RouterLink>
+            <MenusNav @menuClicked="hideMenu" />
             <ul class="Nav__actions">
                 <li class="li__Home">
-                    <RouterLink to="Anunciar" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
+                    <RouterLink to="Anunciar" class="Anunce__Bnt" @click="hideMenu">Anunciar Gratis</RouterLink>
                     <div v-if="usuario === null">
-                        <RouterLink to="CadastroLogin" class="Entry__Bnt">Cadastre-se</RouterLink>
+                        <RouterLink to="Cadastro" class="Entry__Bnt" @click="hideMenu">Cadastre-se</RouterLink>
                     </div>
                     <div v-else>
-                        <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
+                        <RouterLink to="UsuarioPage" class="Entry__Bnt" @click="hideMenu">{{ usuario.username }}</RouterLink>
                     </div>
                 </li>
             </ul>
@@ -23,6 +24,7 @@
     </nav>
 </template>
 
+
 <script>
 import MenusNav from '@/components/MenusNav.vue';
 
@@ -33,25 +35,27 @@ export default {
     },
     data() {
         return {
-            menuVisible: false // Controla a visibilidade do menu
+            menuVisible: false
         };
     },
     computed: {
-        // Acessando o getter de usuário da store
         usuario() {
             const usuario = this.$store.getters.getUsuario;
-            console.log('usuario:', usuario); // Depuração para verificar o valor
+            console.log('usuario:', usuario);
             return usuario;
         }
     },
     methods: {
-        // Alterna a visibilidade do menu
         toggleMenu() {
             this.menuVisible = !this.menuVisible;
+        },
+        hideMenu() {
+            this.menuVisible = false;
         }
     }
 }
 </script>
+
 
 
 <style scoped>
@@ -82,7 +86,7 @@ export default {
 .Anunce__Bnt {
     background-color: transparent;
     border: none;
-    color: black;
+    color: #2C3E50;
     padding: 0.90rem 1.5rem;
     text-align: center;
     text-decoration: none;
@@ -97,8 +101,26 @@ export default {
     color: #FFF;
 }
 
+.Home__Bnt {
+    background-color: transparent;
+    border: none;
+    color: black;
+    padding: 0.90rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.Home__Bnt:hover {
+    background-color: #505050;
+    color: #FFF;
+}
+
 .Entry__Bnt {
-    background-color: #8CB9C5;
+    background-color: rgb(0, 43, 82);
     border: none;
     color: white;
     padding: 0.90rem 1.5rem;
@@ -112,13 +134,12 @@ export default {
 }
 
 .Entry__Bnt:hover {
-    background-color: #59808b;
+    background-color: #1A5276;
 }
 
 .Menu__icon__container {
     display: flex;
     justify-content: space-between;
-    /* Garante que a logo e o ícone de menu fiquem em lados opostos */
     align-items: center;
     width: 100%;
 }
@@ -154,7 +175,8 @@ export default {
 
     .NavBar {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        padding-inline: 2rem;
     }
 
     .InsideNavBar.show {
@@ -192,6 +214,36 @@ export default {
 @media (max-width: 768px) {
     .InsideNavBar.show {
         display: block;
+        display: flex;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .Anunce__Bnt {
+        background-color: transparent;
+        border: 1px solid black;
+        color: black;
+        padding: 0.90rem 6.5rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+    }
+
+
+    .Home__Bnt {
+        background-color: transparent;
+        border: 1px solid black;
+        color: black;
+        padding: 0.90rem 8rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s;
     }
 }
 </style>

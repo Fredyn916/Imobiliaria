@@ -63,6 +63,7 @@ export default {
                 button.classList.add('active');
             });
         });
+
     }
 }
 </script>
@@ -76,6 +77,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .Hero__bg__Tittle {
@@ -83,12 +85,12 @@ export default {
     font-size: 2.5rem;
     font-weight: 600;
     margin-top: -30px;
-    color: white;
+    color: #f3f7f8;
 }
 
 .Hero__bg__container__box1 {
     background-color: #FFF;
-    width: 400px;
+    width: 90%;
     height: 70px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -102,7 +104,7 @@ export default {
     width: 28%;
     height: 50px;
     background-color: #FFF;
-    color: black;
+    color: #2C3E50;
     font-size: 16px;
     font-weight: bold;
     border: none;
@@ -139,7 +141,6 @@ export default {
     background-color: #FFF;
     width: 90%;
     height: 80px;
-    border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: flex;
@@ -171,7 +172,8 @@ export default {
     width: 100%;
     height: 50px;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #4D5656;
+    color: #2C3E50;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
@@ -196,9 +198,9 @@ input[type="search"]:focus {
 }
 
 .Hero__bg__container__box2__Search__Btn {
-    background-color: #59808b;
+    background-color: rgb(0, 43, 82);
     border: none;
-    color: white;
+    color: #FFF;
     padding: 1.2rem 3em;
     text-align: center;
     cursor: pointer;
@@ -208,14 +210,15 @@ input[type="search"]:focus {
 }
 
 .Hero__bg__container__box2__Search__Btn:hover {
-    background-color: #8CB9C5;
-    color: #333;
+    background-color: #1A5276;
+    transform: scale(1.05);
     font-weight: bold;
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
     .Hero__bg__Tittle {
-        display: none;
+        display: block;
+        padding-top: 80px;
     }
 
     .Hero__bg__container {
@@ -290,7 +293,7 @@ input[type="search"]:focus {
     .Hero__bg__container__box2__Search__Btn {
         background-color: #8CB9C5;
         border: none;
-        color: white;
+        color: #2C3E50;
         padding: 1rem 2em;
         text-align: center;
         cursor: pointer;
@@ -365,7 +368,7 @@ input[type="search"]:focus {
     .Hero__bg__container__box2__Search__Btn {
         background-color: #8CB9C5;
         border: none;
-        color: white;
+        color: #2C3E50;
         padding: 1.2rem 2em;
         text-align: center;
         cursor: pointer;
@@ -396,6 +399,7 @@ input[type="search"]:focus {
 
     .Hero__bg__container__box2 {
         height: 200px;
+        border-top-right-radius: 0;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         flex-direction: column;
@@ -434,7 +438,7 @@ input[type="search"]:focus {
     .Hero__bg__container__box2__Search__Btn {
         background-color: #8CB9C5;
         border: none;
-        color: white;
+        color: #2C3E50;
         padding: 1.2rem 2em;
         text-align: center;
         cursor: pointer;

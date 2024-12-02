@@ -1,15 +1,29 @@
 <template>
     <div>
-        <img :src="require('@/../public/images/imgImobiliaria/ImgImoveis/1.png')" alt="Imagem Imovel">
+        <h2>Upload de Imagem</h2>
+        <input type="file" @change="onFileChange">
+        <button @click="uploadImage">Enviar</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'MeuComponente'
-}
-</script>
+    data() {
+        return {
+            selectedFile: null,
+        };
+    },
+    methods: {
+        onFileChange(event) {
+            this.selectedFile = event.target.files[0];
+        },
+        async uploadImage() {
+            const formData = new FormData();
+            formData.append('file', this.selectedFile);
 
-<style scoped>
-/* seu estilo aqui */
-</style>
+
+            console.log(formData)
+        },
+    },
+};
+</script>

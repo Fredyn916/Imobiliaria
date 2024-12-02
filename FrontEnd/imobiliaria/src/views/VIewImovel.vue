@@ -1,13 +1,12 @@
 <template>
-  <div class="container">
-    <div class="filter-container">
-      <!-- Barra de pesquisa -->
-      <input type="text" id="searchBar" v-model="searchQuery" @input="filterImoveis"
-        placeholder="Digite a cidade, bairro ou UF..." class="filter-input" />
-    </div>
+  <div ref="targetSection">
+    <div class="container">
+      <div class="filter-container">
+        <input type="text" id="searchBar" v-model="searchQuery" @input="filterImoveis"
+          placeholder="Digite a cidade, bairro ou Rua..." class="filter-input" />
+      </div>
 
     <div class="filter-container">
-      <!-- Filtro de categoria (opcional) -->
       <select id="categoryFilter" v-model="selectedCategory" class="filter-select">
         <option value="">Todas</option>
         <option value="Apartamento">Apartamento</option>
@@ -18,6 +17,7 @@
         <option value="Terreno">Terreno</option>
       </select>
     </div>
+  </div>
   </div>
 
   <div class="Imovel__container">
@@ -33,21 +33,26 @@
           </div>
           <div class="Imovel__Container__box__Right">
             <div class="Imovel__item__container">
-              <div class="Imovel__preco"><strong> R$ {{ Imovel.preco }}</strong></div>
+              <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
               <div class="Imovel__rua">{{ Imovel.rua }}</div>
               <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
               <div class="Imovel__areasComuns">
-      <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
+                <ul>
+                  <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
+                </ul>
+              </div>
+              <div class="Imovel__area">{{ Imovel.area }} m²</div>
+              <div class="Imovel__area">{{ Imovel.tipo }}</div>
+              <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
-  <div class="Imovel__area">{{ Imovel.area }} m²</div>
-  <div class="Imovel__area">{{ Imovel.tipo }} </div>
-  <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
-  </div>
-  </div>
-  </div>
-  </li>
-  </ul>
-  </div>
+
+  <!-- Botão fixo de rolagem -->
+  <button @click="smoothScrollToSection" class="buttontosection">↓</button>
 </template>
 
 <script>
@@ -59,13 +64,19 @@ export default {
       searchQuery: "",
       selectedCategory: "",
       filteredImoveis: [],
-      selectedImovelId: null,  // Variável para armazenar o ID do imóvel selecionado
+      selectedImovelId: null,
     };
   },
+
+  mounted() {
+    this.fetchImoveis();
+    const filter = this.$route.query.filter;
+
+  },
+
   methods: {
     async fetchImoveis() {
       const apiUrl = "https://localhost:7082/Imovel/ListarImoveis";
-
       try {
         const response = await fetch(apiUrl, {
           method: "GET",
@@ -92,11 +103,10 @@ export default {
           ? imovel.tipo.toLowerCase().includes(this.selectedCategory.toLowerCase())
           : true;
 
-        // Filtragem baseado na pesquisa
         const matchesSearch = this.searchQuery
           ? (imovel.cidade.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
             imovel.bairro.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            imovel.unidadeFederativa.toLowerCase().includes(this.searchQuery.toLowerCase()))
+            imovel.rua.toLowerCase().includes(this.searchQuery.toLowerCase()))
           : true;
 
         return matchesCategory && matchesSearch;
@@ -112,34 +122,88 @@ export default {
           name: 'ViewOneImovelCasa',
           query: { id: this.selectedImovelId }
         });
-      } else if (tipoImovel === "apartamento") {
+      }
+      else if (tipoImovel === "apartamento") {
         this.$router.push({
           name: 'ViewOneImovelApartamento',
           query: { id: this.selectedImovelId }
         });
-      } else if (tipoImovel === "lote" || tipoImovel === "comercial" || tipoImovel === "rural" || tipoImovel === "terreno") {
+      }
+      else if (tipoImovel === "comercial") {
         this.$router.push({
-          name: 'ViewOneImovelOutro',
+          name: 'ViewOneImovelComercial',
           query: { id: this.selectedImovelId }
         });
       }
-    }
-  },
-  watch: {
-    selectedCategory() {
-      this.filterImoveis();
+      else if (tipoImovel === "lote") {
+        this.$router.push({
+          name: 'ViewOneImovelLote',
+          query: { id: this.selectedImovelId }
+        });
+      }
+      else if (tipoImovel === "rural") {
+        this.$router.push({
+          name: 'ViewOneImoveRural',
+          query: { id: this.selectedImovelId }
+        });
+      }
+      else if (tipoImovel === "terreno") {
+        this.$router.push({
+          name: 'ViewOneImovelTerreno',
+          query: { id: this.selectedImovelId }
+        });
+      }
     },
-    searchQuery() {
-      this.filterImoveis();
+
+    smoothScrollToSection() {
+      const section = this.$refs.targetSection;
+      const targetPosition = section.offsetTop;  // Usar offsetTop para obter a posição correta da seção
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1000;
+      let start = null;
+
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percentage = Math.min(progress / duration, 1);
+        window.scrollTo(0, startPosition + distance * percentage);
+
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
     }
   },
-  mounted() {
-    this.fetchImoveis();
-  }
 };
 </script>
 
 <style scoped>
+html {
+  scroll-behavior: smooth;
+}
+
+.buttontosection {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px;
+  font-size: 1.8rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.buttontosection:hover {
+  transform: scale(1.1);
+  background-color: #f0f0f0;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +231,7 @@ export default {
 
 .filter-select {
   background: #fff;
-  font-family: Hind, sans-serif;
+  font-family: "Funnel Display", sans-serif;
   font-weight: 600;
   color: #333;
 }
@@ -233,7 +297,7 @@ export default {
   list-style: none;
 }
 
-.imovel__container__item:hover{
+.imovel__container__item:hover {
   cursor: pointer;
 }
 

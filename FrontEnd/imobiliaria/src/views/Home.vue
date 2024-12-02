@@ -17,6 +17,7 @@
     <section class="Alpha">
       <Alpha />
     </section>
+
   </div>
 </template>
 
@@ -53,7 +54,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Funnel Display", sans-serif;
 }
 
 a {
@@ -88,7 +89,7 @@ a {
 }
 
 .Delta {
-  background-color: #C1B49C;
+  background-color: #f3f7f8;
   color: #FFF;
   height: 400px;
   padding-inline: 5rem;
@@ -106,8 +107,8 @@ a {
 }
 
 .Alpha {
-  height: 400px;
-  background-color: #C1B49C;
+  height: 500px;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,6 +130,10 @@ a {
     height: 700px;
     width: 100%;
   }
+
+  .Alpha{
+    height: 500px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -143,6 +148,10 @@ a {
   .Echo {
     height: 1000px;
     width: 100%;
+  }
+
+  .Alpha{
+    height: 700px;
   }
 }
 
@@ -160,11 +169,15 @@ a {
     width: 100%;
   }
 
+  .Alpha{
+    height: 1000px;
+  }
+
 }
 
 @media (max-width: 480px) {
   .Hero__bg {
-    height: 400px;
+    height: 500px;
   }
 
   .Delta {

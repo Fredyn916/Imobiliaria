@@ -88,7 +88,7 @@
   
   <style scoped>
   .page-container {
-    font-family: 'Arial', sans-serif;
+    font-family: "Funnel Display", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;

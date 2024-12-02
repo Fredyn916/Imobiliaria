@@ -5,7 +5,7 @@
             <div class="form-container register-container">
                 <form @submit.prevent="handleRegister">
                     <h1>Cadastre-se</h1>
-                    
+
                     <div class="form-control">
                         <input type="text" v-model="nome" placeholder="Nome" />
                         <small v-if="nomeError">{{ nomeError }}</small>
@@ -150,7 +150,7 @@ export default {
             if (this.nomeError || this.idadeError || this.cepError || this.identificacaoError || this.usernameError || this.passwordError) {
                 return;
             }
-            
+
             const cepResponse = await this.GetCep();
 
             const data = {
@@ -204,13 +204,12 @@ export default {
             });
 
             const usuario = await req.json();
-            
-            console.log('Resposta da API:', usuario);
 
             if (usuario.password === this.loginPassword) {
                 this.$store.dispatch('setUsuario', usuario);
-                this.$router.push('/UsuarioPage');
+                this.$router.push('/');
             }
+
         },
 
         isValidEmail(email) {
@@ -252,7 +251,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: "Poppins", sans-serif;
+    font-family: "Funnel Display", sans-serif;
     overflow: hidden;
     height: 100vh;
 }
@@ -297,7 +296,7 @@ a:hover {
     color: #4bb6b7;
 }
 
-.Center__Container{
+.Center__Container {
     width: 100%;
     height: 100vh;
     display: flex;
