@@ -1,3 +1,4 @@
+using Core.DataBase.CloudinaryConfig;
 using Core.DataBase.MongoDb.Extensoes;
 using Core.DataBase.SQLite;
 using Core.Repositorios;
@@ -27,7 +28,11 @@ builder.Services.AddCors(options =>
         });
 });
 
+
+
 ExtensoesProgramMongo.AddConfiguracaoMongo(builder.Services, builder.Configuration);
+
+Startup.ConfigureServices(builder.Configuration, builder.Services);
 
 InicializadorDb.Inicializar();
 

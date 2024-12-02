@@ -1,11 +1,12 @@
 ﻿using Entidades.DTOs.Usuarios;
 using Entidades.Usuarios;
+using Microsoft.AspNetCore.Http;
 
 namespace Entidades.Interfaces.Usuarios;
 
 public interface IUsuarioService
 {
-    void Adicionar(Usuario usuario);
+    Task Adicionar(Usuario usuario, IFormFile file);
     Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin);
     List<Usuario> Listar();
     Usuario BuscarUsuarioPorId(int id);
