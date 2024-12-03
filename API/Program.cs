@@ -28,8 +28,6 @@ builder.Services.AddCors(options =>
         });
 });
 
-
-
 ExtensoesProgramMongo.AddConfiguracaoMongo(builder.Services, builder.Configuration);
 
 Startup.ConfigureServices(builder.Configuration, builder.Services);
