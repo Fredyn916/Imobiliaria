@@ -53,13 +53,6 @@ if (app.Environment.IsDevelopment())
 // Permite requisições de qualquer origem (CORS)
 app.UseCors("PermitirTudo");
 
-app.Use(async (context, next) =>
-{
-    context.Request.EnableBuffering();
-    await next();
-});
-
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
