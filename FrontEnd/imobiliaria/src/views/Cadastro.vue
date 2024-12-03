@@ -1,144 +1,139 @@
 <template>
   <div class="page-container">
     <div class="form-container">
-      <form @submit="CreateUsuario" class="user-form-container">
+      <form @submit.prevent="CreateUsuario" class="user-form-container">
         <h1 class="form-title">Cadastre-se</h1>
 
-        <div v-if="message" :class="['message', message === 'Sucesso ao Cadastrar o usuário.' ? 'success' : 'error']">
+        <div v-if="message" :class="['message', message === 'Sucesso ao cadastrar o usuário.' ? 'success' : 'error']">
           {{ message }}
         </div>
 
         <div class="form-grid">
-          <!-- Primeira coluna (campos 1 a 4) -->
           <div class="form-group">
-            <label for="nome">Nome :</label>
+            <label for="nome">Nome:</label>
             <input type="text" id="nome" v-model="nome" required />
           </div>
-
           <div class="form-group">
-            <label for="idade">Idade :</label>
-            <input type="text" id="idade" v-model="idade" required />
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" v-model="idade" required />
           </div>
-
           <div class="form-group">
-            <label for="genero">Gênero :</label>
+            <label for="genero">Gênero:</label>
             <select id="genero" v-model="genero" required>
               <option value="" disabled>Selecione...</option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label for="numero">Número :</label>
+            <label for="numero">Número:</label>
             <input type="text" id="numero" v-model="numero" />
           </div>
-
-          <!-- Segunda coluna (campos 5 a 8) -->
           <div class="form-group">
-            <label for="cep">CEP :</label>
+            <label for="cep">CEP:</label>
             <input type="text" id="cep" v-model="cep" @blur="validateCep" required />
           </div>
-
           <div class="form-group">
-            <label for="identificacao">Identificação (CPF, CNPJ, CNH, CTPS, RG, etc...):</label>
+            <label for="identificacao">Identificação:</label>
             <input type="text" id="identificacao" v-model="identificacao" required />
           </div>
-
           <div class="form-group">
-            <label for="username">Username :</label>
+            <label for="username">Username:</label>
             <input type="text" id="username" v-model="username" required />
           </div>
-
           <div class="form-group">
-            <label for="password">Password :</label>
+            <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" required />
           </div>
-
+          <div class="form-group">
+            <label for="file">Imagem:</label>
+            <input type="file" id="file" @change="onFileChange" required />
+          </div>
         </div>
 
         <button type="submit" class="submit-btn">Cadastrar Usuário</button>
       </form>
     </div>
-
     <h1>Já tem um cadastro?</h1>
     <RouterLink to="Login" class="Entry__Bnt">Clique aqui para logar</RouterLink>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
-import MobileNavBar from "@/components/MobileNavBar.vue";
-
 export default {
   name: "FormPostUsuario",
-  components: {
-    NavBar,
-    MobileNavBar,
-  },
   data() {
     return {
       nome: "",
       idade: "",
       genero: "",
       cep: "",
-      rua: "",
       numero: "",
+      rua: "",
       bairro: "",
       cidade: "",
       unidadeFederativa: "",
       identificacao: "",
       username: "",
       password: "",
-      message: ""
+      file: null,
+      message: "",
     };
   },
   methods: {
     validateCep() {
       const cepPattern = /^[0-9]{8}$/;
       if (!cepPattern.test(this.cep)) {
-        this.message =
-          "CEP inválido. Certifique-se de inserir um CEP válido com 8 números.";
+        this.message = "CEP inválido. Certifique-se de inserir um CEP válido com 8 números.";
         this.cep = "";
       } else {
         this.message = "";
       }
     },
-
-    handleFileUpload(event) {
-      this.selectedFile = event.target.files[0];
+    onFileChange(event) {
+      this.file = event.target.files[0];
     },
-
-    async CreateUsuario(e) {
-      e.preventDefault();
-
-      if (this.identificacao.length < 11) {
-        this.message = "Identificação inválida. Por favor, insira uma identificação válida.";
+    async GetCep() {
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
+        if (!response.ok) {
+          throw new Error("Erro ao buscar o CEP.");
+        }
+        const data = await response.json();
+        if (data.erro) {
+          throw new Error("CEP não encontrado.");
+        }
+        return data;
+      } catch (error) {
+        this.message = error.message;
+        return null;
+      }
+    },
+    async CreateUsuario() {
+      if (!this.file) {
+        this.message = "Por favor, selecione um arquivo.";
         return;
       }
 
       const cepResponse = await this.GetCep();
       if (!cepResponse) {
-        this.message = "Erro ao buscar o CEP. Tente novamente.";
-        return;
+        return; // Interrompe se o CEP for inválido ou a busca falhar
       }
 
-      const data = {
-        nome: this.nome,
-        idade: this.idade,
-        genero: this.genero,
-        cep: cepResponse.cep,
-        rua: cepResponse.logradouro,
-        numero: this.numero,
-        bairro: cepResponse.bairro,
-        cidade: cepResponse.localidade,
-        unidadeFederativa: cepResponse.uf,
-        identificacao: this.identificacao,
-        username: this.username,
-        password: this.password,
-      };
-
-      const formData = JSON.stringify(data)
+      const formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("Nome", this.nome);
+      formData.append("Idade", this.idade);
+      formData.append("Genero", this.genero);
+      formData.append("CEP", this.cep);
+      formData.append("Rua", cepResponse.logradouro || "");
+      formData.append("Numero", this.numero);
+      formData.append("Bairro", cepResponse.bairro || "");
+      formData.append("Cidade", cepResponse.localidade || "");
+      formData.append("UnidadeFederativa", cepResponse.uf || "");
+      formData.append("Identificacao", this.identificacao);
+      formData.append("Username", this.username);
+      formData.append("Password", this.password);
 
       try {
         const response = await fetch("https://localhost:7082/Usuario/AdicionarUsuario", {
@@ -146,32 +141,37 @@ export default {
           body: formData,
         });
 
-        if (response.status === 200) {
-          this.message = "Sucesso ao Cadastrar o usuário.";
+        if (response.ok) {
+          this.message = "Sucesso ao cadastrar o usuário.";
+          this.resetForm();
         } else {
-          this.message = "Erro ao Cadastrar o usuário.";
+          const errorData = await response.json();
+          this.message = `Erro ao cadastrar o usuário: ${JSON.stringify(errorData.errors)}`;
         }
       } catch (error) {
         this.message = "Erro ao conectar com o servidor. Tente novamente.";
+        console.error("Erro no CreateUsuario:", error);
       }
     },
-
-    async GetCep() {
-      try {
-        const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
-        if (!response.ok) {
-          this.message = "Erro ao buscar o CEP.";
-          return null;
-        }
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        this.message = "Erro ao buscar o CEP.";
-        return null;
-      }
+    resetForm() {
+      this.nome = "";
+      this.idade = "";
+      this.genero = "";
+      this.cep = "";
+      this.numero = "";
+      this.rua = "";
+      this.bairro = "";
+      this.cidade = "";
+      this.unidadeFederativa = "";
+      this.identificacao = "";
+      this.username = "";
+      this.password = "";
+      this.file = null;
+      this.$refs.fileInput.value = ""; // Reseta o campo de upload
     },
   },
 };
+
 </script>
 
 <style scoped>

@@ -20,7 +20,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost("AdicionarUsuario")]
-    public async Task Adicionar([FromHeader] IFormFile file, [FromBody] CreateUsuarioDTO usuarioDTO)
+    public async Task Adicionar(IFormFile file, [FromForm] CreateUsuarioDTO usuarioDTO)
     {
         Usuario usuario = _Mapper.Map<Usuario>(usuarioDTO);
         usuario.Endereco = $"{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}";
