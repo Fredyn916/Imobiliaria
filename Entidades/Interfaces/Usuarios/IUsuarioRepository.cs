@@ -5,7 +5,7 @@ namespace Entidades.Interfaces.Usuarios;
 
 public interface IUsuarioRepository
 {
-    Task Adicionar(Usuario usuario);
+    int Adicionar(Usuario usuario);
     Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin);
     List<Usuario> Listar();
     Usuario BuscarUsuarioPorId(int id);
