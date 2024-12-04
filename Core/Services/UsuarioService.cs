@@ -21,7 +21,7 @@ public class UsuarioService : IUsuarioService
     public async Task Adicionar(Usuario usuario, byte[] imageData, string fileName)
     {
         using var stream = new MemoryStream(imageData);
-        IFormFile file = new FormFile(stream, 0, imageData.Length, "image", fileName);
+        IFormFile file = new FormFile(stream, 0, imageData.Length, "file", fileName);
 
         var uploadParams = new ImageUploadParams()
         {
