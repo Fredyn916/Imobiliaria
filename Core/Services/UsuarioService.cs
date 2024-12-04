@@ -20,14 +20,15 @@ public class UsuarioService : IUsuarioService
 
     public async Task Adicionar(Usuario usuario, byte[] imageData, string fileName)
     {
-        using var stream = new MemoryStream(imageData);
-        IFormFile file = new FormFile(stream, 0, imageData.Length, "file", fileName);
+        using var stream = new MemoryStream(imageData); // Fluxo de Dados da imagem em byte array para Stream
+
+        IFormFile file = new FormFile(stream, 0, imageData.Length, "file", fileName); // Preenchimento de uma instância de IFormFile
 
         var uploadParams = new ImageUploadParams()
         {
             File = new FileDescription(file.FileName, file.OpenReadStream())
         };
-        var uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+        var uploadResult = await _Cloudinary.UploadAsync(uploadParams); // Hopedagem da imagem na nuvem da ferramenta Cloudinary
 
         usuario.FotoDePerfilURL = uploadResult.SecureUrl.ToString(); // Preenche a propriedade do Usuário com a URL da imagem
 
