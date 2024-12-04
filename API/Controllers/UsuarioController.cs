@@ -18,7 +18,7 @@ public class UsuarioController : ControllerBase
         _Service = usuarioService;
         _Mapper = mapper;
     }
-
+    
     [HttpPost("AdicionarUsuario")]
     public async Task Adicionar(IFormFile file, [FromForm] CreateUsuarioDTO usuarioDTO)
     {
