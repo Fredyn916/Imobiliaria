@@ -9,7 +9,6 @@
         </div>
 
         <div class="form-grid">
-          <!-- Primeira coluna (campos 1 a 4) -->
           <div class="form-group">
             <label for="nome">Nome :</label>
             <input type="text" id="nome" v-model="nome" required />
@@ -17,7 +16,7 @@
 
           <div class="form-group">
             <label for="idade">Idade :</label>
-            <input type="text" id="idade" v-model="idade" required />
+            <input type="number" id="idade" v-model="idade" required />
           </div>
 
           <div class="form-group">
@@ -31,13 +30,12 @@
 
           <div class="form-group">
             <label for="numero">Número :</label>
-            <input type="text" id="numero" v-model="numero" />
+            <input type="number" id="numero" v-model="numero" required />
           </div>
 
-          <!-- Segunda coluna (campos 5 a 8) -->
           <div class="form-group">
             <label for="cep">CEP :</label>
-            <input type="text" id="cep" v-model="cep" @blur="validateCep" required />
+            <input type="text" id="cep" v-model="cep" required />
           </div>
 
           <div class="form-group">
@@ -55,6 +53,11 @@
             <input type="password" id="password" v-model="password" required />
           </div>
 
+          <div class="form-group">
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" @change="handleFileUpload" required />
+          </div>
+
         </div>
 
         <button type="submit" class="submit-btn">Cadastrar Usuário</button>
@@ -67,44 +70,28 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
-import MobileNavBar from "@/components/MobileNavBar.vue";
-
 export default {
-  name: "FormPostUsuario",
-  components: {
-    NavBar,
-    MobileNavBar,
-  },
+  name: "App",
   data() {
     return {
-      nome: "",
-      idade: "",
-      genero: "",
-      cep: "",
-      rua: "",
-      numero: "",
-      bairro: "",
-      cidade: "",
-      unidadeFederativa: "",
-      identificacao: "",
-      username: "",
-      password: "",
-      message: ""
+      nome: '',
+      idade: '',
+      genero: '',
+      cep: '',
+      rua: '',
+      numero: '',
+      bairro: '',
+      cidade: '',
+      unidadeFederativa: '',
+      identificacao: '',
+      username: '',
+      password: '',
+      UsuarioId: '',
+      selectedFile: null, // Variável para armazenar o arquivo de imagem
+      message: ''
     };
   },
   methods: {
-    validateCep() {
-      const cepPattern = /^[0-9]{8}$/;
-      if (!cepPattern.test(this.cep)) {
-        this.message =
-          "CEP inválido. Certifique-se de inserir um CEP válido com 8 números.";
-        this.cep = "";
-      } else {
-        this.message = "";
-      }
-    },
-
     handleFileUpload(event) {
       this.selectedFile = event.target.files[0];
     },
@@ -112,24 +99,22 @@ export default {
     async CreateUsuario(e) {
       e.preventDefault();
 
-      if (this.identificacao.length < 11) {
-        this.message = "Identificação inválida. Por favor, insira uma identificação válida.";
+      // Verifique se a imagem foi selecionada antes de enviar
+      if (!this.selectedFile) {
+        this.message = 'Por favor, selecione uma imagem.';
         return;
       }
 
       const cepResponse = await this.GetCep();
-      if (!cepResponse) {
-        this.message = "Erro ao buscar o CEP. Tente novamente.";
-        return;
-      }
+      if (!cepResponse) return; // Verifique se o CEP foi obtido com sucesso
 
       const data = {
         nome: this.nome,
-        idade: this.idade,
+        idade: parseInt(this.idade),
         genero: this.genero,
         cep: cepResponse.cep,
         rua: cepResponse.logradouro,
-        numero: this.numero,
+        numero: parseInt(this.numero),
         bairro: cepResponse.bairro,
         cidade: cepResponse.localidade,
         unidadeFederativa: cepResponse.uf,
@@ -138,24 +123,60 @@ export default {
         password: this.password,
       };
 
-      const formData = JSON.stringify(data)
+      const dataJson = JSON.stringify(data);
 
-      try {
-        const response = await fetch("https://localhost:7082/Usuario/AdicionarUsuario", {
-          method: "POST",
-          body: formData,
+      const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: dataJson,
+      });
+
+      const responseText = await response.text();
+      const id = parseFloat(responseText);
+
+      if (response.status === 200) {
+        const formData = new FormData();
+
+        // Adicionar o usuarioId e a imagem ao FormData
+        formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
+        formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
+
+        // Fazer o PUT request para a API
+        const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
+          method: "PUT",
+          body: formData, // Passar o FormData no corpo da requisição
         });
 
-        if (response.status === 200) {
-          this.message = "Sucesso ao Cadastrar o usuário.";
-        } else {
-          this.message = "Erro ao Cadastrar o usuário.";
-        }
-      } catch (error) {
-        this.message = "Erro ao conectar com o servidor. Tente novamente.";
+        alert('Cadastrada')
+      } else {
+        alert('Erro')
       }
     },
 
+    async PostImagem(id) {
+      const formData = new FormData();
+
+      // Adicionar o usuarioId e a imagem ao FormData
+      formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
+      formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
+
+      // Fazer o PUT request para a API
+      const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
+        method: "PUT",
+        body: formData, // Passar o FormData no corpo da requisição
+      });
+
+      // Verificar o status da resposta e retornar
+      if (responsePostImagem.ok) {
+        this.message = 'Imagem enviada com sucesso!';
+      } else {
+        this.message = 'Erro ao enviar a imagem.';
+      }
+
+      return responsePostImagem;
+    },
+
+    // Função para obter o CEP
     async GetCep() {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
@@ -169,10 +190,11 @@ export default {
         this.message = "Erro ao buscar o CEP.";
         return null;
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
 
 <style scoped>
 .page-container {
