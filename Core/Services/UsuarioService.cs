@@ -18,8 +18,11 @@ public class UsuarioService : IUsuarioService
         _Cloudinary = cloudinary;
     }
 
-    public async Task Adicionar(Usuario usuario, IFormFile file)
+    public async Task Adicionar(Usuario usuario, byte[] imageData, string fileName)
     {
+        using var stream = new MemoryStream(imageData);
+        IFormFile file = new FormFile(stream, 0, imageData.Length, "image", fileName);
+
         var uploadParams = new ImageUploadParams()
         {
             File = new FileDescription(file.FileName, file.OpenReadStream())
