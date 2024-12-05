@@ -70,6 +70,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #FFF;
 }
 
 .Alpha__internal__Container h1 {

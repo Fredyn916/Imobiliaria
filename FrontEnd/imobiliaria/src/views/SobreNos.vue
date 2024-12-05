@@ -16,7 +16,9 @@
 
         <!-- Mapa Interativo com Seta -->
         <div class="mapa-container">
-            <h2 class="slide-in">Encontre-nos Aqui</h2>
+            <h2 class="slide-in">
+                <p>Encontre-nos Aqui <i class="fas fa-map-marker-alt" ></i></p>
+            </h2>
             <div class="mapa">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.489536960225!2d-43.800050!3d-19.885810!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa697d7b071d817%3A0x91db7757c493ff25!2sLocaliza%C3%A7%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1639654695688!5m2!1spt-BR!2sbr&markers=color:red%7C-19.885810,-43.800050"
@@ -55,7 +57,10 @@ export default {
 
 .slide-in {
     animation: slideInUp 1s ease-in-out;
+    gap: 20px;
+    margin-bottom: 20px;
 }
+
 
 @keyframes fadeIn {
     from {

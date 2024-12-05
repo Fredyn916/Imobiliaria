@@ -69,7 +69,7 @@
           </div>
 
           <div class="form-group">
-            <label for="image">Imagem:</label>
+            <label for="image">Foto de Perfil:</label>
             <input type="file" id="image" @change="handleFileUpload" required />
           </div>
 
@@ -158,6 +158,7 @@ export default {
       };
 
       const dataJson = JSON.stringify(data);
+      console.log(dataJson)
 
       const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
         method: 'POST',
@@ -166,20 +167,23 @@ export default {
       });
 
       const responseText = await response.text();
-      const id = parseFloat(responseText);
+      const id = parseInt(responseText);
+      console.log(id)
 
       if (response.status === 200) {
         const formData = new FormData();
 
         // Adicionar o usuarioId e a imagem ao FormData
-        formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
         formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
+        formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
 
         // Fazer o PUT request para a API
         const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
           method: "PUT",
           body: formData, // Passar o FormData no corpo da requisição
         });
+
+        console.log(responsePostImagem)
 
         alert('Cadastrada')
       } else {
