@@ -7,7 +7,7 @@
         <div class="Hero__bg__container__box1">
             <button class="Hero__bg__container__box1__btn">Alugar</button>
             <button class="Hero__bg__container__box1__btn">Comprar</button>
-            <button class="Hero__bg__container__box1__btn">Imóvel Novo</button>
+            <button class="Hero__bg__container__box1__btn">Todos</button>
         </div>
 
         <div class="Hero__bg__container__box2">

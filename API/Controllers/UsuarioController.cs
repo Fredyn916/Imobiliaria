@@ -20,9 +20,9 @@ public class UsuarioController : ControllerBase
         _Service = usuarioService;
         _Mapper = mapper;
     }
-    
+
     [HttpPost("AdicionarUsuario")]
-    public int Adicionar(CreateUsuarioDTO usuarioDTO)
+    public ReturnUsuarioIdDTO Adicionar(CreateUsuarioDTO usuarioDTO)
     {
         Usuario usuario = _Mapper.Map<Usuario>(usuarioDTO);
         usuario.Endereco = $"{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}";
@@ -32,10 +32,11 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("UploadImage")]
-    public async Task<string> UploadImage(IFormFile imagem, int usuarioId)
+    public async Task<string> UploadImage(IFormFile imagem, [FromQuery] int usuarioId)
     {
         return _Service.UploadImage(imagem, usuarioId).ToString();
     }
+
 
     [HttpPost("LogarUsuario")]
     public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)

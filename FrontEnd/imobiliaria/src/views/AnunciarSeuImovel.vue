@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h1>Anuncie o Seu Imóvel</h1>
+        <div class="container__tittle">
+            <h1>Anuncie seu Imóvel</h1>
+        </div>
         <div class="add-imoveis-box">
             <form @submit.prevent="PostImovel">
                 <!-- Etapa 1 -->
@@ -32,22 +34,22 @@
                 <!-- Etapa 2 -->
                 <div v-if="step === 2" class="step2">
                     <h2>Detalhes do Imóvel</h2>
-                    <label for="cep">CEP:</label>
+                    <label for="cep" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">CEP</label>
                     <input type="text" id="cep" v-model="cep" />
 
-                    <label for="rua">Rua:</label>
+                    <label for="rua" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Rua</label>
                     <input type="text" id="rua" v-model="rua" />
 
-                    <label for="unidadeFederativa">Estado:</label>
+                    <label for="unidadeFederativa" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
                     <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
 
-                    <label for="cidade">Cidade:</label>
+                    <label for="cidade" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Cidade</label>
                     <input type="text" id="cidade" v-model="cidade" />
 
-                    <label for="bairro">Bairro:</label>
+                    <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
                     <input type="text" id="bairro" v-model="bairro" />
 
-                    <label for="photo">Foto do Imóvel:</label>
+                    <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do Imóvel</label>
                     <input type="file" id="photo" @change="handleFileUpload" />
 
                     <button type="button" @click="nextStep">Próxima Etapa</button>
@@ -98,10 +100,11 @@
                     <input type="text" id="titulo" v-model="titulo" required />
 
                     <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" v-model="descricao"></textarea>
+                    <textarea id="descricao" v-model="description"></textarea>
+
 
                     <button type="button" @click="prevStep">Voltar</button>
-                    <button v-if="step === 3" type="submit">Anunciar</button>
+                    <button v-if="step === 3" type="button" @click="PostImovel">Anunciar</button>
                 </div>
             </form>
         </div>
@@ -157,10 +160,53 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
-        PostImovel() {
-            console.log("Imóvel Anunciado", this.$data);
+        async PostImovel() {
+
+            const data = {
+                selectedStatus: this.selectedStatus,
+                selectedProperty: this.selectedProperty,
+                description: this.description,
+                preco: this.preco,
+                cep: this.cep,
+                rua: this.rua,
+                unidadeFederativa: this.unidadeFederativa,
+                cidade: this.cidade,
+                bairro: this.bairro,
+                quartos: this.quartos,
+                banheiros: this.banheiros,
+                suites: this.suites,
+                garagens: this.garagens,
+                areaUtil: this.areaUtil,
+                areaTotal: this.areaTotal,
+                titulo: this.titulo,
+                descricao: this.descricao,
+            }
+
+            const dataJson = JSON.stringify(data)
+            console.log(dataJson)
             alert("Imóvel Anunciado com sucesso!");
+            await LimparForm()
             this.step = 1;
+        },
+        LimparForm() {
+            this.selectedStatus = "";
+            this.selectedProperty = "";
+            this.description = "";
+            this.photo = null;
+            this.cep = "";
+            this.rua = "";
+            this.unidadeFederativa = "";
+            this.cidade = "";
+            this.bairro = "";
+            this.quartos = 0;
+            this.banheiros = 0;
+            this.suites = 0;
+            this.garagens = 0;
+            this.areaUtil = 0;
+            this.areaTotal = 0;
+            this.preco = "";
+            this.titulo = "";
+            this.descricao = "";
         }
     },
 };
@@ -177,6 +223,20 @@ export default {
     min-height: 100vh;
 }
 
+.container__tittle {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+label{
+    color: #333;
+    font-weight: 600;
+}
+
 .add-imoveis-box {
     width: 100%;
     max-width: 600px;
@@ -184,6 +244,7 @@ export default {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 h1,
@@ -196,6 +257,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    height: 60px;
 }
 
 .select-status-btn {
@@ -208,20 +270,21 @@ h2 {
     border-radius: 4px;
     background-color: rgb(0, 43, 82);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .select-status-btn.active {
     background-color: #FFF;
-    border: 1px solid rgb(0, 43, 82);
+    border: 3px solid rgb(0, 43, 82);
     color: #000;
+    transform: scale(1.1);
 }
 
 .property-select {
     width: 100%;
     padding: 10px;
     margin: 20px 0;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
 }
@@ -229,18 +292,25 @@ h2 {
 button {
     padding: 10px 20px;
     margin: 10px 0;
-    background-color: #1A5276;
+    background-color: rgb(0, 43, 82);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
+    width: 100%;
 }
 
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+button:hover {
+    background-color: #1A5276;
+    transform: scale(1.05);
+}
+
 
 
 .property-inputs {
@@ -314,22 +384,26 @@ button:disabled {
     font-size: 1rem;
 }
 
-.step2{
+.step2 {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 }
-.step2 input{
+
+.step2 input {
     border: 3px solid #ededed;
     border-radius: 7px;
     margin-top: 13px;
     padding: 1rem;
 }
 
-.step3{
+.step3 {
     display: flex;
     flex-direction: column;
 }
-.step3 input, textarea{
+
+.step3 input,
+textarea {
     border: 3px solid #ededed;
     border-radius: 7px;
     margin-top: 13px;

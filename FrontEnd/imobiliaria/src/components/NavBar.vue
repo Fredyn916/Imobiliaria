@@ -74,8 +74,8 @@ export default {
 }
 
 .Anunce__Bnt:hover {
-    background-color: rgb(0, 43, 82);
-    color: #FFF;
+    background-color: #ededed;
+    color: #000;
     transform: scale(1.05);
 }
 

@@ -1,7 +1,9 @@
 <template>
   <div class="Alpha__Container">
     <div class="Alpha__internal__Container">
-      <h1>Ouça de nossos clientes</h1>
+      <div class="Container__tittle">
+        <h1>Ouça de nossos clientes</h1>
+      </div>
 
       <div class="Alpha__internal__Container__2">
         <section class="Alpha__left">
@@ -52,7 +54,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .Alpha__internal__Container {
@@ -60,6 +61,16 @@ export default {
   width: 100%;
   font-family: "Funnel Display", sans-serif;
   text-align: center;
+}
+
+.Container__tittle {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(0, 43, 82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
 }
 
 .Alpha__internal__Container h1 {

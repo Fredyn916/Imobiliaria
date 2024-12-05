@@ -2,7 +2,7 @@
     <div class="Echo__Container">
         <div class="Echo__Box">
             <div class="Echo__Box__left">
-                <h1 class="Echo__box__left__tittle">Você conhece nossas opções de imóveis novos?</h1>
+                <h1 class="Echo__box__left__tittle">Você conhece nossas opções de imóveis?</h1>
                 <p class="Echo__box__left__text">Você pode vê-los de acordo com o estágio da obra que melhor se adequa à
                     sua pesquisa.</p>
                 <button class="Echo__box__left__btn">Mais Empreendimentos em obras</button>
@@ -256,14 +256,18 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    width: 250px;
     height: 200px;
+    overflow: hidden;
+    border-radius: 7px;
 }
 
 .imovel-image {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
+
 
 .imovel-box-txt {
     font-size: 14px;

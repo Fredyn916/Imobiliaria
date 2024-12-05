@@ -22,7 +22,7 @@
         <ul>
           <li><a href="#">Buscar imóveis</a></li>
           <li>
-            <RouterLink to="Anunciar">Anunciar</RouterLink>
+            <RouterLink to="AnunciarSeuImovel">Anunciar</RouterLink>
           </li>
           <li><a href="#">Trabalhe conosco</a></li>
           <li><a href="#">Quem somos</a></li>
@@ -61,7 +61,7 @@
     <!-- Copyright no final -->
     <div class="footer__bottom">
       <span>© 2024 Nome do site. Todos os direitos reservados.</span>
-      <a href="#">Termos de uso</a> | <a href="#">Privacidade</a>
+      <a href="#" class="terms">Termos de uso | Privacidade</a>
     </div>
   </footer>
 </template>
@@ -113,6 +113,7 @@ export default {
 
 
 <style scoped>
+
 .footer {
   background-color: #f3f7f8;
   color: #2C3E50;
@@ -220,8 +221,10 @@ export default {
   font-size: 0.9rem;
 }
 
+
 .footer__bottom a {
-  color: #2C3E50;
+  color: rgb(0, 43, 82);
+  font-weight: bold;
   text-decoration: none;
 }
 
