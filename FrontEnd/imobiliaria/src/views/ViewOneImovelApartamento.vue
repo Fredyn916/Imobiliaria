@@ -1,6 +1,6 @@
 <template>
+    <RouterLink to="ViewImovel" class="back-link">Voltar</RouterLink>
     <div class="container">
-        <RouterLink to="ViewImovel" class="back-link">Voltar</RouterLink>
 
         <div class="carousel-container">
             <button class="carousel-button prev" @click="prevSlide">❮</button>
@@ -17,7 +17,6 @@
             <button class="carousel-button next" @click="nextSlide">❯</button>
         </div>
 
-        <!-- Box para Contatar o Anunciante -->
         <div class="contact-box">
             <div class="internal__contact__box">
                 <h3>Contate o Anunciante</h3>
@@ -45,7 +44,6 @@
 
     </div>
 
-    <!-- Informações do Imóvel -->
     <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel-info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
@@ -55,6 +53,7 @@
         <div class="Imovel__cep">{{ Imovel.cep }}</div>
         <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
         <div class="Imovel__areasComuns">
+            Areas Comuns:
             <ul>
                 <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
             </ul>
@@ -74,7 +73,7 @@ export default {
             nome: '',
             telefone: '',
             mensagem: '',
-            currentIndex: 0,  // Controla o índice da imagem no carousel
+            currentIndex: 0
         };
     },
     mounted() {
@@ -106,19 +105,17 @@ export default {
             }
         },
         prevSlide() {
-            // Vai para a imagem anterior
             if (this.currentIndex > 0) {
                 this.currentIndex--;
             } else {
-                this.currentIndex = this.Imovel.urLsImagens.length - 1; // Volta para a última imagem
+                this.currentIndex = this.Imovel.urLsImagens.length - 1;
             }
         },
         nextSlide() {
-            // Vai para a próxima imagem
             if (this.currentIndex < this.Imovel.urLsImagens.length - 1) {
                 this.currentIndex++;
             } else {
-                this.currentIndex = 0; // Volta para a primeira imagem
+                this.currentIndex = 0;
             }
         },
         async enviarMensagem() {
@@ -158,12 +155,12 @@ export default {
 
 <style>
 .container {
-    width: 100%;
-    height: 100vh;
     display: flex;
-    padding: 20px;
-    font-family: "Funnel Display", sans-serif;
+    padding-right: 30%;
+    box-sizing: border-box;
+    padding-top: 100px;
 }
+
 
 .back-link {
     display: inline-block;
@@ -175,6 +172,7 @@ export default {
     transition: color 0.3s;
     width: 50px;
     height: 50px;
+    padding: 20px;
 }
 
 .back-link:hover {
@@ -189,9 +187,8 @@ export default {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    width: 70%;
-    /* Ajuste a largura do carrossel */
-    height: 100%;
+    width: 60%;
+    height: 80%;
 }
 
 .carousel {
@@ -210,8 +207,11 @@ export default {
 }
 
 .imovel-box-images {
-    width: 90%;
-    height: 90%;
+    width: 900px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .imovel-image {
@@ -220,6 +220,7 @@ export default {
     object-fit: cover;
     border-radius: 6px;
 }
+
 
 .carousel-button {
     position: absolute;
@@ -248,6 +249,13 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background-color: transparent;
+    z-index: 1000;
+    overflow-y: auto;
 }
 
 .internal__contact__box {
@@ -311,9 +319,9 @@ textarea {
     text-decoration: underline;
 }
 
-/* Estilo para as informações do imóvel */
 .imovel-info {
     width: 100%;
+    max-width: 65%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 9px;

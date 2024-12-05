@@ -6,18 +6,18 @@
           placeholder="Digite a cidade, bairro ou Rua..." class="filter-input" />
       </div>
 
-    <div class="filter-container">
-      <select id="categoryFilter" v-model="selectedCategory" class="filter-select">
-        <option value="">Todas</option>
-        <option value="Apartamento">Apartamento</option>
-        <option value="Casa">Casa</option>
-        <option value="Lote">Lote</option>
-        <option value="Comercial">Comercial</option>
-        <option value="Rural">Rural</option>
-        <option value="Terreno">Terreno</option>
-      </select>
+      <div class="filter-container">
+        <select id="categoryFilter" v-model="selectedCategory" @change="filterImoveis" class="filter-select">
+          <option value="">Todas</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Casa">Casa</option>
+          <option value="Lote">Lote</option>
+          <option value="Comercial">Comercial</option>
+          <option value="Rural">Rural</option>
+          <option value="Terreno">Terreno</option>
+        </select>
+      </div>
     </div>
-  </div>
   </div>
 
   <div class="Imovel__container">
@@ -33,16 +33,21 @@
           </div>
           <div class="Imovel__Container__box__Right">
             <div class="Imovel__item__container">
-              <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
-              <div class="Imovel__rua">{{ Imovel.rua }}</div>
-              <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
+              <div class="Imove__item__container__item">
+                <div class="Imovel__preco">
+                  <h2><strong>R$ {{ Imovel.preco }}</strong></h2>
+                </div>
+              </div>
+              <div class="Imove__item__container__item">
+                <div class="Imovel__rua">{{ Imovel.rua }}</div>
+                <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
+              </div>
               <div class="Imovel__areasComuns">
-                <ul>
+                <div class="Imovel__area">{{ Imovel.area }} m²</div>
+                <ul class="Ul__AreasComuns">
                   <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
                 </ul>
               </div>
-              <div class="Imovel__area">{{ Imovel.area }} m²</div>
-              <div class="Imovel__area">{{ Imovel.tipo }}</div>
               <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
             </div>
           </div>
@@ -70,8 +75,6 @@ export default {
 
   mounted() {
     this.fetchImoveis();
-    const filter = this.$route.query.filter;
-
   },
 
   methods: {
@@ -180,6 +183,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 html {
   scroll-behavior: smooth;
@@ -254,9 +258,11 @@ html {
 }
 
 .Imovel__Container__box__images img {
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
 }
+
 
 .Imovel__Container__box__Right {
   flex: 2;
@@ -268,7 +274,7 @@ html {
 .Imovel__item__container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .Imovel__descricao {
@@ -283,6 +289,7 @@ html {
   justify-content: center;
   gap: 20px;
   padding: 0;
+  padding-bottom: 20px;
 }
 
 .imovel__container__item {
@@ -299,6 +306,17 @@ html {
 
 .imovel__container__item:hover {
   cursor: pointer;
+}
+
+.Imovel__areasComuns {
+  display: flex;
+  gap: 20px;
+}
+
+.Ul__AreasComuns {
+  display: flex;
+  gap: 20px;
+  list-style: none;
 }
 
 @media(max-width: 768px) {

@@ -98,10 +98,11 @@
                     <input type="text" id="titulo" v-model="titulo" required />
 
                     <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" v-model="descricao"></textarea>
+                    <textarea id="descricao" v-model="description"></textarea>
+
 
                     <button type="button" @click="prevStep">Voltar</button>
-                    <button v-if="step === 3" type="submit">Anunciar</button>
+                    <button v-if="step === 3" type="button" @click="PostImovel">Anunciar</button>
                 </div>
             </form>
         </div>
@@ -157,10 +158,53 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
-        PostImovel() {
-            console.log("Imóvel Anunciado", this.$data);
+        async PostImovel() {
+
+            const data = {
+                selectedStatus: this.selectedStatus,
+                selectedProperty: this.selectedProperty,
+                description: this.description,
+                preco: this.preco,
+                cep: this.cep,
+                rua: this.rua,
+                unidadeFederativa: this.unidadeFederativa,
+                cidade: this.cidade,
+                bairro: this.bairro,
+                quartos: this.quartos,
+                banheiros: this.banheiros,
+                suites: this.suites,
+                garagens: this.garagens,
+                areaUtil: this.areaUtil,
+                areaTotal: this.areaTotal,
+                titulo: this.titulo,
+                descricao: this.descricao,
+            }
+
+            const dataJson = JSON.stringify(data)
+            console.log(dataJson)
             alert("Imóvel Anunciado com sucesso!");
+            await LimparForm()
             this.step = 1;
+        },
+        LimparForm() {
+            this.selectedStatus = "";
+            this.selectedProperty = "";
+            this.description = "";
+            this.photo = null;
+            this.cep = "";
+            this.rua = "";
+            this.unidadeFederativa = "";
+            this.cidade = "";
+            this.bairro = "";
+            this.quartos = 0;
+            this.banheiros = 0;
+            this.suites = 0;
+            this.garagens = 0;
+            this.areaUtil = 0;
+            this.areaTotal = 0;
+            this.preco = "";
+            this.titulo = "";
+            this.descricao = "";
         }
     },
 };
@@ -314,22 +358,25 @@ button:disabled {
     font-size: 1rem;
 }
 
-.step2{
+.step2 {
     display: flex;
     flex-direction: column;
 }
-.step2 input{
+
+.step2 input {
     border: 3px solid #ededed;
     border-radius: 7px;
     margin-top: 13px;
     padding: 1rem;
 }
 
-.step3{
+.step3 {
     display: flex;
     flex-direction: column;
 }
-.step3 input, textarea{
+
+.step3 input,
+textarea {
     border: 3px solid #ededed;
     border-radius: 7px;
     margin-top: 13px;

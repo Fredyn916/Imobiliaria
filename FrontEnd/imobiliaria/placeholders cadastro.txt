@@ -54,8 +54,14 @@
           <!-- Campo de Identificação (CPF, CNPJ, etc) -->
           <div class="form-group">
             <label for="identificacao">Identificação :</label>
-            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text"
-              :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
+            <input 
+              v-if="tipoIdentificacao"
+              :placeholder="placeholderIdentificacao"
+              v-model="identificacao"
+              type="text"
+              :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" 
+              required 
+            />
           </div>
 
           <div class="form-group">
@@ -85,6 +91,8 @@
 </template>
 
 <script>
+import { ref, computed } from 'vue';
+
 export default {
   name: "App",
   data() {
@@ -97,32 +105,26 @@ export default {
       numero: '',
       bairro: '',
       cidade: '',
-      tipoIdentificacao: '',  // Tipo de identificação selecionado
       unidadeFederativa: '',
       identificacao: '',
+      tipoIdentificacao: '',  // Tipo de identificação selecionado
       username: '',
       password: '',
       UsuarioId: '',
-      selectedFile: null, // Variável para armazenar o arquivo de imagem
+      selectedFile: null,
       message: ''
     };
   },
   computed: {
     // Computed property para os placeholders
     placeholderIdentificacao() {
-      switch (this.tipoIdentificacao) {
+      switch(this.tipoIdentificacao) {
         case 'cpf': return 'Ex: 111.111.111-11';
         case 'cnpj': return 'Ex: 11.111.111/1111-11';
         case 'rg': return 'Ex: 12.345.678-9';
         case 'cnh': return 'Ex: 1234567890';
         default: return '';
       }
-    }
-  },
-  watch: {
-    tipoIdentificacao(newTipo) {
-      // Limpa o campo de identificação ao mudar o tipo
-      this.identificacao = '';
     }
   },
   methods: {
@@ -170,47 +172,20 @@ export default {
 
       if (response.status === 200) {
         const formData = new FormData();
+        formData.append("usuarioId", id);
+        formData.append("imagem", this.selectedFile);
 
-        // Adicionar o usuarioId e a imagem ao FormData
-        formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
-        formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
-
-        // Fazer o PUT request para a API
         const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
           method: "PUT",
-          body: formData, // Passar o FormData no corpo da requisição
+          body: formData,
         });
 
-        alert('Cadastrada')
+        alert('Cadastrado com sucesso!');
       } else {
-        alert('Erro')
+        alert('Erro ao cadastrar o usuário');
       }
     },
 
-    async PostImagem(id) {
-      const formData = new FormData();
-
-      // Adicionar o usuarioId e a imagem ao FormData
-      formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
-      formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
-
-      // Fazer o PUT request para a API
-      const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
-        method: "PUT",
-        body: formData, // Passar o FormData no corpo da requisição
-      });
-
-      // Verificar o status da resposta e retornar
-      if (responsePostImagem.ok) {
-        this.message = 'Imagem enviada com sucesso!';
-      } else {
-        this.message = 'Erro ao enviar a imagem.';
-      }
-
-      return responsePostImagem;
-    },
-
-    // Função para obter o CEP
     async GetCep() {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
@@ -225,10 +200,15 @@ export default {
         return null;
       }
     }
+  },
+  watch: {
+    tipoIdentificacao(newTipo) {
+      // Limpa o campo de identificação ao mudar o tipo
+      this.identificacao = '';
+    }
   }
 };
 </script>
-
 
 <style scoped>
 .page-container {
@@ -312,81 +292,46 @@ select:focus {
 
 .submit-btn {
   padding: 12px;
-  background-color: rgb(0, 43, 82);
-  color: white;
-  border: none;
+  background-color: rgb(0, 43, 255);
+  color: #fff;
+  font-size: 1.1rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
   width: 100%;
-  margin-top: 20px;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
+  margin-top: 30px;
 }
 
 .submit-btn:hover {
-  background-color: #1a5276;
+  background-color: #0041e2;
 }
 
 .message {
-  margin-bottom: 20px;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
-  text-align: center;
+  font-size: 1rem;
 }
 
-.message.success {
-  background-color: #d4edda;
-  color: #155724;
+.success {
+  background-color: #28a745;
+  color: white;
 }
 
-.message.error {
-  background-color: #f8d7da;
-  color: #721c24;
+.error {
+  background-color: #dc3545;
+  color: white;
 }
 
 .Entry__Bnt {
-  color: rgb(0, 43, 82);
-  font-weight: bold;
-  text-decoration: none;
-  margin-top: 20px;
-  transition: color 0.3s ease;
+  color: rgb(0, 43, 255);
+  font-size: 1rem;
+  margin-top: 15px;
+  display: inline-block;
 }
 
 .Entry__Bnt:hover {
-  color: #1a5276;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-title {
-    font-size: 1.5rem;
-  }
-
-  .submit-btn {
-    font-size: 1rem;
-  }
-
-  .page-container {
-    padding: 20px;
-  }
-
-  .form-container {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-title {
-    font-size: 1.3rem;
-  }
-
-  .form-group input,
-  .form-group select {
-    font-size: 0.9rem;
-  }
+  text-decoration: underline;
 }
 </style>

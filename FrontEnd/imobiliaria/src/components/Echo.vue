@@ -256,14 +256,18 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    width: 250px;
     height: 200px;
+    overflow: hidden;
+    border-radius: 7px;
 }
 
 .imovel-image {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
+
 
 .imovel-box-txt {
     font-size: 14px;
