@@ -1,14 +1,27 @@
 <template>
   <div ref="targetSection">
     <div class="container">
+      <!-- Filtro de busca -->
       <div class="filter-container">
-        <input type="text" id="searchBar" v-model="searchQuery" @input="filterImoveis"
-          placeholder="Digite a cidade, bairro ou Rua..." class="filter-input" />
+        <input
+          type="text"
+          id="searchBar"
+          v-model="searchQuery"
+          @input="filterImoveis"
+          placeholder="Digite a cidade, bairro ou Rua..."
+          class="filter-input"
+        />
       </div>
 
+      <!-- Filtro por tipo de imóvel -->
       <div class="filter-container">
-        <select id="categoryFilter" v-model="selectedCategory" @change="filterImoveis" class="filter-select">
-          <option value="">Todas</option>
+        <select
+          id="categoryFilter"
+          v-model="selectedCategory"
+          @change="filterImoveis"
+          class="filter-select"
+        >
+          <option value="">Todos os tipos</option>
           <option value="Apartamento">Apartamento</option>
           <option value="Casa">Casa</option>
           <option value="Lote">Lote</option>
@@ -17,57 +30,112 @@
           <option value="Terreno">Terreno</option>
         </select>
       </div>
+
+      <!-- Filtro por tipo de serviço (compra, alugar, etc.) -->
+      <div class="filter-container">
+        <select
+          id="serviceTypeFilter"
+          v-model="selectedServiceType"
+          @change="filterImoveis"
+          class="filter-select"
+        >
+          <option value="">Todos os serviços</option>
+          <option value="Compra">Compra</option>
+          <option value="Aluguel">Aluguel</option>
+        </select>
+      </div>
+
+      <!-- Filtro por faixa de preço -->
+      <div class="filter-container">
+        <label for="priceFilter">Faixa de preço:</label>
+        <input
+          type="number"
+          id="minPrice"
+          v-model.number="minPrice"
+          placeholder="Preço mínimo"
+          class="filter-input"
+          @input="filterImoveis"
+        />
+        <input
+          type="number"
+          id="maxPrice"
+          v-model.number="maxPrice"
+          placeholder="Preço máximo"
+          class="filter-input"
+          @input="filterImoveis"
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="Imovel__container">
-    <ul class="imovel__container__list">
-      <li v-for="Imovel in filteredImoveis" :key="Imovel.id" class="imovel__container__item"
-        @click="selecionarImovel(Imovel)">
-        <div class="Imovel__Container__internal__container">
-          <div class="Imovel__Container__box__Left">
-            <div class="Imovel__Container__box__images">
-              <img v-if="Imovel.urLsImagens && Imovel.urLsImagens.length > 0" :src="Imovel.urLsImagens[0]"
-                alt="Imagem do imóvel" class="imovel-image" />
+    <!-- Lista de imóveis -->
+    <div class="Imovel__container">
+      <ul class="imovel__container__list">
+        <li
+          v-for="Imovel in filteredImoveis"
+          :key="Imovel.id"
+          class="imovel__container__item"
+          @click="selecionarImovel(Imovel)"
+        >
+          <div class="Imovel__Container__internal__container">
+            <div class="Imovel__Container__box__Left">
+              <div class="Imovel__Container__box__images">
+                <img
+                  v-if="Imovel.urLsImagens && Imovel.urLsImagens.length > 0"
+                  :src="Imovel.urLsImagens[0]"
+                  alt="Imagem do imóvel"
+                  class="imovel-image"
+                />
+              </div>
             </div>
-          </div>
-          <div class="Imovel__Container__box__Right">
-            <div class="Imovel__item__container">
-              <div class="Imove__item__container__item">
-                <div class="Imovel__preco">
-                  <h2><strong>R$ {{ Imovel.preco }}</strong></h2>
+            <div class="Imovel__Container__box__Right">
+              <div class="Imovel__item__container">
+                <div class="Imove__item__container__item">
+                  <div class="Imovel__preco">
+                    <h2><strong>R$ {{ formatPrice(Imovel.preco) }}</strong></h2>
+                  </div>
                 </div>
+                <div class="Imove__item__container__item">
+                  <div class="Imovel__rua">
+                    <p>{{ Imovel.rua }}</p>
+                  </div>
+                  <div class="Imovel__endereco">
+                    <p>{{ Imovel.bairro }}, {{ Imovel.cidade }}</p>
+                  </div>
+                </div>
+                <div class="Imovel__areasComuns">
+                  <div class="Imovel__area">
+                    <p>{{ Imovel.area }} m²</p>
+                  </div>
+                  <ul class="Ul__AreasComuns">
+                    <li v-for="area in Imovel.areasComuns" :key="area">
+                      {{ area }}
+                    </li>
+                  </ul>
+                </div>
+                <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
               </div>
-              <div class="Imove__item__container__item">
-                <div class="Imovel__rua">{{ Imovel.rua }}</div>
-                <div class="Imovel__endereco">{{ Imovel.bairro }}, {{ Imovel.cidade }}</div>
-              </div>
-              <div class="Imovel__areasComuns">
-                <div class="Imovel__area">{{ Imovel.area }} m²</div>
-                <ul class="Ul__AreasComuns">
-                  <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
-                </ul>
-              </div>
-              <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
             </div>
           </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+        </li>
+      </ul>
+    </div>
 
-  <!-- Botão fixo de rolagem -->
-  <button @click="smoothScrollToSection" class="buttontosection">↓</button>
+    <!-- Botão fixo de rolagem -->
+    <button @click="smoothScrollToSection" class="buttontosection">↓</button>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'ViewImovel',
+  name: "ViewImovel",
   data() {
     return {
       imoveis: [],
       searchQuery: "",
       selectedCategory: "",
+      selectedServiceType: "", // Novo campo para o tipo de serviço
+      minPrice: null,
+      maxPrice: null,
       filteredImoveis: [],
       selectedImovelId: null,
     };
@@ -89,14 +157,14 @@ export default {
         });
 
         if (!response.ok) {
-          throw new Error('Erro ao buscar imóveis.');
+          throw new Error("Erro ao buscar imóveis.");
         }
 
         const data = await response.json();
         this.imoveis = data;
         this.filteredImoveis = data;
       } catch (error) {
-        console.error('Erro ao carregar imóveis:', error);
+        console.error("Erro ao carregar imóveis:", error);
       }
     },
 
@@ -107,60 +175,42 @@ export default {
           : true;
 
         const matchesSearch = this.searchQuery
-          ? (imovel.cidade.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          ? imovel.cidade.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
             imovel.bairro.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            imovel.rua.toLowerCase().includes(this.searchQuery.toLowerCase()))
+            imovel.rua.toLowerCase().includes(this.searchQuery.toLowerCase())
           : true;
 
-        return matchesCategory && matchesSearch;
+        const matchesPrice =
+          (!this.minPrice || imovel.preco >= this.minPrice) &&
+          (!this.maxPrice || imovel.preco <= this.maxPrice);
+
+        const matchesServiceType = this.selectedServiceType
+          ? imovel.tipoServico.toLowerCase().includes(this.selectedServiceType.toLowerCase())
+          : true;
+
+        return matchesCategory && matchesSearch && matchesPrice && matchesServiceType;
       });
+    },
+
+    formatPrice(value) {
+      if (!value) return "0";
+      return value
+        .toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+        .replace("R$", "")
+        .trim();
     },
 
     selecionarImovel(imovel) {
       this.selectedImovelId = imovel.id;
-      const tipoImovel = imovel.tipo.toLowerCase();
-
-      if (tipoImovel === "casa") {
-        this.$router.push({
-          name: 'ViewOneImovelCasa',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "apartamento") {
-        this.$router.push({
-          name: 'ViewOneImovelApartamento',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "comercial") {
-        this.$router.push({
-          name: 'ViewOneImovelComercial',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "lote") {
-        this.$router.push({
-          name: 'ViewOneImovelLote',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "rural") {
-        this.$router.push({
-          name: 'ViewOneImoveRural',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "terreno") {
-        this.$router.push({
-          name: 'ViewOneImovelTerreno',
-          query: { id: this.selectedImovelId }
-        });
-      }
+      this.$router.push({
+        name: "ViewOneImovel",
+        query: { id: this.selectedImovelId },
+      });
     },
 
     smoothScrollToSection() {
       const section = this.$refs.targetSection;
-      const targetPosition = section.offsetTop;  // Usar offsetTop para obter a posição correta da seção
+      const targetPosition = section.offsetTop;
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition;
       const duration = 1000;
@@ -178,16 +228,20 @@ export default {
       };
 
       window.requestAnimationFrame(step);
-    }
+    },
   },
 };
 </script>
-
 
 <style scoped>
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  font-family: "Funnel Display", sans-serif;
+}
+
 
 .buttontosection {
   position: fixed;
@@ -220,7 +274,6 @@ html {
 
 .filter-container {
   display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
@@ -319,6 +372,56 @@ html {
   list-style: none;
 }
 
+@media (min-width: 1024px) and (max-width: 1600px) {
+  .imovel__container__item {
+    width: 90%;
+    max-width: 100%;
+    max-height: 800px;
+    height: auto;
+    border: 5px solid #ededed;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    list-style: none;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Imovel__Container__box__images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+  .imovel__container__item {
+    width: 90%;
+    max-width: 100%;
+    max-height: 800px;
+    height: auto;
+    border: 5px solid #ededed;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    list-style: none;
+  }
+
+
+  .Imovel__areasComuns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Ul__AreasComuns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+  }
+}
+
+
 @media(max-width: 768px) {
   .container {
     padding: 10px;
@@ -340,7 +443,6 @@ html {
 
   .Imovel__Container__internal__container {
     flex-direction: column;
-    align-items: center;
   }
 
   .Imovel__Container__box__Left,
@@ -349,9 +451,53 @@ html {
     flex: none;
   }
 
+  .Imovel__Container__box__images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+
   .imovel__container__item {
     width: 100%;
     padding: 15px;
+  }
+
+  .imovel__container__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    padding-bottom: 20px;
+    height: auto;
+  }
+
+  .imovel__container__item {
+    width: 90%;
+    max-width: 100%;
+    max-height: 900px;
+    height: auto;
+    border: 5px solid #ededed;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    list-style: none;
+  }
+
+
+  .Imovel__areasComuns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Ul__AreasComuns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
   }
 }
 
@@ -381,5 +527,53 @@ html {
     width: 100%;
     padding: 10px;
   }
+
+  .imovel__container__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    padding-bottom: 20px;
+    height: auto;
+  }
+
+  .imovel__container__item {
+    width: 90%;
+    max-width: 100%;
+    max-height: 1000px;
+    height: auto;
+    border: 5px solid #ededed;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    list-style: none;
+  }
+
+  .Imovel__Container__box__images img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+  .Imovel__areasComuns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Ul__AreasComuns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+  }
+
+  .Imovel__descricao {
+    display: none;
+  }
+
+
 }
 </style>

@@ -5,7 +5,6 @@
                 <h1 class="Echo__box__left__tittle">Você conhece nossas opções de imóveis?</h1>
                 <p class="Echo__box__left__text">Você pode vê-los de acordo com o estágio da obra que melhor se adequa à
                     sua pesquisa.</p>
-                <button class="Echo__box__left__btn">Mais Empreendimentos em obras</button>
             </div>
 
             <div class="Echo__Box__rigth">
@@ -165,17 +164,6 @@ export default {
 
 .Echo__box__left__text {
     font-size: 1rem;
-}
-
-.Echo__box__left__btn {
-    max-width: 60%;
-    height: 50px;
-    border: 1px solid #333;
-    background-color: #FFF;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
 }
 
 .Echo__Box__rigth {

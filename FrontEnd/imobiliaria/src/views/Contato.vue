@@ -42,7 +42,7 @@ export default {
 }
 
 .heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Funnel Display", sans-serif;
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 2rem;

@@ -210,7 +210,7 @@ export default {
   height: 100%;
   padding: 20px;
   background-color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Funnel Display", sans-serif;
 }
 
 .form-container {

@@ -120,7 +120,7 @@ export default {
   font-size: 2rem;
   color: #333;
   margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Funnel Display", sans-serif;
   text-align: center;
   letter-spacing: 1px;
 }
