@@ -19,8 +19,7 @@ public class UsuarioService : IUsuarioService
         _Repository = usuarioRepository;
         _Cloudinary = cloudinary;
     }
-
-    public int Adicionar(Usuario usuario)
+    public ReturnUsuarioIdDTO Adicionar(Usuario usuario)
     {
         return _Repository.Adicionar(usuario);
     }

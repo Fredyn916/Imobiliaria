@@ -6,7 +6,7 @@ namespace Entidades.Interfaces.Usuarios;
 
 public interface IUsuarioService
 {
-    int Adicionar(Usuario usuario);
+    ReturnUsuarioIdDTO Adicionar(Usuario usuario);
     Task<string> UploadImage(IFormFile imagem, int usuarioId);
     Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin);
     List<Usuario> Listar();

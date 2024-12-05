@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using AutoMapper;
+using Dapper.Contrib.Extensions;
 using Entidades.DTOs.Usuarios;
 using Entidades.Interfaces.Usuarios;
 using Entidades.Usuarios;
@@ -10,19 +11,23 @@ namespace Core.Repositorios;
 public class UsuarioRepository : IUsuarioRepository
 {
     private readonly string _ConnectionString;
+    private readonly IMapper _Mapper;
 
-    public UsuarioRepository(IConfiguration connection)
+    public UsuarioRepository(IConfiguration connection, IMapper mapper)
     {
         _ConnectionString = connection.GetConnectionString("DefaultConnection");
+        _Mapper = mapper;
     }
 
-    public int Adicionar(Usuario usuario)
+    public ReturnUsuarioIdDTO Adicionar(Usuario usuario)
     {
         using var connection = new SQLiteConnection(_ConnectionString);
 
         connection.Insert<Usuario>(usuario);
 
-        return usuario.Id;
+        ReturnUsuarioIdDTO usuarioId = _Mapper.Map<ReturnUsuarioIdDTO>(usuario);
+
+        return usuarioId;
     }
 
     public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)

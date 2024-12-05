@@ -20,9 +20,9 @@ public class UsuarioController : ControllerBase
         _Service = usuarioService;
         _Mapper = mapper;
     }
-    
+
     [HttpPost("AdicionarUsuario")]
-    public int Adicionar(CreateUsuarioDTO usuarioDTO)
+    public ReturnUsuarioIdDTO Adicionar(CreateUsuarioDTO usuarioDTO)
     {
         Usuario usuario = _Mapper.Map<Usuario>(usuarioDTO);
         usuario.Endereco = $"{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}";
