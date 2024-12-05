@@ -52,7 +52,7 @@
 
           <div class="form-group">
             <label for="identificacao">Identificação :</label>
-            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
+            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text" @input="atualizarIdentificacao" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
           </div>
 
           <div class="form-group">
@@ -83,7 +83,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: "Cadastro",
   data() {
     return {
       nome: '',
@@ -117,6 +117,18 @@ export default {
     }
   },
   methods: {
+    formatarCPF(cpf) {
+      cpf = cpf.replace(/\D/g, ""); // Remove caracteres não numéricos
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
+      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+      return cpf;
+    },
+    atualizarIdentificacao(event) {
+      if (this.tipoIdentificacao === 'cpf') {
+        this.identificacao = this.formatarCPF(event.target.value);
+      }
+    },
     handleFileUpload(event) {
       this.selectedFile = event.target.files[0];
     },
@@ -155,7 +167,6 @@ export default {
 
       const responseData = await response.json();
       const responseID = responseData.id;
-      console.log(responseID);
 
       const formData = new FormData();
       formData.append("imagem", this.selectedFile);
@@ -188,7 +199,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .page-container {
