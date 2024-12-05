@@ -38,7 +38,6 @@
             <input type="text" id="cep" v-model="cep" required />
           </div>
 
-          <!-- Select para escolher o tipo de Identificação -->
           <div class="form-group">
             <label for="tipoIdentificacao">Tipo de Identificação :</label>
             <select id="tipoIdentificacao" v-model="tipoIdentificacao" required>
@@ -51,11 +50,9 @@
             </select>
           </div>
 
-          <!-- Campo de Identificação (CPF, CNPJ, etc) -->
           <div class="form-group">
             <label for="identificacao">Identificação :</label>
-            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text"
-              :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
+            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
           </div>
 
           <div class="form-group">
@@ -93,22 +90,17 @@ export default {
       idade: '',
       genero: '',
       cep: '',
-      rua: '',
       numero: '',
-      bairro: '',
-      cidade: '',
-      tipoIdentificacao: '',  // Tipo de identificação selecionado
-      unidadeFederativa: '',
+      tipoIdentificacao: '',
       identificacao: '',
       username: '',
       password: '',
       UsuarioId: '',
-      selectedFile: null, // Variável para armazenar o arquivo de imagem
+      selectedFile: null,
       message: ''
     };
   },
   computed: {
-    // Computed property para os placeholders
     placeholderIdentificacao() {
       switch (this.tipoIdentificacao) {
         case 'cpf': return 'Ex: 111.111.111-11';
@@ -121,7 +113,6 @@ export default {
   },
   watch: {
     tipoIdentificacao(newTipo) {
-      // Limpa o campo de identificação ao mudar o tipo
       this.identificacao = '';
     }
   },
@@ -133,14 +124,13 @@ export default {
     async CreateUsuario(e) {
       e.preventDefault();
 
-      // Verifique se a imagem foi selecionada antes de enviar
       if (!this.selectedFile) {
         this.message = 'Por favor, selecione uma imagem.';
         return;
       }
 
       const cepResponse = await this.GetCep();
-      if (!cepResponse) return; // Verifique se o CEP foi obtido com sucesso
+      if (!cepResponse) return;
 
       const data = {
         nome: this.nome,
@@ -157,64 +147,30 @@ export default {
         password: this.password,
       };
 
-      const dataJson = JSON.stringify(data);
-      console.log(dataJson)
-
       const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: dataJson,
+        body: JSON.stringify(data),
       });
 
-      const responseText = await response.text();
-      const id = parseInt(responseText);
-      console.log(id)
+      const responseData = await response.json();
+      const responseID = responseData.id;
+      console.log(responseID);
 
-      if (response.status === 200) {
-        const formData = new FormData();
-
-        // Adicionar o usuarioId e a imagem ao FormData
-        formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
-        formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
-
-        // Fazer o PUT request para a API
-        const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
-          method: "PUT",
-          body: formData, // Passar o FormData no corpo da requisição
-        });
-
-        console.log(responsePostImagem)
-
-        alert('Cadastrada')
-      } else {
-        alert('Erro')
-      }
-    },
-
-    async PostImagem(id) {
       const formData = new FormData();
+      formData.append("imagem", this.selectedFile);
 
-      // Adicionar o usuarioId e a imagem ao FormData
-      formData.append("usuarioId", id);  // A chave "usuarioId" deve ser igual ao nome do parâmetro no controller
-      formData.append("imagem", this.selectedFile); // A chave "imagem" deve ser igual ao nome do parâmetro no controller (IFormFile)
-
-      // Fazer o PUT request para a API
-      const responsePostImagem = await fetch("https://localhost:7082/Usuario/UploadImage", {
+      const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
         method: "PUT",
-        body: formData, // Passar o FormData no corpo da requisição
+        body: formData,
       });
 
-      // Verificar o status da resposta e retornar
-      if (responsePostImagem.ok) {
-        this.message = 'Imagem enviada com sucesso!';
+      if (response.ok && responsePostImagem.ok) {
+        this.message = 'Sucesso ao Cadastrar o usuário.';
       } else {
-        this.message = 'Erro ao enviar a imagem.';
+        this.message = 'Erro ao Cadastrar o usuário.';
       }
-
-      return responsePostImagem;
     },
-
-    // Função para obter o CEP
     async GetCep() {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);

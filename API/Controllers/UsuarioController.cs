@@ -32,10 +32,11 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("UploadImage")]
-    public async Task<string> UploadImage(IFormFile imagem, int usuarioId)
+    public async Task<string> UploadImage(IFormFile imagem, [FromQuery] int usuarioId)
     {
         return _Service.UploadImage(imagem, usuarioId).ToString();
     }
+
 
     [HttpPost("LogarUsuario")]
     public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
