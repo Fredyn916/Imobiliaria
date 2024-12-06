@@ -1,4 +1,5 @@
-﻿using Entidades.Imoveis.Pai;
+﻿using Entidades.DTOs.Imoveis;
+using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,5 +62,11 @@ public class ImovelController : ControllerBase
     public async Task InicializarImoveisPreDefinidos()
     {
         _Service.InicializarImoveisPreDefinidos();
+    }
+
+    [HttpPost("PrecificarImovel")]
+    public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
+    {
+        return await _Service.PrecificarImovel(imovel);
     }
 }

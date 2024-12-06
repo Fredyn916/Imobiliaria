@@ -1,4 +1,5 @@
-﻿using Entidades.Imoveis.Filho;
+﻿using Entidades.DTOs.Imoveis;
+using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
@@ -807,5 +808,34 @@ public class ImovelRepository : IImovelRepository
 
             await _Imoveis.InsertManyAsync(imoveisPreDefinidos);
         }
+    }
+
+    public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
+    {
+        ReturnPrecificadorImovelDTO returnPrecificador = new ReturnPrecificadorImovelDTO();
+
+        double valorBase = 80000;
+
+        double coefVenda = imovel.VendaOuAluguel == "venda" ? 1.0 : 0.79;
+        double coefNovo = imovel.Novo ? 1.2 : 1.0;
+        double coefTipo = imovel.TipoImovel == "apartamento" ? 1.0 : 1.2;
+        double coefQuartos = 1.04101;
+        double coefBanheiros = 1.0209;
+        double coefVagas = 1.01099;
+        double coefArea = 1.1;
+
+        double coefAreasComuns = 1.0108 * imovel.AreasComuns.Count;
+
+        returnPrecificador.Preco = valorBase *
+                            coefVenda *
+                            coefNovo *
+                            coefTipo *
+                            Math.Pow(coefQuartos, imovel.Quartos) *
+                            Math.Pow(coefBanheiros, imovel.Banheiros) *
+                            Math.Pow(coefVagas, imovel.Vagas) *
+                            Math.Pow(coefArea, imovel.AreaM2 / 50) *
+                            coefAreasComuns;
+
+        return returnPrecificador;
     }
 }
