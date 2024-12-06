@@ -239,7 +239,8 @@ label{
 
 .add-imoveis-box {
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
+    height: 500px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;

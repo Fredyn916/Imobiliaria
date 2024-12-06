@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Contatar ✉️</button>
+                    <button type="submit" class="submit-btn">Contatar </button>
                     <p class="terms">Ao enviar, você está aceitando os <a href="#">Termos e Condições de uso</a> e as <a
                             href="#">Políticas de Privacidade</a></p>
                 </form>
