@@ -55,6 +55,10 @@
                   <div class="Imovel__preco">
                     <h2><strong>R$ {{ formatPrice(Imovel.preco) }}</strong></h2>
                   </div>
+
+                  <div class="Imovel__TipoServico">
+                    <p>{{ Imovel.tipoServico }}</p>
+                  </div>
                 </div>
                 <div class="Imove__item__container__item">
                   <div class="Imovel__rua">
@@ -127,7 +131,19 @@
     </div>
 
     <!-- Botão fixo de rolagem -->
-    <button @click="smoothScrollToSection" class="buttontosection">↓</button>
+    <button @click="smoothScrollToSection" class="buttontosection">
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
+        viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+
+        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+          <path d="M2505 5101 c-16 -10 -512 -502 -1102 -1092 -855 -857 -1072 -1080
+-1078 -1106 -9 -44 18 -97 60 -117 29 -14 107 -16 624 -16 l591 0 0 -1335 c0
+-1132 2 -1341 14 -1370 29 -69 -22 -66 962 -63 l886 3 29 33 29 32 0 1350 0
+1350 591 0 c517 0 595 2 624 16 42 20 69 73 60 117 -6 26 -225 250 -1083 1109
+-592 593 -1091 1085 -1108 1093 -42 20 -63 19 -99 -4z" />
+        </g>
+      </svg>
+    </button>
   </div>
 </template>
 
@@ -307,7 +323,8 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 15px;
+  width: 60px;
+  height: 60px; 
   font-size: 1.8rem;
   background-color: #fff;
   border: none;
@@ -316,6 +333,7 @@ body {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
+
 
 .buttontosection:hover {
   transform: scale(1.1);
@@ -484,11 +502,24 @@ li {
   transform: scale(1.1);
 }
 
+.Imovel__rua p {
+  color: #1f1e1e;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.filter-container label {
+  width: 70%;
+  height: 90%;
+  padding: 0.8rem;
+  border-radius: 9px;
+}
+
 @media (min-width: 1024px) and (max-width: 1600px) {
   .imovel__container__item {
     width: 95%;
     max-width: 100%;
-    max-height: 800px;
+    max-height: 400px;
     height: auto;
     color: #000;
     border-radius: 10px;
@@ -733,8 +764,7 @@ li {
 
 input[type="email"],
 input[type="text"],
-textarea,
-label {
+textarea {
   width: 100%;
   height: 90%;
   padding: 0.8rem;
