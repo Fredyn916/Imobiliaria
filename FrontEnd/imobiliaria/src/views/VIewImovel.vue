@@ -324,7 +324,7 @@ body {
   bottom: 20px;
   right: 20px;
   width: 60px;
-  height: 60px; 
+  height: 60px;
   font-size: 1.8rem;
   background-color: #fff;
   border: none;

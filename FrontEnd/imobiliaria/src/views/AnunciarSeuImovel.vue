@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+        <div class="Etapas">
+            <p v-if="this.step === 1">Operação e tipo de Imovel</p>
+            <p v-if="this.step === 2">Localização</p>
+            <p v-if="this.step === 3">Caracteristicas</p>
+        </div>
         <div class="container__tittle">
             <h1>Anuncie seu Imóvel</h1>
         </div>
@@ -40,7 +45,8 @@
                     <label for="rua" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Rua</label>
                     <input type="text" id="rua" v-model="rua" />
 
-                    <label for="unidadeFederativa" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
+                    <label for="unidadeFederativa"
+                        style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
                     <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
 
                     <label for="cidade" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Cidade</label>
@@ -49,7 +55,8 @@
                     <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
                     <input type="text" id="bairro" v-model="bairro" />
 
-                    <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do Imóvel</label>
+                    <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do
+                        Imóvel</label>
                     <input type="file" id="photo" @change="handleFileUpload" />
 
                     <button type="button" @click="nextStep">Próxima Etapa</button>
@@ -220,7 +227,7 @@ export default {
     padding: 20px;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    min-height: 100vh;
+    min-height: 150vh;
 }
 
 .container__tittle {
@@ -232,7 +239,7 @@ export default {
 
 }
 
-label{
+label {
     color: #333;
     font-weight: 600;
 }
