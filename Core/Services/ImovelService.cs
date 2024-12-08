@@ -1,5 +1,4 @@
-﻿using Entidades.DTOs.Imoveis;
-using Entidades.Imoveis.Filho;
+﻿using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
@@ -54,10 +53,5 @@ public class ImovelService : IImovelService
     public async Task InicializarImoveisPreDefinidos()
     {
         _Repository.InicializarImoveisPreDefinidos();
-    }
-
-    public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
-    {
-        return await _Repository.PrecificarImovel(imovel);
     }
 }

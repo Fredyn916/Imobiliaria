@@ -4,8 +4,6 @@ using Entidades.DTOs.Usuarios;
 using Entidades.Interfaces.Usuarios;
 using Entidades.Usuarios;
 using Microsoft.AspNetCore.Http;
-using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Core.Services;
 
@@ -20,43 +18,21 @@ public class UsuarioService : IUsuarioService
         _Cloudinary = cloudinary;
     }
 
-    public ReturnUsuarioIdDTO Adicionar(Usuario usuario)
+    public async Task Adicionar(Usuario usuario, byte[] imageData, string fileName)
     {
-        return _Repository.Adicionar(usuario);
-    }
+        using var stream = new MemoryStream(imageData); // Fluxo de Dados da imagem em byte array para Stream
 
-    public async Task<string> UploadImage(IFormFile imagem, int usuarioId)
-    {
-        Usuario usuario = BuscarUsuarioPorId(usuarioId);
+        IFormFile file = new FormFile(stream, 0, imageData.Length, "file", fileName); // Preenchimento de uma instância de IFormFile
 
-        string fileName = imagem.FileName;
-
-        byte[] imagemBytes;
-        using (var memoryStream = new MemoryStream())
+        var uploadParams = new ImageUploadParams()
         {
-            await imagem.CopyToAsync(memoryStream);
-            imagemBytes = memoryStream.ToArray();
-        }
+            File = new FileDescription(file.FileName, file.OpenReadStream())
+        };
+        var uploadResult = await _Cloudinary.UploadAsync(uploadParams); // Hopedagem da imagem na nuvem da ferramenta Cloudinary
 
-        using (var memoryStream = new MemoryStream(imagemBytes))
-        {
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(fileName, memoryStream)
-            };
-            var uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+        usuario.FotoDePerfilURL = uploadResult.SecureUrl.ToString(); // Preenche a propriedade do Usuário com a URL da imagem
 
-            if (uploadResult.StatusCode != System.Net.HttpStatusCode.OK)
-            {
-                return "Erro ao carregar a imagem.";
-            }
-
-            usuario.FotoDePerfilURL = uploadResult.SecureUrl.ToString();
-
-            Editar(usuario);
-
-            return uploadResult.SecureUrl.ToString();
-        }
+        await _Repository.Adicionar(usuario);
     }
 
     public Usuario LogarUsuario(LoginUsuarioDTO usuarioLogin)
