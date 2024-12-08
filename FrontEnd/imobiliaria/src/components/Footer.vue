@@ -61,7 +61,8 @@
     <!-- Copyright no final -->
     <div class="footer__bottom">
       <span>© 2024 Nome do site. Todos os direitos reservados.</span>
-      <a href="#" class="terms">Termos de uso | Privacidade</a>
+
+      <RouterLink to="TermosDeUso" class="terms">Termos de uso | Privacidade</RouterLink>
     </div>
   </footer>
 </template>
@@ -113,7 +114,6 @@ export default {
 
 
 <style scoped>
-
 .footer {
   background-color: #f3f7f8;
   color: #2C3E50;

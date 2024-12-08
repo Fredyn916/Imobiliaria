@@ -3,7 +3,20 @@
     <div class="container">
 
         <div class="carousel-container">
-            <button class="carousel-button prev" @click="prevSlide">❮</button>
+            <button class="carousel-button prev" @click="prevSlide"><svg version="1.0"
+                    xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
+                    preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path d="M3742 5093 c-58 -32 -2590 -2340 -2637 -2404 -28 -38 -30 -47 -30
+-129 0 -82 2 -91 30 -129 47 -64 2579 -2372 2637 -2404 80 -43 163 -34 235 28
+80 68 97 193 37 276 -16 22 -567 531 -1224 1131 -657 600 -1195 1094 -1195
+1098 0 4 543 503 1207 1110 932 851 1212 1112 1228 1145 41 85 17 193 -56 253
+-71 59 -154 67 -232 25z" />
+                    </g>
+                </svg>
+            </button>
 
             <div class="carousel">
                 <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel-item"
@@ -14,7 +27,20 @@
                 </div>
             </div>
 
-            <button class="carousel-button next" @click="nextSlide">❯</button>
+            <button class="carousel-button next" @click="nextSlide"><svg version="1.0"
+                    xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
+                    preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+-30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
+-1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
+-103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
+1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
+1197 -1334 1205 -41 21 -124 26 -170 9z" />
+                    </g>
+                </svg></button>
         </div>
 
         <div class="contact-box">
@@ -154,6 +180,26 @@ export default {
 </script>
 
 <style>
+.back-link {
+    display: inline-block;
+    padding: 0.95rem 1rem;
+    margin: 20px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: rgb(0, 43, 82);
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+    background-color: #1A5276;
+    transform: translateY(-2px);
+}
+
 .container {
     display: flex;
     padding-right: 30%;
@@ -161,24 +207,6 @@ export default {
     padding-top: 100px;
 }
 
-
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #3498db;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: color 0.3s;
-    width: 50px;
-    height: 50px;
-    padding: 20px;
-}
-
-.back-link:hover {
-    color: #1d70b8;
-    text-decoration: underline;
-}
 
 .carousel-container {
     flex-grow: 1;
@@ -226,21 +254,40 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 2.5rem;
     border: none;
-    color: white;
-    font-size: 2rem;
     cursor: pointer;
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 10;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+}
+
+.carousel-button:hover {
+    background-color: #ededed;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:active {
+    transform: translateY(-50%) scale(1);
 }
 
 .carousel-button.prev {
-    left: 10px;
+    left: 15px;
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: 15px;
 }
+
 
 .contact-box {
     width: 30%;

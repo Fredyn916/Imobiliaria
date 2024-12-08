@@ -37,6 +37,10 @@
         <input type="number" id="maxPrice" v-model.number="maxPrice" placeholder="Preço máximo" class="filter-input"
           @input="filterImoveis" />
       </div>
+
+      <div class="filter-container">
+        <button @click="clearFilters" class="clear-filters-btn">Limpar filtros</button>
+      </div>
     </div>
 
     <!-- Lista de imóveis -->
@@ -169,6 +173,15 @@ export default {
   },
 
   methods: {
+    // Função para limpar todos os filtros
+    clearFilters() {
+      this.searchQuery = "";
+      this.selectedCategory = "";
+      this.selectedServiceType = "";
+      this.minPrice = null;
+      this.maxPrice = null;
+      this.filterImoveis();
+    },
     openPopup() {
       this.isPopupVisible = true;
     },
@@ -332,6 +345,7 @@ body {
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 1px solid black;
 }
 
 
@@ -396,23 +410,10 @@ body {
   width: 100%;
   max-width: 400px;
   height: 100%;
-  max-height: 400px;
+  max-height: 300px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-
-/* 
-.Imovel__Container__box__images{
-  width: 100%;
-  height: 100%;
-}
-.Imovel__Container__box__images img {
-  width: 100%;
-  max-width: 400px;
-  height: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-} */
 
 
 .Imovel__Container__box__Right {
@@ -452,6 +453,7 @@ body {
   color: #000;
   border-radius: 10px;
   list-style: none;
+  overflow: hidden;
 }
 
 .Imove__item__container__item p,
@@ -809,5 +811,25 @@ textarea {
 
 .terms a:hover {
   text-decoration: underline;
+}
+
+.clear-filters-btn {
+  padding: 10px 20px;
+  background-color: #ff4c4c;
+  /* Cor de fundo */
+  color: #ffffff;
+  /* Cor do texto */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.clear-filters-btn:hover {
+  background-color: #e04343;
+  transform: translateY(-2px);
 }
 </style>

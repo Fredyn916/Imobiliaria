@@ -17,11 +17,24 @@
                 </div>
 
                 <div class="carousel-container">
-                    <button class="carousel-button prev" @click="prevSlide">❮</button>
+                    <button class="carousel-button prev" @click="prevSlide"><svg version="1.0"
+                            xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
+                            viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                stroke="none">
+                                <path d="M3742 5093 c-58 -32 -2590 -2340 -2637 -2404 -28 -38 -30 -47 -30
+-129 0 -82 2 -91 30 -129 47 -64 2579 -2372 2637 -2404 80 -43 163 -34 235 28
+80 68 97 193 37 276 -16 22 -567 531 -1224 1131 -657 600 -1195 1094 -1195
+1098 0 4 543 503 1207 1110 932 851 1212 1112 1228 1145 41 85 17 193 -56 253
+-71 59 -154 67 -232 25z" />
+                            </g>
+                        </svg>
+                    </button>
 
                     <div class="carousel">
                         <div v-for="(Imovel, index) in currentImoveis" :key="Imovel.id" class="carousel-item">
-                            <div class="imovel-box">
+                            <div class="imovel-box" @click="selecionarImovel(Imovel)">
                                 <div class="imovel-box-images">
                                     <img v-if="Imovel.urLsImagens && Imovel.urLsImagens.length > 0"
                                         :src="Imovel.urLsImagens[0]" alt="Imagem do imóvel" class="imovel-image" />
@@ -36,7 +49,20 @@
                         </div>
                     </div>
 
-                    <button class="carousel-button next" @click="nextSlide">❯</button>
+                    <button class="carousel-button next" @click="nextSlide"><svg version="1.0"
+                            xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
+                            viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                stroke="none">
+                                <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+-30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
+-1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
+-103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
+1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
+1197 -1334 1205 -41 21 -124 26 -170 9z" />
+                            </g>
+                        </svg></button>
                 </div>
             </div>
         </div>
@@ -44,23 +70,25 @@
 </template>
 
 
-
 <script>
 export default {
-    name: 'Echo',
+    name: "Echo",
     data() {
         return {
             imoveis: [],
             filteredImoveis: [],
             currentIndex: 0,
             maxItemsPerSlide: 2,
-            categories: ['Todos', 'Comprar', 'Alugar'],
-            selectedCategory: 'Todos',
+            categories: ["Todos", "Comprar", "Alugar"],
+            selectedCategory: "Todos",
         };
     },
     computed: {
         currentImoveis() {
-            return this.filteredImoveis.slice(this.currentIndex, this.currentIndex + this.maxItemsPerSlide);
+            return this.filteredImoveis.slice(
+                this.currentIndex,
+                this.currentIndex + this.maxItemsPerSlide
+            );
         },
     },
     methods: {
@@ -76,25 +104,44 @@ export default {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Erro ao buscar imóveis.');
+                    throw new Error("Erro ao buscar imóveis.");
                 }
 
                 const data = await response.json();
-                console.log(data)
                 this.imoveis = data;
                 this.filteredImoveis = data;
-
             } catch (error) {
-                console.error('Erro ao carregar imóveis:', error);
+                console.error("Erro ao carregar imóveis:", error);
             }
         },
 
+        selecionarImovel(imovel) {
+            const tipoImovel = imovel.tipo.toLowerCase();
+
+            const routes = {
+                casa: "ViewOneImovelCasa",
+                apartamento: "ViewOneImovelApartamento",
+                comercial: "ViewOneImovelComercial",
+                lote: "ViewOneImovelLote",
+                rural: "ViewOneImoveRural",
+                terreno: "ViewOneImovelTerreno",
+            };
+
+            const route = routes[tipoImovel] || "ViewOneImovel";
+
+            this.$router.push({
+                name: route,
+                query: { id: imovel.id },
+            });
+        },
+
         filterImoveis() {
-            if (this.selectedCategory === 'Todos') {
-                this.filteredImoveis = this.imoveis;
-            } else {
-                this.filteredImoveis = this.imoveis.filter(imovel => imovel.tipoServico === this.selectedCategory);
-            }
+            this.filteredImoveis =
+                this.selectedCategory === "Todos"
+                    ? this.imoveis
+                    : this.imoveis.filter(
+                        (imovel) => imovel.tipoServico === this.selectedCategory
+                    );
             this.currentIndex = 0;
         },
 
@@ -120,6 +167,7 @@ export default {
     },
 };
 </script>
+
 
 <style scoped>
 .Echo__Container {
@@ -269,22 +317,38 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #ededed;
+    background-color: rgba(255, 255, 255, 0.8);
     color: #333;
-    font-size: 2rem;
+    font-size: 2.5rem;
     border: none;
     cursor: pointer;
-    padding: 10px;
-    z-index: 1;
-    border-radius: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 10;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+}
+
+.carousel-button:hover {
+    background-color: #ededed;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:active {
+    transform: translateY(-50%) scale(1);
 }
 
 .carousel-button.prev {
-    left: 0;
+    left: 15px;
 }
 
 .carousel-button.next {
-    right: 0;
+    right: 15px;
 }
 
 @media(max-width: 1024px) {

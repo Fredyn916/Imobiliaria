@@ -34,14 +34,6 @@ const router = createRouter({
       component: () => import("@/views/AnunciarSeuImovel.vue"),
     },
     {
-      path: "/ViewImovel",
-      name: "ViewImovel",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("@/views/ViewImovel.vue"),
-    },
-    {
       path: "/ViewOneImovelCasa",
       name: "ViewOneImovelCasa",
       component: () => import("@/views/ViewOneImovelCasa.vue"),
@@ -78,6 +70,12 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/ViewImovel",
+      name: "ViewImovel",
+      component: () => import("@/views/ViewImovel.vue"),
+      props: true,
+    },
+    {
       path: "/UsuarioPage",
       name: "UsuarioPage",
       component: () => import("@/views/UsuarioPage.vue"),
@@ -91,6 +89,11 @@ const router = createRouter({
       path: "/SobreNos",
       name: "SobreNos",
       component: () => import("@/views/SobreNos.vue"),
+    },
+    {
+      path: "/TermosDeUso",
+      name: "TermosDeUso",
+      component: () => import("@/views/TermosDeUso.vue"),
     },
   ],
 });
