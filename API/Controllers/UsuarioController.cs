@@ -15,7 +15,7 @@ public class UsuarioController : ControllerBase
     private readonly IUsuarioService _Service;
     private readonly IMapper _Mapper;
 
-    public UsuarioController(IMapper mapper, IUsuarioService usuarioService)
+    public UsuarioController(IUsuarioService usuarioService, IMapper mapper)
     {
         _Service = usuarioService;
         _Mapper = mapper;
@@ -34,7 +34,7 @@ public class UsuarioController : ControllerBase
     [HttpPut("UploadImage")]
     public async Task<string> UploadImage(IFormFile imagem, int usuarioId)
     {
-        return _Service.UploadImage(imagem, usuarioId).ToString();
+        return await _Service.UploadImage(imagem, usuarioId);
     }
 
     [HttpPost("LogarUsuario")]

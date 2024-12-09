@@ -27,7 +27,7 @@ public class ImovelService : IImovelService
 
     public async Task<string> UploadImage(IFormFile imagem, string imovelId)
     {
-        Imovel imovel = BuscarImovelPorIdPrivate(imovelId);
+        Imovel imovel = BuscarImovelPorId(imovelId).Result;
 
         string fileName = imagem.FileName;
 
@@ -53,7 +53,7 @@ public class ImovelService : IImovelService
 
             imovel.URLsImagens.Add(uploadResult.SecureUrl.ToString());
 
-            Editar(imovel);
+            await Editar(imovel);
 
             return uploadResult.SecureUrl.ToString();
         }
@@ -97,10 +97,5 @@ public class ImovelService : IImovelService
     public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
     {
         return await _Repository.PrecificarImovel(imovel);
-    }
-
-    private Imovel BuscarImovelPorIdPrivate(string id)
-    {
-        return _Repository.BuscarImovelPorIdPrivate(id);
     }
 }

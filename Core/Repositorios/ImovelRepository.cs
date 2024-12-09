@@ -3,6 +3,7 @@ using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Data.Entity;
 
@@ -11,12 +12,53 @@ namespace Core.Repositorios;
 public class ImovelRepository : IImovelRepository
 {
     private readonly IMongoCollection<Imovel> _Imoveis;
+    private static bool _initialized = false;
 
     public ImovelRepository(IMongoDatabase database)
     {
         try
         {
             _Imoveis = database.GetCollection<Imovel>("Imoveis");
+
+            if (_initialized) return;
+
+            BsonClassMap.RegisterClassMap<Apartamento>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Apartamento");
+            });
+
+            BsonClassMap.RegisterClassMap<Casa>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Casa");
+            });
+
+            BsonClassMap.RegisterClassMap<Comercial>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Comercial");
+            });
+
+            BsonClassMap.RegisterClassMap<Lote>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Lote");
+            });
+
+            BsonClassMap.RegisterClassMap<Rural>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Rural");
+            });
+
+            BsonClassMap.RegisterClassMap<Terreno>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Terreno");
+            });
+
+            _initialized = true;
         }
         catch (MongoBulkWriteException ex)
         {
@@ -842,17 +884,5 @@ public class ImovelRepository : IImovelRepository
                             coefAreasComuns;
 
         return returnPrecificador;
-    }
-
-    public Imovel BuscarImovelPorIdPrivate(string id)
-    {
-        try
-        {
-            return _Imoveis.Find<Imovel>(imovel => imovel.Id == id).FirstOrDefault();
-        }
-        catch (MongoBulkWriteException ex)
-        {
-            throw new Exception(ex.Message);
-        }
     }
 }

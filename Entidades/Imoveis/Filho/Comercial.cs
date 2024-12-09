@@ -4,9 +4,9 @@ namespace Entidades.Imoveis.Filho;
 
 public class Comercial : Imovel
 {
-    public override int Banheiros { get; set; }
-    public override int Vagas { get; set; }
-    public override string TipoNegocio { get; set; }
+    public int Banheiros { get; set; }
+    public int Vagas { get; set; }
+    public string TipoNegocio { get; set; }
 
     public Comercial()
 	{

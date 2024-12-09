@@ -15,5 +15,4 @@ public interface IImovelRepository
     Task Remover(string id);
     Task InicializarImoveisPreDefinidos();
     Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel);
-    public Imovel BuscarImovelPorIdPrivate(string id);
 }

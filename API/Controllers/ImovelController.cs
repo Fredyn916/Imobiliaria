@@ -1,10 +1,9 @@
-﻿using CloudinaryDotNet.Actions;
-using CloudinaryDotNet;
+﻿using AutoMapper;
 using Entidades.DTOs.Imoveis;
+using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
-using Entidades.Usuarios;
 
 namespace API.Controllers;
 
@@ -13,22 +12,24 @@ namespace API.Controllers;
 public class ImovelController : ControllerBase
 {
     private readonly IImovelService _Service;
+    private readonly IMapper _Mapper;
 
-    public ImovelController(IImovelService imovelService)
+    public ImovelController(IImovelService imovelService, IMapper mapper)
     {
         _Service = imovelService;
+        _Mapper = mapper;
     }
 
     [HttpPost("AdicionarImovel")]
     public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
-        return await _Service.Adicionar(imovel);
+        return await _Service.Adicionar(ReturnTipoImovel(imovel));
     }
 
     [HttpPut("UploadImage")]
     public async Task<string> UploadImage(IFormFile imagem, string imovelId)
     {
-        return _Service.UploadImage(imagem, imovelId).ToString();
+        return await _Service.UploadImage(imagem, imovelId);
     }
 
     [HttpGet("ListarImoveis")]
@@ -77,5 +78,32 @@ public class ImovelController : ControllerBase
     public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
     {
         return await _Service.PrecificarImovel(imovel);
+    }
+
+    private Imovel ReturnTipoImovel(Imovel imovel)
+    {
+        switch (imovel.Tipo)
+        {
+            case "Apartamento":
+                Apartamento apartamento = _Mapper.Map<Apartamento>(imovel);
+                return apartamento;
+            case "Casa":
+                Casa casa = _Mapper.Map<Casa>(imovel);
+                return casa;
+            case "Comercial":
+                Comercial comercial = _Mapper.Map<Comercial>(imovel);
+                return comercial;
+            case "Lote":
+                Lote lote = _Mapper.Map<Lote>(imovel);
+                return lote;
+            case "Rural":
+                Rural rural = _Mapper.Map<Rural>(imovel);
+                return rural;
+            case "Terreno":
+                Terreno terreno = _Mapper.Map<Terreno>(imovel);
+                return terreno;
+            default:
+                return imovel;
+        }
     }
 }

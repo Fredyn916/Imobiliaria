@@ -24,11 +24,4 @@ public class Imovel
     public string Titulo { get; set; }
     public string Descricao { get; set; }
     public List<string> AreasComuns { get; set; }
-    // Propriedades de Navegação
-    public virtual int Quartos { get; set; }
-    public virtual int Suites { get; set; }
-    public virtual int Banheiros { get; set; }
-    public virtual int Vagas { get; set; }
-    public virtual int Andar { get; set; }
-    public virtual string TipoNegocio { get; set; }
 }
