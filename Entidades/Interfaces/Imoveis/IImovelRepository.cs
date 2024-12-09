@@ -6,7 +6,7 @@ namespace Entidades.Interfaces.Imoveis;
 
 public interface IImovelRepository
 {
-    Task Adicionar([FromBody] Imovel imovel);
+    Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel);
     Task<List<Imovel>> Listar();
     Task<Imovel> BuscarImovelPorId(string id);
     Task<List<Imovel>> BuscarImoveisPorTipo(string tipo);
@@ -15,4 +15,5 @@ public interface IImovelRepository
     Task Remover(string id);
     Task InicializarImoveisPreDefinidos();
     Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel);
+    public Imovel BuscarImovelPorIdPrivate(string id);
 }

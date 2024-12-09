@@ -1,7 +1,10 @@
-﻿using Entidades.DTOs.Imoveis;
+﻿using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using Entidades.DTOs.Imoveis;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
+using Entidades.Usuarios;
 
 namespace API.Controllers;
 
@@ -17,9 +20,15 @@ public class ImovelController : ControllerBase
     }
 
     [HttpPost("AdicionarImovel")]
-    public async Task Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
-        _Service.Adicionar(imovel);
+        return await _Service.Adicionar(imovel);
+    }
+
+    [HttpPut("UploadImage")]
+    public async Task<string> UploadImage(IFormFile imagem, string imovelId)
+    {
+        return _Service.UploadImage(imagem, imovelId).ToString();
     }
 
     [HttpGet("ListarImoveis")]

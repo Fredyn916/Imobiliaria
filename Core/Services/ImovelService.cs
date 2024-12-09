@@ -1,24 +1,62 @@
-﻿using Entidades.DTOs.Imoveis;
-using Entidades.Imoveis.Filho;
+﻿using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using Entidades.DTOs.Imoveis;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
+using Entidades.Usuarios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 
 namespace Core.Services;
 
 public class ImovelService : IImovelService
 {
     private readonly IImovelRepository _Repository;
+    private readonly Cloudinary _Cloudinary;
 
-    public ImovelService(IImovelRepository imovelRepository)
+    public ImovelService(IImovelRepository imovelRepository, Cloudinary cloudinary)
 	{
         _Repository = imovelRepository;
-	}
+        _Cloudinary = cloudinary;
+    }
 
-    public async Task Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
-        _Repository.Adicionar(imovel);
+        return await _Repository.Adicionar(imovel);
+    }
+
+    public async Task<string> UploadImage(IFormFile imagem, string imovelId)
+    {
+        Imovel imovel = BuscarImovelPorIdPrivate(imovelId);
+
+        string fileName = imagem.FileName;
+
+        byte[] imagemBytes;
+        using (var memoryStream = new MemoryStream())
+        {
+            await imagem.CopyToAsync(memoryStream);
+            imagemBytes = memoryStream.ToArray();
+        }
+
+        using (var memoryStream = new MemoryStream(imagemBytes))
+        {
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(fileName, memoryStream)
+            };
+            var uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+
+            if (uploadResult.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return "Erro ao carregar a imagem.";
+            }
+
+            imovel.URLsImagens.Add(uploadResult.SecureUrl.ToString());
+
+            Editar(imovel);
+
+            return uploadResult.SecureUrl.ToString();
+        }
     }
 
     public async Task<List<Imovel>> Listar()
@@ -59,5 +97,10 @@ public class ImovelService : IImovelService
     public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
     {
         return await _Repository.PrecificarImovel(imovel);
+    }
+
+    private Imovel BuscarImovelPorIdPrivate(string id)
+    {
+        return _Repository.BuscarImovelPorIdPrivate(id);
     }
 }

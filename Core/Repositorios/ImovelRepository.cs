@@ -24,11 +24,16 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
-    public async Task Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
         try
         {
             await _Imoveis.InsertOneAsync(imovel);
+
+            ReturnImovelIdDTO imovelIdDTO = new ReturnImovelIdDTO();
+            imovelIdDTO.Id = imovel.Id.ToString();
+
+            return imovelIdDTO;
         }
 
         catch (MongoBulkWriteException ex)
@@ -837,5 +842,17 @@ public class ImovelRepository : IImovelRepository
                             coefAreasComuns;
 
         return returnPrecificador;
+    }
+
+    public Imovel BuscarImovelPorIdPrivate(string id)
+    {
+        try
+        {
+            return _Imoveis.Find<Imovel>(imovel => imovel.Id == id).FirstOrDefault();
+        }
+        catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 }
