@@ -183,6 +183,7 @@ export default {
         async PostImovel() {
 
             const data = {
+                id: null,
                 selectedStatus: this.selectedStatus,
                 selectedProperty: this.selectedProperty,
                 description: this.description,
@@ -200,11 +201,22 @@ export default {
                 areaTotal: this.areaTotal,
                 titulo: this.titulo,
                 descricao: this.descricao,
-            }
+            };
 
-            const dataJson = JSON.stringify(data)
-            console.log(dataJson)
-            alert("Imóvel Anunciado com sucesso!");
+            const dataJson = JSON.stringify(data);
+            console.log('Imóvel cadastrado: ', dataJson);
+
+            try {
+                const response = await fetch('https://localhost:7082/Imovel/AdicionarImovel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: dataJson,
+                });
+                alert('Imóvel cadastrado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao cadastrar imóvel: ', error);
+                alert('Erro ao cadastrar imóvel');
+            }
             await LimparForm()
             this.step = 1;
         },
