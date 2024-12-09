@@ -178,7 +178,6 @@ export default {
     }
 };
 </script>
-
 <style>
 .back-link {
     display: inline-block;
@@ -410,5 +409,122 @@ textarea {
 .imovel-info .Imovel__areasComuns li {
     margin-left: 1rem;
     font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .imovel-box-images {
+        width: 100%;
+        height: 300px;
+    }
+
+    .contact-box {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .internal__contact__box {
+        padding: 10px;
+    }
+
+    .name__telefon__container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group1 {
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 0.8rem;
+    }
+
+    .terms {
+        font-size: 10px;
+    }
+
+    .imovel-info {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .imovel-info .Imovel__preco {
+        font-size: 1.3rem;
+    }
+
+    .imovel-info .Imovel__area,
+    .imovel-info .Imovel__endereco,
+    .imovel-info .Imovel__cep {
+        font-size: 1rem;
+    }
+
+    .imovel-info .Imovel__descricao {
+        font-size: 0.9rem;
+    }
+
+    .imovel-info .Imovel__anos {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-link {
+        font-size: 14px;
+        padding: 0.75rem;
+    }
+
+    .carousel-button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .imovel-box-images {
+        height: 250px;
+    }
+
+    .contact-box {
+        padding: 8px;
+    }
+
+    .internal__contact__box {
+        padding: 8px;
+    }
+
+    .name__telefon__container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group1 {
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 0.7rem;
+    }
+
+    .imovel-info {
+        padding: 10px;
+    }
 }
 </style>

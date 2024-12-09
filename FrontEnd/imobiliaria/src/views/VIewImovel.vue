@@ -25,7 +25,7 @@
         <select id="serviceTypeFilter" v-model="selectedServiceType" @change="filterImoveis" class="filter-select">
           <option value="">Todos os serviços</option>
           <option value="Compra">Compra</option>
-          <option value="Aluguel">Aluguel</option>
+          <option value="Alugar">Alugar</option>
         </select>
       </div>
 
@@ -159,12 +159,15 @@ export default {
       imoveis: [],
       searchQuery: "",
       selectedCategory: "",
-      selectedServiceType: "", // Novo campo para o tipo de serviço
+      selectedServiceType: "",
       minPrice: null,
       maxPrice: null,
       filteredImoveis: [],
       selectedImovelId: null,
-      isPopupVisible: null
+      isPopupVisible: null,
+      status: '',
+      search: '',
+      type: ''
     };
   },
 
@@ -172,8 +175,26 @@ export default {
     this.fetchImoveis();
   },
 
+  watch: {
+    '$route.query': {
+      handler: 'applyFiltersFromQuery',
+      immediate: true
+    }
+  },
+
   methods: {
-    // Função para limpar todos os filtros
+    applyFiltersFromQuery() {
+      this.status = this.$route.query.status || '';
+      this.type = this.$route.query.type || '';
+      this.search = this.$route.query.search || '';
+
+      this.selectedServiceType = this.status;
+      this.selectedCategory = this.type;
+      this.searchQuery = this.search;
+
+      this.filterImoveis();
+    },
+
     clearFilters() {
       this.searchQuery = "";
       this.selectedCategory = "";
@@ -182,13 +203,7 @@ export default {
       this.maxPrice = null;
       this.filterImoveis();
     },
-    openPopup() {
-      this.isPopupVisible = true;
-    },
-    // Método para fechar o popup
-    closePopup() {
-      this.isPopupVisible = false;
-    },
+
     async fetchImoveis() {
       const apiUrl = "https://localhost:7082/Imovel/ListarImoveis";
       try {
@@ -206,6 +221,7 @@ export default {
         const data = await response.json();
         this.imoveis = data;
         this.filteredImoveis = data;
+        this.applyFiltersFromQuery(); // Aplicar filtros depois de carregar os imóveis
       } catch (error) {
         console.error("Erro ao carregar imóveis:", error);
       }
@@ -245,56 +261,24 @@ export default {
 
     selecionarImovel(imovel) {
       this.selectedImovelId = imovel.id;
-      this.$router.push({
-        name: "ViewOneImovel",
-        query: { id: this.selectedImovelId },
-      });
-    },
-
-    selecionarImovel(imovel) {
-      this.selectedImovelId = imovel.id;
       const tipoImovel = imovel.tipo.toLowerCase();
 
-      if (tipoImovel === "casa") {
+      const routeMap = {
+        casa: 'ViewOneImovelCasa',
+        apartamento: 'ViewOneImovelApartamento',
+        comercial: 'ViewOneImovelComercial',
+        lote: 'ViewOneImovelLote',
+        rural: 'ViewOneImoveRural',
+        terreno: 'ViewOneImovelTerreno',
+      };
+
+      const routeName = routeMap[tipoImovel];
+      if (routeName) {
         this.$router.push({
-          name: 'ViewOneImovelCasa',
-          query: { id: this.selectedImovelId }
+          name: routeName,
+          query: { id: this.selectedImovelId },
         });
       }
-      else if (tipoImovel === "apartamento") {
-        this.$router.push({
-          name: 'ViewOneImovelApartamento',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "comercial") {
-        this.$router.push({
-          name: 'ViewOneImovelComercial',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "lote") {
-        this.$router.push({
-          name: 'ViewOneImovelLote',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "rural") {
-        this.$router.push({
-          name: 'ViewOneImoveRural',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      else if (tipoImovel === "terreno") {
-        this.$router.push({
-          name: 'ViewOneImovelTerreno',
-          query: { id: this.selectedImovelId }
-        });
-      }
-      this.$router.push({
-        name: "ViewOneImovel",
-        query: { id: this.selectedImovelId },
-      });
     },
 
     smoothScrollToSection() {
@@ -321,6 +305,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 html {

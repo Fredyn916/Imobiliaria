@@ -5,47 +5,37 @@
         </div>
 
         <div class="Hero__bg__container__box1">
-            <button class="Hero__bg__container__box1__btn">Alugar</button>
-            <button class="Hero__bg__container__box1__btn">Comprar</button>
-            <button class="Hero__bg__container__box1__btn">Todos</button>
+            <button class="Hero__bg__container__box1__btn" @click="setStatus('Alugar')">
+                Alugar
+            </button>
+            <button class="Hero__bg__container__box1__btn" @click="setStatus('Comprar')">
+                Comprar
+            </button>
+            <button class="Hero__bg__container__box1__btn" @click="setStatus('Todos')">
+                Todos
+            </button>
         </div>
 
         <div class="Hero__bg__container__box2">
             <div class="Hero__bg__container__box2__label">
-                <select id="opcoes" name="opcoes">
-                    <option disabled value="">Casa</option>
-                    <option value="opcao1">Casa (Todos)</option>
-                    <option value="opcao2">Casa em condomínio</option>
-                    <option disabled value="opcao3">Apartamento</option>
-                    <option value="opcao4">Apartamento (Todos)</option>
-                    <option value="opcao5">Cobertura</option>
-                    <option value="opcao6">Flat</option>
-                    <option value="opcao7">Garden</option>
-                    <option disabled value="opcao8">Lote</option>
-                    <option value="opcao9">Lote (Todos)</option>
-                    <option value="opcao10">Lote em condomínio</option>
-                    <option disabled value="opcao11">Comercial</option>
-                    <option value="opcao12">Comercial (Todos)</option>
-                    <option value="opcao13">Sala-Andar</option>
-                    <option value="opcao14">Loja</option>
-                    <option value="opcao15">Galpão</option>
-                    <option value="opcao16">Vaga de Garagem</option>
-                    <option value="opcao17">Prédio</option>
-                    <option disabled value="opcao18">Rural</option>
-                    <option value="opcao19">Rural (Todos)</option>
-                    <option disabled value="opcao20">Terreno/Lote</option>
-                    <option value="opcao21">Chácara</option>
-                    <option value="opcao22">Fazenda</option>
+                <select id="opcoes" name="opcoes" v-model="selectedType">
+                    <option value="Casa">Casa</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Lote">Lote</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="Rural">Rural</option>
                 </select>
             </div>
 
             <div class="Hero__bg__container__box2__item1">
-                <input type="search" id="pesquisa" name="pesquisa"
-                    placeholder="Digite cidades, bairros ou características para pesquisar...">
+                <input type="search" id="pesquisa" name="pesquisa" v-model="searchQuery"
+                    placeholder="Digite cidades, bairros ou características para pesquisar..." />
             </div>
 
             <div class="Hero__bg__container__box2__item2">
-                <button class="Hero__bg__container__box2__Search__Btn">Buscar</button>
+                <button class="Hero__bg__container__box2__Search__Btn" @click="navigateWithParams">
+                    Buscar
+                </button>
             </div>
         </div>
     </div>
@@ -53,20 +43,39 @@
 
 <script>
 export default {
-    name: 'Hero',
-    mounted() {
-        const buttons = document.querySelectorAll('.Hero__bg__container__box1__btn');
+    name: "Hero",
+    data() {
+        return {
+            selectedStatus: "",
+            selectedType: "",
+            searchQuery: "",
+        };
+    },
+    methods: {
+        setStatus(status) {
+            this.selectedStatus = status;
+        },
+        navigateWithParams() {
 
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+            this.$router.push({
+                name: "ViewImovel",
+                query: { status: this.selectedStatus, type: this.selectedType, search: this.searchQuery },
+            });
+        },
+    },
+    mounted() {
+        // Adiciona a classe `active` ao botão selecionado
+        const buttons = document.querySelectorAll(".Hero__bg__container__box1__btn");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                button.classList.add("active");
             });
         });
-
-    }
-}
+    },
+};
 </script>
+
 
 <style scoped>
 .Hero__bg__container {
