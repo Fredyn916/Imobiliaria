@@ -3,7 +3,20 @@
     <div class="container">
 
         <div class="carousel-container">
-            <button class="carousel-button prev" @click="prevSlide">❮</button>
+            <button class="carousel-button prev" @click="prevSlide"><svg version="1.0"
+                    xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
+                    preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path d="M3742 5093 c-58 -32 -2590 -2340 -2637 -2404 -28 -38 -30 -47 -30
+-129 0 -82 2 -91 30 -129 47 -64 2579 -2372 2637 -2404 80 -43 163 -34 235 28
+80 68 97 193 37 276 -16 22 -567 531 -1224 1131 -657 600 -1195 1094 -1195
+1098 0 4 543 503 1207 1110 932 851 1212 1112 1228 1145 41 85 17 193 -56 253
+-71 59 -154 67 -232 25z" />
+                    </g>
+                </svg>
+            </button>
 
             <div class="carousel">
                 <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel-item"
@@ -14,7 +27,20 @@
                 </div>
             </div>
 
-            <button class="carousel-button next" @click="nextSlide">❯</button>
+            <button class="carousel-button next" @click="nextSlide"><svg version="1.0"
+                    xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
+                    preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+-30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
+-1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
+-103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
+1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
+1197 -1334 1205 -41 21 -124 26 -170 9z" />
+                    </g>
+                </svg></button>
         </div>
 
         <div class="contact-box">
@@ -35,7 +61,7 @@
                     <div class="form-group">
                         <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Contatar ✉️</button>
+                    <button type="submit" class="submit-btn">Contatar </button>
                     <p class="terms">Ao enviar, você está aceitando os <a href="#">Termos e Condições de uso</a> e as <a
                             href="#">Políticas de Privacidade</a></p>
                 </form>
@@ -46,12 +72,15 @@
 
     <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel-info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
+        <hr />
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
         <div class="Imovel__endereco">{{ Imovel.endereco }}</div>
         <div class="Imovel__anos" v-if="Imovel.anos > 0">{{ Imovel.anos }} anos</div>
         <div class="Imovel__anos" v-else>O Imóvel Está em construção</div>
         <div class="Imovel__cep">{{ Imovel.cep }}</div>
+        <hr />
         <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+        <hr />
         <div class="Imovel__areasComuns">
             Areas Comuns:
             <ul>
@@ -152,8 +181,27 @@ export default {
     }
 };
 </script>
-
 <style>
+.back-link {
+    display: inline-block;
+    padding: 0.95rem 1rem;
+    margin: 20px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: rgb(0, 43, 82);
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+    background-color: #1A5276;
+    transform: translateY(-2px);
+}
+
 .container {
     display: flex;
     padding-right: 30%;
@@ -161,24 +209,6 @@ export default {
     padding-top: 100px;
 }
 
-
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #3498db;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: color 0.3s;
-    width: 50px;
-    height: 50px;
-    padding: 20px;
-}
-
-.back-link:hover {
-    color: #1d70b8;
-    text-decoration: underline;
-}
 
 .carousel-container {
     flex-grow: 1;
@@ -226,21 +256,40 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 2.5rem;
     border: none;
-    color: white;
-    font-size: 2rem;
     cursor: pointer;
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 10;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+}
+
+.carousel-button:hover {
+    background-color: #ededed;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:active {
+    transform: translateY(-50%) scale(1);
 }
 
 .carousel-button.prev {
-    left: 10px;
+    left: 15px;
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: 15px;
 }
+
 
 .contact-box {
     width: 30%;
@@ -363,5 +412,122 @@ textarea {
 .imovel-info .Imovel__areasComuns li {
     margin-left: 1rem;
     font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .imovel-box-images {
+        width: 100%;
+        height: 300px;
+    }
+
+    .contact-box {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .internal__contact__box {
+        padding: 10px;
+    }
+
+    .name__telefon__container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group1 {
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 0.8rem;
+    }
+
+    .terms {
+        font-size: 10px;
+    }
+
+    .imovel-info {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .imovel-info .Imovel__preco {
+        font-size: 1.3rem;
+    }
+
+    .imovel-info .Imovel__area,
+    .imovel-info .Imovel__endereco,
+    .imovel-info .Imovel__cep {
+        font-size: 1rem;
+    }
+
+    .imovel-info .Imovel__descricao {
+        font-size: 0.9rem;
+    }
+
+    .imovel-info .Imovel__anos {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-link {
+        font-size: 14px;
+        padding: 0.75rem;
+    }
+
+    .carousel-button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .imovel-box-images {
+        height: 250px;
+    }
+
+    .contact-box {
+        padding: 8px;
+    }
+
+    .internal__contact__box {
+        padding: 8px;
+    }
+
+    .name__telefon__container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group1 {
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 0.7rem;
+    }
+
+    .imovel-info {
+        padding: 10px;
+    }
 }
 </style>

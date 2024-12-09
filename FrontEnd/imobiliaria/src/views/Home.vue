@@ -99,7 +99,7 @@ a {
 }
 
 .Echo {
-  height: 700px;
+  height: 400px;
   width: 100%;
   display: flex;
   justify-content: center;

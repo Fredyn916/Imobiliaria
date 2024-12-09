@@ -12,34 +12,17 @@ const router = createRouter({
     {
       path: "/Login",
       name: "Login",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("@/views/Login.vue"),
     },
     {
       path: "/Cadastro",
       name: "Cadastro",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("@/views/Cadastro.vue"),
     },
     {
       path: "/AnunciarSeuImovel",
       name: "AnunciarSeuImovel",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("@/views/AnunciarSeuImovel.vue"),
-    },
-    {
-      path: "/ViewImovel",
-      name: "ViewImovel",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("@/views/ViewImovel.vue"),
     },
     {
       path: "/ViewOneImovelCasa",
@@ -78,6 +61,12 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/ViewImovel",
+      name: "ViewImovel",
+      component: () => import("@/views/ViewImovel.vue"),
+      props: true,
+    },
+    {
       path: "/UsuarioPage",
       name: "UsuarioPage",
       component: () => import("@/views/UsuarioPage.vue"),
@@ -92,7 +81,23 @@ const router = createRouter({
       name: "SobreNos",
       component: () => import("@/views/SobreNos.vue"),
     },
+    {
+      path: "/TermosDeUso",
+      name: "TermosDeUso",
+      component: () => import("@/views/TermosDeUso.vue"),
+    },
+    {
+      path: "/BeforeAddImovel",
+      name: "BeforeAddImovel",
+      component: () => import("@/views/BeforeAddImovel.vue"),
+    },
   ],
+
+  // Função para rolar a página para o topo
+  scrollBehavior(to, from, savedPosition) {
+    // Sempre que navegar para uma nova rota, a página rola para o topo
+    return { top: 0, behavior: "smooth" };
+  },
 });
 
 export default router;

@@ -24,10 +24,6 @@
           <li>
             <RouterLink to="AnunciarSeuImovel">Anunciar</RouterLink>
           </li>
-          <li><a href="#">Trabalhe conosco</a></li>
-          <li><a href="#">Quem somos</a></li>
-          <li><a href="#">Central de Ajuda</a></li>
-          <li><a href="#">Mapa do site</a></li>
         </ul>
       </div>
 
@@ -42,26 +38,23 @@
       <div class="footer__section">
         <h3>Links Úteis</h3>
         <ul>
-          <li><a href="#">Blog</a></li>
           <li><a href="#">Precificador</a></li>
-          <li><a href="#">Condomínios</a></li>
-          <li><a href="#">Ruas e avenidas</a></li>
-          <li><a href="#">Pontos de interesse</a></li>
         </ul>
       </div>
     </div>
 
     <!-- Seção de Redes Sociais -->
     <div class="footer__social">
-      <a href="#"><img src="" alt="Facebook" class="social__icon"></a>
-      <a href="#"><img src="" alt="Twitter" class="social__icon"></a>
-      <a href="#"><img src="" alt="Instagram" class="social__icon"></a>
+      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
+      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-twitter" /></a>
+      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
     </div>
 
     <!-- Copyright no final -->
     <div class="footer__bottom">
       <span>© 2024 Nome do site. Todos os direitos reservados.</span>
-      <a href="#" class="terms">Termos de uso | Privacidade</a>
+
+      <RouterLink to="TermosDeUso" class="terms">Termos de uso | Privacidade</RouterLink>
     </div>
   </footer>
 </template>
@@ -113,7 +106,6 @@ export default {
 
 
 <style scoped>
-
 .footer {
   background-color: #f3f7f8;
   color: #2C3E50;
@@ -211,9 +203,15 @@ export default {
   margin: 2rem 0;
 }
 
-.social__icon {
-  width: 30px;
+.footer__social .social__icon {
+  font-size: 24px;
+  color: #333;
   margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer__social .social__icon:hover {
+  color: #007bff;
 }
 
 .footer__bottom {
