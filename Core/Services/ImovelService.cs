@@ -6,6 +6,7 @@ using Entidades.Interfaces.Imoveis;
 using Entidades.Usuarios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Entidades.Imoveis.Filho;
 
 namespace Core.Services;
 
@@ -97,5 +98,10 @@ public class ImovelService : IImovelService
     public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
     {
         return await _Repository.PrecificarImovel(imovel);
+    }
+
+    public Imovel ReturnTipoImovel(Imovel imovel)
+    {
+        return _Repository.ReturnTipoImovel(imovel);
     }
 }

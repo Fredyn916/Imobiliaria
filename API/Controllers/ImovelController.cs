@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Entidades.DTOs.Imoveis;
-using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +58,7 @@ public class ImovelController : ControllerBase
     [HttpPut("EditarImovel")]
     public async Task Editar(Imovel imovelEdit)
     {
-        _Service.Editar(imovelEdit);
+        _Service.Editar(ReturnTipoImovel(imovelEdit));
     }
 
     [HttpDelete("RemoverImovel")]
@@ -82,28 +81,6 @@ public class ImovelController : ControllerBase
 
     private Imovel ReturnTipoImovel(Imovel imovel)
     {
-        switch (imovel.Tipo)
-        {
-            case "Apartamento":
-                Apartamento apartamento = _Mapper.Map<Apartamento>(imovel);
-                return apartamento;
-            case "Casa":
-                Casa casa = _Mapper.Map<Casa>(imovel);
-                return casa;
-            case "Comercial":
-                Comercial comercial = _Mapper.Map<Comercial>(imovel);
-                return comercial;
-            case "Lote":
-                Lote lote = _Mapper.Map<Lote>(imovel);
-                return lote;
-            case "Rural":
-                Rural rural = _Mapper.Map<Rural>(imovel);
-                return rural;
-            case "Terreno":
-                Terreno terreno = _Mapper.Map<Terreno>(imovel);
-                return terreno;
-            default:
-                return imovel;
-        }
+        return _Service.ReturnTipoImovel(imovel);
     }
 }

@@ -1,8 +1,10 @@
-﻿using Entidades.DTOs.Imoveis;
+﻿using AutoMapper;
+using Entidades.DTOs.Imoveis;
 using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Data.Entity;
@@ -12,13 +14,15 @@ namespace Core.Repositorios;
 public class ImovelRepository : IImovelRepository
 {
     private readonly IMongoCollection<Imovel> _Imoveis;
+    private readonly IMapper _Mapper;
     private static bool _initialized = false;
 
-    public ImovelRepository(IMongoDatabase database)
+    public ImovelRepository(IMongoDatabase database, IMapper mapper)
     {
         try
         {
             _Imoveis = database.GetCollection<Imovel>("Imoveis");
+            _Mapper = mapper;
 
             if (_initialized) return;
 
@@ -138,12 +142,19 @@ public class ImovelRepository : IImovelRepository
     {
         try
         {
-            await _Imoveis.ReplaceOneAsync(imovel => imovel.Id == imovel.Id, imovel);
+            var filter = Builders<Imovel>.Filter.Eq("_id", new ObjectId(imovel.Id));
+
+            await _Imoveis.ReplaceOneAsync(filter, imovel);
         }
         catch (MongoBulkWriteException ex)
         {
             throw new Exception(ex.Message);
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
     }
 
     public async Task Remover(string id)
@@ -884,5 +895,32 @@ public class ImovelRepository : IImovelRepository
                             coefAreasComuns;
 
         return returnPrecificador;
+    }
+
+    public Imovel ReturnTipoImovel(Imovel imovel)
+    {
+        switch (imovel.Tipo)
+        {
+            case "Apartamento":
+                Apartamento apartamento = _Mapper.Map<Apartamento>(imovel);
+                return apartamento;
+            case "Casa":
+                Casa casa = _Mapper.Map<Casa>(imovel);
+                return casa;
+            case "Comercial":
+                Comercial comercial = _Mapper.Map<Comercial>(imovel);
+                return comercial;
+            case "Lote":
+                Lote lote = _Mapper.Map<Lote>(imovel);
+                return lote;
+            case "Rural":
+                Rural rural = _Mapper.Map<Rural>(imovel);
+                return rural;
+            case "Terreno":
+                Terreno terreno = _Mapper.Map<Terreno>(imovel);
+                return terreno;
+            default:
+                return imovel;
+        }
     }
 }

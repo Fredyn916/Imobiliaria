@@ -15,4 +15,5 @@ public interface IImovelRepository
     Task Remover(string id);
     Task InicializarImoveisPreDefinidos();
     Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel);
+    Imovel ReturnTipoImovel(Imovel imovel);
 }
