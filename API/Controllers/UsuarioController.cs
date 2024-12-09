@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
 using Entidades.DTOs.Usuarios;
 using Entidades.Interfaces.Usuarios;
 using Entidades.Usuarios;
@@ -18,15 +20,21 @@ public class UsuarioController : ControllerBase
         _Service = usuarioService;
         _Mapper = mapper;
     }
-    
+
     [HttpPost("AdicionarUsuario")]
-    public async Task Adicionar([FromForm] CreateUsuarioDTO usuarioDTO, byte[] imageData, string fileName)
+    public ReturnUsuarioIdDTO Adicionar(CreateUsuarioDTO usuarioDTO)
     {
         Usuario usuario = _Mapper.Map<Usuario>(usuarioDTO);
         usuario.Endereco = $"{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}";
         usuario.Tipo = "Usuario";
 
-        await _Service.Adicionar(usuario, imageData, fileName);
+        return _Service.Adicionar(usuario);
+    }
+
+    [HttpPut("UploadImage")]
+    public async Task<string> UploadImage(IFormFile imagem, int usuarioId)
+    {
+        return _Service.UploadImage(imagem, usuarioId).ToString();
     }
 
     [HttpPost("LogarUsuario")]
