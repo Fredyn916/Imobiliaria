@@ -72,12 +72,15 @@
 
     <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel-info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
+        <hr />
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
         <div class="Imovel__endereco">{{ Imovel.endereco }}</div>
         <div class="Imovel__anos" v-if="Imovel.anos > 0">{{ Imovel.anos }} anos</div>
         <div class="Imovel__anos" v-else>O Imóvel Está em construção</div>
         <div class="Imovel__cep">{{ Imovel.cep }}</div>
+        <hr />
         <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
+        <hr />
         <div class="Imovel__areasComuns">
             Areas Comuns:
             <ul>

@@ -3,7 +3,7 @@
     <h1 class="heading">Entre em Contato Conosco</h1>
     <div class="internal__Container">
       <div class="Container__person">
-        <div class="avatar-wrapper">
+        <div class="avatar__wrapper">
           <img src="/src/Images/Fred.png" alt="" class="person__img">
         </div>
         <p class="person__Name">Fred</p>
@@ -11,7 +11,7 @@
         <p><button class="person__Contact__btn">WhatsApp</button></p>
       </div>
       <div class="Container__person">
-        <div class="avatar-wrapper">
+        <div class="avatar__wrapper">
           <img src="/src/Images/Guilherme.png" alt="" class="person__img">
         </div>
         <p class="person__Name">Guilherme</p>
@@ -35,7 +35,7 @@ export default {
   align-items: center;
   justify-content: space-around;
   padding: 3rem;
-  background: linear-gradient(135deg, #f3f4f7, #eceff1);
+  background-color: #FFF;
   min-height: 50vh;
   text-align: center;
   position: relative;
@@ -59,7 +59,6 @@ export default {
 .Container__person {
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,15 +69,14 @@ export default {
 }
 
 .Container__person:hover {
+  cursor: pointer;
   transform: scale(1);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
-.avatar-wrapper {
-  background: radial-gradient(circle, #e3e8ee, #fff);
+.avatar__wrapper {
   padding: 8px;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
 }
 
@@ -124,6 +122,7 @@ export default {
     opacity: 0;
     transform: translateY(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

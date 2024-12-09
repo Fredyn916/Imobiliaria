@@ -40,6 +40,7 @@
                             <option value="Apartamento">Apartamento</option>
                             <option value="Casa">Casa</option>
                             <option value="Comercial">Comercial</option>
+                            <option value="Lote">Lote</option>
                             <option value="Rural">Rural</option>
                             <option value="Terreno">Terreno</option>
                         </select>
@@ -249,7 +250,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: "Funnel Display", sans-serif;
     background-color: #f4f4f9;
     min-height: 150vh;
 }

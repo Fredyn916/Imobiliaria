@@ -19,6 +19,7 @@
         <div class="Hero__bg__container__box2">
             <div class="Hero__bg__container__box2__label">
                 <select id="opcoes" name="opcoes" v-model="selectedType">
+                    <option value="" disabled selected>Selecione</option>
                     <option value="Casa">Casa</option>
                     <option value="Apartamento">Apartamento</option>
                     <option value="Lote">Lote</option>
@@ -26,6 +27,7 @@
                     <option value="Rural">Rural</option>
                 </select>
             </div>
+
 
             <div class="Hero__bg__container__box2__item1">
                 <input type="search" id="pesquisa" name="pesquisa" v-model="searchQuery"
@@ -161,6 +163,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 10px;
 }
 
 .Hero__bg__container__box2__item1 {

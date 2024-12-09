@@ -5,7 +5,7 @@
             <MenusNav @menuClicked="hideMenu" />
             <ul class="Nav__actions">
                 <li class="li__Home">
-                    <RouterLink to="AnunciarSeuImovel" class="Anunce__Bnt" @click="hideMenu">Anunciar Gratis</RouterLink>
+                    <RouterLink to="BeforeAddImovel" class="Anunce__Bnt" @click="hideMenu">Anunciar Gratis</RouterLink>
                     <div v-if="usuario === null">
                         <RouterLink to="Cadastro" class="Entry__Bnt" @click="hideMenu">Cadastre-se</RouterLink>
                     </div>

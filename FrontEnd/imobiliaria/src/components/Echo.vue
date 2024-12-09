@@ -287,6 +287,11 @@ export default {
     box-sizing: border-box;
 }
 
+.imovel-box:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
 .imovel-box-images {
     display: flex;
     justify-content: center;

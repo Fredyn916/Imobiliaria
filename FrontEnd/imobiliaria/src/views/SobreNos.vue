@@ -1,137 +1,60 @@
 <template>
     <section class="sobre-nos">
-        <!-- Equipe -->
-        <div class="equipe-container">
-            <h2 class="fade-in">Conheça Nossa Equipe</h2>
-            <div class="equipe">
-                <div class="membro" v-for="(membro, index) in equipe" :key="index">
-                    <div class="avatar">
-                        <img :src="membro.imagem" :alt="membro.nome">
-                    </div>
-                    <h3>{{ membro.nome }}</h3>
-                    <p>{{ membro.cargo }}</p>
-                </div>
-            </div>
-        </div>
+        <h1> 1. Quem somos</h1>
+        <p> <img src="" alt="ImagemDoSite"> Escrito por SweetHome</p>
+        <p>Atualizado há mais de um ano</p>
+        <hr />
 
-        <!-- Mapa Interativo com Seta -->
-        <div class="mapa-container">
-            <h2 class="slide-in">
-                <p>Encontre-nos Aqui <i class="fas fa-map-marker-alt" ></i></p>
-            </h2>
-            <div class="mapa">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.489536960225!2d-43.800050!3d-19.885810!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa697d7b071d817%3A0x91db7757c493ff25!2sLocaliza%C3%A7%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1639654695688!5m2!1spt-BR!2sbr&markers=color:red%7C-19.885810,-43.800050"
-                    width="100%" height="400px" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
-        </div>
+        <p>O Portal Sweet Home é um marketplace que oferece serviços de anúncios a mais de mil imobiliárias em todo o
+            país, com um milhão de imóveis oferecidos para venda e aluguel. O Portal Casa Mineira é uma empresa
+            independente da Casa Mineira, maior e mais tradicional imobiliária de Belo Horizonte (MG), com 39 anos de
+            história e líder em compra e venda e aluguel de imóveis residenciais em Minas Gerais.</p>
 
+        <p>Em março de 2021, ganhamos ainda mais relevância ao nos juntar ao QuintoAndar, maior plataforma digital de
+            moradia do país. Juntas, as companhias aliam tecnologia, dados, conhecimento de mercado e apoio a clientes
+            para levar a melhor experiência para quem quer alugar, comprar ou vender um imóvel residencial.</p>
+
+        <p>Conheça nossos planos de benefícios, acesse nossa página principal.</p>
+
+        <p>Sweet Home LTDA<br>
+            CNPJ: 00.000.000/0001-00<br>
+            Rua California, 200 - Sion, Belo Horizonte/MG - 30315-500</p>
     </section>
 </template>
 
 <script>
 export default {
-    name: 'SobreNos',
-    data() {
-        return {
-            equipe: [
-                { nome: 'Guilherme Santos', cargo: 'Desenvolvedor Front End', imagem: '/src/Images/Guilherme.png' },
-                { nome: 'Frederico Marques', cargo: 'Desenvolvedor Back End', imagem: '/src/Images/Fred.png' }
-            ]
-        };
-    },
+    name: 'SobreNos'
 };
 </script>
 
 <style scoped>
-.equipe-container,
-.mapa-container {
-    padding: 2rem;
+.sobre-nos {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.sobre-nos h1 {
+    font-size: 2rem;
+    color: #333;
     text-align: center;
-}
-
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-.slide-in {
-    animation: slideInUp 1s ease-in-out;
-    gap: 20px;
     margin-bottom: 20px;
 }
 
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.sobre-nos p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-@keyframes slideInUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.mapa {
-    position: relative;
-}
-
-.avatar {
-    margin: 1rem auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.membro:hover .avatar {
-    transform: scale(1.1);
-}
-
-.membro h3 {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.membro p {
-    color: #777;
-    font-size: 1rem;
-    margin-top: 0.2rem;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
+.sobre-nos hr {
+    border: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 20px 0;
 }
 </style>

@@ -31,7 +31,7 @@
 
       <!-- Filtro por faixa de preço -->
       <div class="filter-container">
-        <label for="priceFilter">Faixa de preço:</label>
+        <label for="priceFilter">Preço:</label>
         <input type="number" id="minPrice" v-model.number="minPrice" placeholder="Preço mínimo" class="filter-input"
           @input="filterImoveis" />
         <input type="number" id="maxPrice" v-model.number="maxPrice" placeholder="Preço máximo" class="filter-input"
@@ -377,6 +377,27 @@ body {
   color: #333;
 }
 
+
+.clear-filters-btn {
+  padding: 12px;
+  width: 100%;
+  height: 90%;
+  background-color: #ff4c4c;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.clear-filters-btn:hover {
+  background-color: #e04343;
+  transform: translateY(-2px);
+}
+
 .Imovel__container {
   width: 100%;
 }
@@ -497,7 +518,7 @@ li {
 }
 
 .filter-container label {
-  width: 70%;
+  width: 30%;
   height: 90%;
   padding: 0.8rem;
   border-radius: 9px;
@@ -797,25 +818,5 @@ textarea {
 
 .terms a:hover {
   text-decoration: underline;
-}
-
-.clear-filters-btn {
-  padding: 10px 20px;
-  background-color: #ff4c4c;
-  /* Cor de fundo */
-  color: #ffffff;
-  /* Cor do texto */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.clear-filters-btn:hover {
-  background-color: #e04343;
-  transform: translateY(-2px);
 }
 </style>
