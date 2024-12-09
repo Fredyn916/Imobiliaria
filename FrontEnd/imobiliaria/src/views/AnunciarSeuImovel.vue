@@ -68,9 +68,10 @@
                         <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
                         <input type="text" id="bairro" v-model="bairro" />
 
-                        <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do
-                            Imóvel</label>
-                        <input type="file" id="photo" @change="handleFileUpload" />
+                        <div class="form-group">
+                            <label for="image">Foto de Perfil:</label>
+                            <input type="file" id="image" @change="handleFileUpload" required />
+                        </div>
 
                         <button type="button" @click="nextStep">Próxima Etapa</button>
                         <button type="button" @click="prevStep">Voltar</button>
@@ -161,6 +162,9 @@ export default {
         };
     },
     methods: {
+        handleFileUpload(event) {
+            this.selectedFile = event.target.files[0];
+        },
         nextStep() {
             if (this.step < 3) {
                 this.step++;
@@ -169,16 +173,6 @@ export default {
         prevStep() {
             if (this.step > 1) {
                 this.step--;
-            }
-        },
-        handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.photo = e.target.result;
-                };
-                reader.readAsDataURL(file);
             }
         },
         async PostImovel() {
@@ -207,17 +201,26 @@ export default {
             const dataJson = JSON.stringify(data);
             console.log('Imóvel cadastrado: ', dataJson);
 
-            try {
-                const response = await fetch('https://localhost:7082/Imovel/AdicionarImovel', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: dataJson,
-                });
-                alert('Imóvel cadastrado com sucesso!');
-            } catch (error) {
-                console.error('Erro ao cadastrar imóvel: ', error);
-                alert('Erro ao cadastrar imóvel');
-            }
+            const response = await fetch('https://localhost:7082/Imovel/AdicionarImovel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: dataJson,
+            });
+            alert('Imóvel cadastrado com sucesso!');
+
+
+            const responseData = await response.json();
+            const responseID = responseData.id;
+
+            const formData = new FormData();
+            formData.append("imagem", this.selectedFile);
+
+            const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?usuarioId=${responseID}`, {
+                method: "PUT",
+                body: formData,
+            });
+
+            console.log(responsePostImagem.status)
             await LimparForm()
             this.step = 1;
         },
