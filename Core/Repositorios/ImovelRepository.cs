@@ -1,7 +1,11 @@
-﻿using Entidades.Imoveis.Filho;
+﻿using AutoMapper;
+using Entidades.DTOs.Imoveis;
+using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Data.Entity;
 
@@ -10,12 +14,55 @@ namespace Core.Repositorios;
 public class ImovelRepository : IImovelRepository
 {
     private readonly IMongoCollection<Imovel> _Imoveis;
+    private readonly IMapper _Mapper;
+    private static bool _initialized = false;
 
-    public ImovelRepository(IMongoDatabase database)
+    public ImovelRepository(IMongoDatabase database, IMapper mapper)
     {
         try
         {
             _Imoveis = database.GetCollection<Imovel>("Imoveis");
+            _Mapper = mapper;
+
+            if (_initialized) return;
+
+            BsonClassMap.RegisterClassMap<Apartamento>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Apartamento");
+            });
+
+            BsonClassMap.RegisterClassMap<Casa>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Casa");
+            });
+
+            BsonClassMap.RegisterClassMap<Comercial>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Comercial");
+            });
+
+            BsonClassMap.RegisterClassMap<Lote>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Lote");
+            });
+
+            BsonClassMap.RegisterClassMap<Rural>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Rural");
+            });
+
+            BsonClassMap.RegisterClassMap<Terreno>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetDiscriminator("Terreno");
+            });
+
+            _initialized = true;
         }
         catch (MongoBulkWriteException ex)
         {
@@ -23,11 +70,16 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
-    public async Task Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
         try
         {
             await _Imoveis.InsertOneAsync(imovel);
+
+            ReturnImovelIdDTO imovelIdDTO = new ReturnImovelIdDTO();
+            imovelIdDTO.Id = imovel.Id.ToString();
+
+            return imovelIdDTO;
         }
 
         catch (MongoBulkWriteException ex)
@@ -90,12 +142,19 @@ public class ImovelRepository : IImovelRepository
     {
         try
         {
-            await _Imoveis.ReplaceOneAsync(imovel => imovel.Id == imovel.Id, imovel);
+            var filter = Builders<Imovel>.Filter.Eq("_id", new ObjectId(imovel.Id));
+
+            await _Imoveis.ReplaceOneAsync(filter, imovel);
         }
         catch (MongoBulkWriteException ex)
         {
             throw new Exception(ex.Message);
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
     }
 
     public async Task Remover(string id)
@@ -806,6 +865,62 @@ public class ImovelRepository : IImovelRepository
             };
 
             await _Imoveis.InsertManyAsync(imoveisPreDefinidos);
+        }
+    }
+
+    public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
+    {
+        ReturnPrecificadorImovelDTO returnPrecificador = new ReturnPrecificadorImovelDTO();
+
+        double valorBase = 80000;
+
+        double coefVenda = imovel.VendaOuAluguel == "venda" ? 1.0 : 0.79;
+        double coefNovo = imovel.Novo ? 1.2 : 1.0;
+        double coefTipo = imovel.TipoImovel == "apartamento" ? 1.0 : 1.2;
+        double coefQuartos = 1.04101;
+        double coefBanheiros = 1.0209;
+        double coefVagas = 1.01099;
+        double coefArea = 1.1;
+
+        double coefAreasComuns = 1.0108 * imovel.AreasComuns.Count;
+
+        returnPrecificador.Preco = valorBase *
+                            coefVenda *
+                            coefNovo *
+                            coefTipo *
+                            Math.Pow(coefQuartos, imovel.Quartos) *
+                            Math.Pow(coefBanheiros, imovel.Banheiros) *
+                            Math.Pow(coefVagas, imovel.Vagas) *
+                            Math.Pow(coefArea, imovel.AreaM2 / 50) *
+                            coefAreasComuns;
+
+        return returnPrecificador;
+    }
+
+    public Imovel ReturnTipoImovel(Imovel imovel)
+    {
+        switch (imovel.Tipo)
+        {
+            case "Apartamento":
+                Apartamento apartamento = _Mapper.Map<Apartamento>(imovel);
+                return apartamento;
+            case "Casa":
+                Casa casa = _Mapper.Map<Casa>(imovel);
+                return casa;
+            case "Comercial":
+                Comercial comercial = _Mapper.Map<Comercial>(imovel);
+                return comercial;
+            case "Lote":
+                Lote lote = _Mapper.Map<Lote>(imovel);
+                return lote;
+            case "Rural":
+                Rural rural = _Mapper.Map<Rural>(imovel);
+                return rural;
+            case "Terreno":
+                Terreno terreno = _Mapper.Map<Terreno>(imovel);
+                return terreno;
+            default:
+                return imovel;
         }
     }
 }

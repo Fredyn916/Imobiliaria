@@ -1,4 +1,6 @@
-﻿using Entidades.Imoveis.Pai;
+﻿using AutoMapper;
+using Entidades.DTOs.Imoveis;
+using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +11,24 @@ namespace API.Controllers;
 public class ImovelController : ControllerBase
 {
     private readonly IImovelService _Service;
+    private readonly IMapper _Mapper;
 
-    public ImovelController(IImovelService imovelService)
+    public ImovelController(IImovelService imovelService, IMapper mapper)
     {
         _Service = imovelService;
+        _Mapper = mapper;
     }
 
     [HttpPost("AdicionarImovel")]
-    public async Task Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
     {
-        _Service.Adicionar(imovel);
+        return await _Service.Adicionar(ReturnTipoImovel(imovel));
+    }
+
+    [HttpPut("UploadImage")]
+    public async Task<string> UploadImage(IFormFile imagem, string imovelId)
+    {
+        return await _Service.UploadImage(imagem, imovelId);
     }
 
     [HttpGet("ListarImoveis")]
@@ -48,7 +58,7 @@ public class ImovelController : ControllerBase
     [HttpPut("EditarImovel")]
     public async Task Editar(Imovel imovelEdit)
     {
-        _Service.Editar(imovelEdit);
+        _Service.Editar(ReturnTipoImovel(imovelEdit));
     }
 
     [HttpDelete("RemoverImovel")]
@@ -61,5 +71,16 @@ public class ImovelController : ControllerBase
     public async Task InicializarImoveisPreDefinidos()
     {
         _Service.InicializarImoveisPreDefinidos();
+    }
+
+    [HttpPost("PrecificarImovel")]
+    public async Task<ReturnPrecificadorImovelDTO> PrecificarImovel(PrecificadorImovelDTO imovel)
+    {
+        return await _Service.PrecificarImovel(imovel);
+    }
+
+    private Imovel ReturnTipoImovel(Imovel imovel)
+    {
+        return _Service.ReturnTipoImovel(imovel);
     }
 }
