@@ -1,119 +1,132 @@
 <template>
     <div class="container">
         <div class="Etapas">
-            <p v-if="this.step === 1">Operação e tipo de Imovel</p>
-            <p v-if="this.step === 2">Localização</p>
-            <p v-if="this.step === 3">Caracteristicas</p>
+            <p class="Etapa" :class="{ 'escuro': step === 1 }">
+                tipo de Imovel
+            </p>
+
+            <p class="Etapa" :class="{ 'escuro': step === 2 }">
+                Localização
+            </p>
+
+            <p class="Etapa" :class="{ 'escuro': step === 3 }">
+                Caracteristicas
+            </p>
         </div>
-        <div class="container__tittle">
-            <h1>Anuncie seu Imóvel</h1>
-        </div>
-        <div class="add-imoveis-box">
-            <form @submit.prevent="PostImovel">
-                <!-- Etapa 1 -->
-                <div v-if="step === 1">
-                    <div class="select-status">
-                        <button type="button" class="select-status-btn" :class="{ active: selectedStatus === 'Venda' }"
-                            @click="selectedStatus = 'Venda'">Venda</button>
-                        <button type="button" class="select-status-btn"
-                            :class="{ active: selectedStatus === 'Aluguel' }"
-                            @click="selectedStatus = 'Aluguel'">Aluguel</button>
-                        <button type="button" class="select-status-btn"
-                            :class="{ active: selectedStatus === 'Temporada' }"
-                            @click="selectedStatus = 'Temporada'">Temporada</button>
+
+
+        <div class="internal__container">
+            <div class="container__tittle">
+                <h1>Anuncie seu Imóvel</h1>
+            </div>
+            <div class="add-imoveis-box">
+                <form @submit.prevent="PostImovel">
+                    <!-- Etapa 1 -->
+                    <div v-if="step === 1">
+                        <div class="select-status">
+                            <button type="button" class="select-status-btn"
+                                :class="{ active: selectedStatus === 'Venda' }"
+                                @click="selectedStatus = 'Venda'">Venda</button>
+                            <button type="button" class="select-status-btn"
+                                :class="{ active: selectedStatus === 'Aluguel' }"
+                                @click="selectedStatus = 'Aluguel'">Aluguel</button>
+                            <button type="button" class="select-status-btn"
+                                :class="{ active: selectedStatus === 'Temporada' }"
+                                @click="selectedStatus = 'Temporada'">Temporada</button>
+                        </div>
+
+                        <select v-model="selectedProperty" class="property-select">
+                            <option value="">Selecione um tipo de imóvel</option>
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Terreno">Terreno</option>
+                        </select>
+
+                        <button type="button" @click="nextStep" :disabled="!selectedProperty || !selectedStatus">Próxima
+                            Etapa</button>
                     </div>
 
-                    <select v-model="selectedProperty" class="property-select">
-                        <option value="">Selecione um tipo de imóvel</option>
-                        <option value="Apartamento">Apartamento</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Comercial">Comercial</option>
-                        <option value="Rural">Rural</option>
-                        <option value="Terreno">Terreno</option>
-                    </select>
+                    <!-- Etapa 2 -->
+                    <div v-if="step === 2" class="step2">
+                        <h2>Detalhes do Imóvel</h2>
+                        <label for="cep" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">CEP</label>
+                        <input type="text" id="cep" v-model="cep" />
 
-                    <button type="button" @click="nextStep" :disabled="!selectedProperty || !selectedStatus">Próxima
-                        Etapa</button>
-                </div>
+                        <label for="rua" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Rua</label>
+                        <input type="text" id="rua" v-model="rua" />
 
-                <!-- Etapa 2 -->
-                <div v-if="step === 2" class="step2">
-                    <h2>Detalhes do Imóvel</h2>
-                    <label for="cep" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">CEP</label>
-                    <input type="text" id="cep" v-model="cep" />
+                        <label for="unidadeFederativa"
+                            style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
+                        <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
 
-                    <label for="rua" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Rua</label>
-                    <input type="text" id="rua" v-model="rua" />
+                        <label for="cidade" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Cidade</label>
+                        <input type="text" id="cidade" v-model="cidade" />
 
-                    <label for="unidadeFederativa"
-                        style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
-                    <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
+                        <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
+                        <input type="text" id="bairro" v-model="bairro" />
 
-                    <label for="cidade" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Cidade</label>
-                    <input type="text" id="cidade" v-model="cidade" />
+                        <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do
+                            Imóvel</label>
+                        <input type="file" id="photo" @change="handleFileUpload" />
 
-                    <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
-                    <input type="text" id="bairro" v-model="bairro" />
+                        <button type="button" @click="nextStep">Próxima Etapa</button>
+                        <button type="button" @click="prevStep">Voltar</button>
+                    </div>
 
-                    <label for="photo" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Foto do
-                        Imóvel</label>
-                    <input type="file" id="photo" @change="handleFileUpload" />
-
-                    <button type="button" @click="nextStep">Próxima Etapa</button>
-                    <button type="button" @click="prevStep">Voltar</button>
-                </div>
-
-                <!-- Etapa 3 -->
-                <div v-if="step === 3" class="step3">
-                    <h2>Informações Adicionais</h2>
-                    <div class="property-inputs">
-                        <div class="counter-group">
-                            <div class="counter">
-                                <label>Quartos</label>
-                                <div class="counter-controls">
-                                    <button type="button" @click="quartos = Math.max(quartos - 1, 0)">-</button>
-                                    <input type="number" v-model="quartos" readonly />
-                                    <button type="button" @click="quartos++">+</button>
+                    <!-- Etapa 3 -->
+                    <div v-if="step === 3" class="step3">
+                        <h2>Informações Adicionais</h2>
+                        <div class="property-inputs">
+                            <div class="counter-group">
+                                <div class="counter">
+                                    <label>Quartos</label>
+                                    <div class="counter-controls">
+                                        <button type="button" @click="quartos = Math.max(quartos - 1, 0)">-</button>
+                                        <input type="number" v-model="quartos" readonly />
+                                        <button type="button" @click="quartos++">+</button>
+                                    </div>
+                                </div>
+                                <div class="counter">
+                                    <label>Banheiros</label>
+                                    <div class="counter-controls">
+                                        <button type="button" @click="banheiros = Math.max(banheiros - 1, 0)">-</button>
+                                        <input type="number" v-model="banheiros" readonly />
+                                        <button type="button" @click="banheiros++">+</button>
+                                    </div>
+                                </div>
+                                <div class="counter">
+                                    <label>Garagens</label>
+                                    <div class="counter-controls">
+                                        <button type="button" @click="garagens = Math.max(garagens - 1, 0)">-</button>
+                                        <input type="number" v-model="garagens" readonly />
+                                        <button type="button" @click="garagens++">+</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="counter">
-                                <label>Banheiros</label>
-                                <div class="counter-controls">
-                                    <button type="button" @click="banheiros = Math.max(banheiros - 1, 0)">-</button>
-                                    <input type="number" v-model="banheiros" readonly />
-                                    <button type="button" @click="banheiros++">+</button>
-                                </div>
-                            </div>
-                            <div class="counter">
-                                <label>Garagens</label>
-                                <div class="counter-controls">
-                                    <button type="button" @click="garagens = Math.max(garagens - 1, 0)">-</button>
-                                    <input type="number" v-model="garagens" readonly />
-                                    <button type="button" @click="garagens++">+</button>
-                                </div>
+
+                            <div class="area-group">
+                                <label>Área Total (m²):</label>
+                                <input type="number" v-model="areaTotal" />
+
+                                <label>Valor (R$):</label>
+                                <input type="text" v-model="preco" />
                             </div>
                         </div>
 
-                        <div class="area-group">
-                            <label>Área Total (m²):</label>
-                            <input type="number" v-model="areaTotal" />
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" v-model="titulo" required />
 
-                            <label>Valor (R$):</label>
-                            <input type="text" v-model="preco" />
-                        </div>
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" v-model="description"></textarea>
+
+
+                        <button type="button" @click="prevStep">Voltar</button>
+                        <button v-if="step === 3" type="button" @click="PostImovel">Anunciar</button>
                     </div>
-
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" v-model="titulo" required />
-
-                    <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" v-model="description"></textarea>
-
-
-                    <button type="button" @click="prevStep">Voltar</button>
-                    <button v-if="step === 3" type="button" @click="PostImovel">Anunciar</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -222,12 +235,48 @@ export default {
 <style scoped>
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     padding: 20px;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     min-height: 150vh;
+}
+
+.Etapas {
+    border: 1px solid black;
+    background-color: #FFF;
+    border-radius: 10px;
+    height: auto;
+    min-height: 130px;
+    width: 200px;
+}
+
+.Etapa {
+    color: #888;
+    font-weight: normal;
+    height: 30%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Etapa.escuro {
+    color: #333;
+    background-color: #ededed;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+
+
+.internal__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .container__tittle {
