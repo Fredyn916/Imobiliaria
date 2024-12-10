@@ -8,7 +8,7 @@
 
         <div class="internal__container">
             <div class="container__tittle">
-                <h1>Vamos começar a montar seu anúncio!</h1>
+                <h1>Anuncie seu Imóvel</h1>
             </div>
             <div class="add-imoveis-box">
                 <form @submit.prevent="PostImovel">
@@ -16,12 +16,17 @@
                     <div v-if="step === 1">
                         <div class="select-status">
                             <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Comprar' }" @click="selectedStatus = 'Comprar'">
+                                :class="{ active: selectedStatus === 'Venda' }" @click="selectedStatus = 'Venda'">
                                 Venda
                             </button>
                             <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Alugar' }" @click="selectedStatus = 'Alugar'">
+                                :class="{ active: selectedStatus === 'Aluguel' }" @click="selectedStatus = 'Aluguel'">
                                 Aluguel
+                            </button>
+                            <button type="button" class="select-status-btn"
+                                :class="{ active: selectedStatus === 'Temporada' }"
+                                @click="selectedStatus = 'Temporada'">
+                                Temporada
                             </button>
                         </div>
 
@@ -245,16 +250,17 @@
     align-items: center;
     padding: 20px;
     font-family: "Funnel Display", sans-serif;
-    background-color: #FFF;
+    background-color: #f4f4f9;
+    min-height: 100vh;
 }
 
 .Etapas {
-    background-color: rgb(243, 247, 248);
+    border: 1px solid black;
+    background-color: #FFF;
     border-radius: 10px;
     height: auto;
     min-height: 130px;
-    width: 300px;
-    padding: 10px;
+    width: 200px;
 }
 
 .Etapa {
@@ -265,7 +271,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
 }
 
 .Etapa.escuro {
@@ -273,8 +278,8 @@
     background-color: #ededed;
     font-weight: bold;
     border-radius: 10px;
-    border: 1px solid #333;
 }
+
 
 
 .internal__container {
@@ -303,11 +308,12 @@ label {
 .add-imoveis-box {
     width: 100%;
     max-width: 900px;
-    height: 400px;
-    padding: 40px 40px 20px;
+    height: auto;
+    max-height: 900px;
+    padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.08) -1px 2px 20px 0px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
@@ -331,7 +337,7 @@ h2 {
     font-size: 16px;
     color: white;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: rgb(0, 43, 82);
     cursor: pointer;
     transition: 0.3s;
@@ -349,7 +355,7 @@ h2 {
     padding: 10px;
     margin: 20px 0;
     border: 2px solid #ddd;
-    border-radius: 10px;
+    border-radius: 4px;
     font-size: 14px;
 }
 

@@ -89,7 +89,7 @@
                 <div class="Imove__item__container__item">
                   <div class="Imovel__box__rigth__buttons">
 
-                    <button @click="openPopup2">Ligue</button>
+                    <button @click="openPopup2">WhatsApp</button>
                     <button @click="openPopup">Contatar</button>
 
                     <div v-if="isPopupVisible" class="popup">
