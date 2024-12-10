@@ -21,7 +21,7 @@ public class ImovelService : IImovelService
         _Cloudinary = cloudinary;
     }
 
-    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar(Imovel imovel)
     {
         return await _Repository.Adicionar(imovel);
     }

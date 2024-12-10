@@ -1,19 +1,10 @@
 <template>
     <div class="container">
         <div class="Etapas">
-            <p class="Etapa" :class="{ 'escuro': step === 1 }">
-                tipo de Imovel
-            </p>
-
-            <p class="Etapa" :class="{ 'escuro': step === 2 }">
-                Localização
-            </p>
-
-            <p class="Etapa" :class="{ 'escuro': step === 3 }">
-                Caracteristicas
-            </p>
+            <p class="Etapa" :class="{ 'escuro': step === 1 }">Tipo de Imóvel</p>
+            <p class="Etapa" :class="{ 'escuro': step === 2 }">Localização</p>
+            <p class="Etapa" :class="{ 'escuro': step === 3 }">Características</p>
         </div>
-
 
         <div class="internal__container">
             <div class="container__tittle">
@@ -25,14 +16,18 @@
                     <div v-if="step === 1">
                         <div class="select-status">
                             <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Venda' }"
-                                @click="selectedStatus = 'Venda'">Venda</button>
+                                :class="{ active: selectedStatus === 'Venda' }" @click="selectedStatus = 'Venda'">
+                                Venda
+                            </button>
                             <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Aluguel' }"
-                                @click="selectedStatus = 'Aluguel'">Aluguel</button>
+                                :class="{ active: selectedStatus === 'Aluguel' }" @click="selectedStatus = 'Aluguel'">
+                                Aluguel
+                            </button>
                             <button type="button" class="select-status-btn"
                                 :class="{ active: selectedStatus === 'Temporada' }"
-                                @click="selectedStatus = 'Temporada'">Temporada</button>
+                                @click="selectedStatus = 'Temporada'">
+                                Temporada
+                            </button>
                         </div>
 
                         <select v-model="selectedProperty" class="property-select">
@@ -45,32 +40,40 @@
                             <option value="Terreno">Terreno</option>
                         </select>
 
-                        <button type="button" @click="nextStep" :disabled="!selectedProperty || !selectedStatus">Próxima
-                            Etapa</button>
+                        <button type="button" @click="nextStep" :disabled="!selectedProperty || !selectedStatus">
+                            Próxima Etapa
+                        </button>
                     </div>
 
                     <!-- Etapa 2 -->
                     <div v-if="step === 2" class="step2">
                         <h2>Detalhes do Imóvel</h2>
-                        <label for="cep" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">CEP</label>
-                        <input type="text" id="cep" v-model="cep" />
 
-                        <label for="rua" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Rua</label>
+                        <label for="anos">Idade do Imovel</label>
+                        <input type="text" id="anos" v-model="anos" />
+
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" v-model="cep" @blur="buscarCep" />
+
+                        <label for="rua">Rua</label>
                         <input type="text" id="rua" v-model="rua" />
 
-                        <label for="unidadeFederativa"
-                            style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Estado</label>
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" v-model="numero" />
+
+
+                        <label for="unidadeFederativa">Estado</label>
                         <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
 
-                        <label for="cidade" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Cidade</label>
+                        <label for="cidade">Cidade</label>
                         <input type="text" id="cidade" v-model="cidade" />
 
-                        <label for="bairro" style="margin-bottom: -8px;margin-top: 6px;margin-left: 6px;">Bairro</label>
+                        <label for="bairro">Bairro</label>
                         <input type="text" id="bairro" v-model="bairro" />
 
                         <div class="form-group">
-                            <label for="image">Foto de Perfil:</label>
-                            <input type="file" id="image" @change="handleFileUpload" required />
+                            <label for="image">Fotos do Imóvel:</label>
+                            <input type="file" id="image" @change="handleFileUpload" />
                         </div>
 
                         <button type="button" @click="nextStep">Próxima Etapa</button>
@@ -109,8 +112,8 @@
                             </div>
 
                             <div class="area-group">
-                                <label>Área Total (m²):</label>
-                                <input type="number" v-model="areaTotal" />
+                                <label>Área (m²):</label>
+                                <input type="number" v-model="area" />
 
                                 <label>Valor (R$):</label>
                                 <input type="text" v-model="preco" />
@@ -121,11 +124,10 @@
                         <input type="text" id="titulo" v-model="titulo" required />
 
                         <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" v-model="description"></textarea>
-
+                        <textarea id="descricao" v-model="descricao"></textarea>
 
                         <button type="button" @click="prevStep">Voltar</button>
-                        <button v-if="step === 3" type="button" @click="PostImovel">Anunciar</button>
+                        <button type="submit">Anunciar</button>
                     </div>
                 </form>
             </div>
@@ -133,32 +135,28 @@
     </div>
 </template>
 
-<script>
-export default {
+<script>export default {
     name: "AnunciarSeuImovel",
     data() {
         return {
             step: 1,
             selectedStatus: "",
             selectedProperty: "",
-            description: "",
-            price: null,
-            photo: null,
-            postCompleted: false,
+            anos: 0,
             cep: "",
             rua: "",
+            numero: 0,
             unidadeFederativa: "",
             cidade: "",
             bairro: "",
             quartos: 0,
             banheiros: 0,
-            suites: 0,
             garagens: 0,
-            areaUtil: 0,
-            areaTotal: 0,
+            area: 0,
             preco: "",
             titulo: "",
             descricao: "",
+            selectedFile: null,
         };
     },
     methods: {
@@ -166,87 +164,77 @@ export default {
             this.selectedFile = event.target.files[0];
         },
         nextStep() {
-            if (this.step < 3) {
-                this.step++;
-            }
+            if (this.step < 3) this.step++;
         },
         prevStep() {
-            if (this.step > 1) {
-                this.step--;
+            if (this.step > 1) this.step--;
+        },
+
+        async buscarCep() {
+            if (!this.cep || this.cep.length !== 8) {
+                alert('CEP inválido');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
+                const data = await response.json();
+
+                if (!data.erro) {
+                    this.rua = data.logradouro;
+                    this.bairro = data.bairro;
+                    this.cidade = data.localidade;
+                    this.unidadeFederativa = data.uf;
+                } else {
+                    alert('CEP não encontrado');
+                }
+            } catch (error) {
+                alert('Erro ao buscar o CEP');
             }
         },
-        async PostImovel() {
-
+        async PostImovel(e) {
+            e.preventDefault();
             const data = {
-                id: null,
-                selectedStatus: this.selectedStatus,
-                selectedProperty: this.selectedProperty,
-                description: this.description,
-                preco: this.preco,
-                cep: this.cep,
-                rua: this.rua,
-                unidadeFederativa: this.unidadeFederativa,
-                cidade: this.cidade,
-                bairro: this.bairro,
-                quartos: this.quartos,
-                banheiros: this.banheiros,
-                suites: this.suites,
-                garagens: this.garagens,
-                areaUtil: this.areaUtil,
-                areaTotal: this.areaTotal,
-                titulo: this.titulo,
-                descricao: this.descricao,
+                id: null, // Campo opcional, substitua conforme necessário
+                tipo: this.selectedProperty || "string",
+                area: this.area || 0,
+                preco: parseFloat(this.preco) || 0,
+                anos: this.anos || 0,
+                tipoServico: this.selectedStatus || "string",
+                cep: this.cep || "string",
+                rua: this.rua || "string",
+                numero: parseInt(this.numero) || 0,
+                bairro: this.bairro || "string",
+                cidade: this.cidade || "string",
+                unidadeFederativa: this.unidadeFederativa || "string",
+                endereco: `${this.rua}, ${this.numero}, ${this.bairro}, ${this.cidade}, ${this.unidadeFederativa}` || "string",
+                urLsImagens: [], // Substitua após implementar o upload de imagens
+                titulo: this.titulo || "string",
+                descricao: this.descricao || "string",
+                areasComuns: [
+                    `Quartos: ${this.quartos}`,
+                    `Banheiros: ${this.banheiros}`,
+                    `Garagens: ${this.garagens}`,
+                ],
             };
-
-            const dataJson = JSON.stringify(data);
-            console.log('Imóvel cadastrado: ', dataJson);
+            const dataJson = JSON.stringify(data)
+            console.log(data)
 
             const response = await fetch('https://localhost:7082/Imovel/AdicionarImovel', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: dataJson,
+                body: dataJson
             });
-            alert('Imóvel cadastrado com sucesso!');
-
 
             const responseData = await response.json();
-            const responseID = responseData.id;
+            console.log("ID do imóvel criado:", responseData.id);
 
-            const formData = new FormData();
-            formData.append("imagem", this.selectedFile);
-
-            const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?usuarioId=${responseID}`, {
-                method: "PUT",
-                body: formData,
-            });
-
-            console.log(responsePostImagem.status)
-            await LimparForm()
-            this.step = 1;
         },
-        LimparForm() {
-            this.selectedStatus = "";
-            this.selectedProperty = "";
-            this.description = "";
-            this.photo = null;
-            this.cep = "";
-            this.rua = "";
-            this.unidadeFederativa = "";
-            this.cidade = "";
-            this.bairro = "";
-            this.quartos = 0;
-            this.banheiros = 0;
-            this.suites = 0;
-            this.garagens = 0;
-            this.areaUtil = 0;
-            this.areaTotal = 0;
-            this.preco = "";
-            this.titulo = "";
-            this.descricao = "";
-        }
     },
 };
+
 </script>
+
 
 <style scoped>
 .container {

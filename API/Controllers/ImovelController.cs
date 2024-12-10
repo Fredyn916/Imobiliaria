@@ -20,13 +20,13 @@ public class ImovelController : ControllerBase
     }
 
     [HttpPost("AdicionarImovel")]
-    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar(Imovel imovel)
     {
         return await _Service.Adicionar(ReturnTipoImovel(imovel));
     }
 
     [HttpPut("UploadImage")]
-    public async Task<string> UploadImage(IFormFile imagem, string imovelId)
+    public async Task<string> UploadImage(IFormFile imagem, [FromQuery] string imovelId)
     {
         return await _Service.UploadImage(imagem, imovelId);
     }

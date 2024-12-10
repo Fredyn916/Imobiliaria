@@ -70,7 +70,7 @@ public class ImovelRepository : IImovelRepository
         }
     }
 
-    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar(Imovel imovel)
     {
         try
         {
