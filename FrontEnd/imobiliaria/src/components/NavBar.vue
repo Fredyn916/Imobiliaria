@@ -5,10 +5,10 @@
             <li class="li__Home">
                 <RouterLink to="BeforeAddImovel" class="Anunce__Bnt">Anunciar Gratis</RouterLink>
                 <div v-if="!usuario">
-                    <RouterLink to="Cadastro" class="Entry__Bnt">Cadastre-se</RouterLink>
+                    <RouterLink to="Login" class="Entry__Bnt">Entrar</RouterLink>
                 </div>
                 <div v-else>
-                    <RouterLink to="UsuarioPage" class="Entry__Bnt">{{ usuario.username }}</RouterLink>
+                    <RouterLink to="UsuarioPage" class="Entry__Bnt">Olá, {{ usuario.username }}</RouterLink>
                 </div>
             </li>
         </ul>

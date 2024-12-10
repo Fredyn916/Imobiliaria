@@ -14,17 +14,23 @@
                 <form @submit.prevent="PostImovel">
                     <!-- Etapa 1 -->
                     <div v-if="step === 1">
+                        <h3 class="h3">Diga qual tipo de operaçao deseja realizar</h3>
                         <div class="select-status">
-                            <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Comprar' }" @click="selectedStatus = 'Comprar'">
-                                Venda
-                            </button>
-                            <button type="button" class="select-status-btn"
-                                :class="{ active: selectedStatus === 'Alugar' }" @click="selectedStatus = 'Alugar'">
-                                Aluguel
-                            </button>
+                            <label for="status">Tipo de operação</label>
+                            <div class="internal-select-status">
+                                <button type="button" class="select-status-btn"
+                                    :class="{ active: selectedStatus === 'Comprar' }"
+                                    @click="selectedStatus = 'Comprar'">
+                                    Venda
+                                </button>
+                                <button type="button" class="select-status-btn"
+                                    :class="{ active: selectedStatus === 'Alugar' }" @click="selectedStatus = 'Alugar'">
+                                    Aluguel
+                                </button>
+                            </div>
                         </div>
 
+                        <label for="status">Tipo de Imóvel</label>
                         <select v-model="selectedProperty" class="property-select">
                             <option value="">Selecione um tipo de imóvel</option>
                             <option value="Apartamento">Apartamento</option>
@@ -42,37 +48,47 @@
 
                     <!-- Etapa 2 -->
                     <div v-if="step === 2" class="step2">
-                        <h2>Detalhes do Imóvel</h2>
 
-                        <label for="anos">Idade do Imovel</label>
-                        <input type="text" id="anos" v-model="anos" />
+                        <div class="Collun">
+                            <h2>Detalhes do Imóvel</h2>
 
-                        <label for="cep">CEP</label>
-                        <input type="text" id="cep" v-model="cep" @blur="buscarCep" />
+                            <div class="Step2__container">
+                                <div class="Step2__item">
+                                    <label for="anos">Idade do Imovel</label>
+                                    <input type="text" id="anos" v-model="anos" />
 
-                        <label for="rua">Rua</label>
-                        <input type="text" id="rua" v-model="rua" />
+                                    <label for="cep">CEP</label>
+                                    <input type="text" id="cep" v-model="cep" @blur="buscarCep" />
 
-                        <label for="numero">Número</label>
-                        <input type="text" id="numero" v-model="numero" />
+                                    <label for="rua">Rua</label>
+                                    <input type="text" id="rua" v-model="rua" />
+
+                                    <label for="numero">Número</label>
+                                    <input type="text" id="numero" v-model="numero" />
+                                </div>
 
 
-                        <label for="unidadeFederativa">Estado</label>
-                        <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
+                                <div class="Step2__item">
 
-                        <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" v-model="cidade" />
+                                    <label for="unidadeFederativa">Estado</label>
+                                    <input type="text" id="unidadeFederativa" v-model="unidadeFederativa" />
 
-                        <label for="bairro">Bairro</label>
-                        <input type="text" id="bairro" v-model="bairro" />
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" id="cidade" v-model="cidade" />
 
-                        <div class="form-group">
-                            <label for="image">Fotos do Imóvel:</label>
-                            <input type="file" id="image" @change="handleFileUpload" />
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" id="bairro" v-model="bairro" />
+
+                                    <div class="form-group">
+                                        <label for="image">Fotos do Imóvel:</label>
+                                        <input type="file" id="image" @change="handleFileUpload" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button type="button" @click="nextStep">Próxima Etapa</button>
+                            <button type="button" @click="prevStep">Voltar</button>
                         </div>
-
-                        <button type="button" @click="nextStep">Próxima Etapa</button>
-                        <button type="button" @click="prevStep">Voltar</button>
                     </div>
 
                     <!-- Etapa 3 -->
@@ -246,6 +262,9 @@
     padding: 20px;
     font-family: "Funnel Display", sans-serif;
     background-color: #FFF;
+    min-height: 100vh;
+    height: 150vh;
+    max-height: 200vh;
 }
 
 .Etapas {
@@ -309,19 +328,34 @@ label {
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.08) -1px 2px 20px 0px;
     margin-top: 20px;
+    text-align: left;
 }
 
 h1,
-h2 {
+h2,
+h3 {
     color: #333;
-    text-align: center;
+    text-align: left;
+}
+
+.h3 {
+    padding-bottom: 20px;
 }
 
 .select-status {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
     height: 60px;
+}
+
+.internal-select-status {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: left;
+    justify-content: space-around;
 }
 
 .select-status-btn {
@@ -450,12 +484,24 @@ button:hover {
 
 .step2 {
     display: flex;
-    flex-direction: column;
     font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+.Step2__container {
+    display: flex;
+    gap: 20px;
+}
+
+.Step2__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .step2 input {
-    border: 3px solid #ededed;
+    border: 2px solid #ededed;
     border-radius: 7px;
     margin-top: 13px;
     padding: 1rem;

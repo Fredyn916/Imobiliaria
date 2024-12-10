@@ -52,7 +52,8 @@
 
           <div class="form-group">
             <label for="identificacao">Identificação :</label>
-            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text" @input="atualizarIdentificacao" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
+            <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text"
+              @input="atualizarIdentificacao" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
           </div>
 
           <div class="form-group">
@@ -168,13 +169,18 @@ export default {
       const responseData = await response.json();
       const responseID = responseData.id;
 
-      const formData = new FormData();
-      formData.append("imagem", this.selectedFile);
+      if (this.selectedFile === null) {
+        console.log('Sem Imagem')
+      }
+      else {
+        const formData = new FormData();
+        formData.append("imagem",);
 
-      const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
-        method: "PUT",
-        body: formData,
-      });
+        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
+          method: "PUT",
+          body: formData,
+        });
+      }
 
       if (response.ok && responsePostImagem.ok) {
         this.message = 'Sucesso ao Cadastrar o usuário.';

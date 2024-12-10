@@ -100,7 +100,7 @@ export default {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   animation: slideIn 1s ease-out;
-  max-width: 380px;
+  max-width: 450px;
   width: 100%;
 }
 

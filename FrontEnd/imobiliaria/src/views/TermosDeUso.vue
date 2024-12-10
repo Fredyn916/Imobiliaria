@@ -130,7 +130,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #FFF;
   padding: 20px;
 }
 
@@ -138,7 +138,6 @@ export default {
   background: #fff;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 900px;
   overflow-y: auto;
@@ -149,14 +148,14 @@ export default {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #333;
+  color: rgb(0, 43, 82);
   text-align: center;
   font-weight: bold;
 }
 
 h2 {
   font-size: 1.8rem;
-  color: #333;
+  color: rgb(0, 43, 82);
   margin-top: 20px;
 }
 
