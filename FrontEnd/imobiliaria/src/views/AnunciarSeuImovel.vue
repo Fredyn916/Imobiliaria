@@ -227,7 +227,15 @@
             });
 
             const responseData = await response.json();
-            console.log("ID do imóvel criado:", responseData.id);
+            const responseID = responseData.id;
+
+            const formData = new FormData();
+            formData.append("imagem", this.selectedFile);
+
+            const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${responseID}`, {
+                method: "PUT",
+                body: formData,
+            });
 
         },
     },
