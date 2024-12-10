@@ -7,8 +7,8 @@
                         <img src="@/Images/logo.png" alt="logo" width="20px" />
                     </RouterLink>
                 </div>
-                <RouterLink to="/ViewImovel" class="Nav__Li">Comprar</RouterLink>
-                <RouterLink to="/ViewImovel" class="Nav__Li">Alugar</RouterLink>
+                <RouterLink to="/ViewImovelComprar" class="Nav__Li">Comprar</RouterLink>
+                <RouterLink to="/ViewImovelAlugar" class="Nav__Li">Alugar</RouterLink>
                 <RouterLink to="/Contato" class="Nav__Li">Contato</RouterLink>
                 <RouterLink to="/SobreNos" class="Nav__Li">Sobre nós</RouterLink>
             </ul>

@@ -20,16 +20,6 @@
                 </select>
             </div>
 
-            <!-- Filtro por tipo de serviço (compra, alugar, etc.) -->
-            <div class="filter-container">
-                <select id="serviceTypeFilter" v-model="selectedServiceType" @change="filterImoveis"
-                    class="filter-select">
-                    <option value="">Todos os serviços</option>
-                    <option value="Compra">Compra</option>
-                    <option value="Alugar">Alugar</option>
-                </select>
-            </div>
-
             <!-- Filtro por faixa de preço -->
             <div class="filter-container">
                 <label for="priceFilter">Preço:</label>
@@ -211,7 +201,7 @@ export default {
         },
 
         async fetchImoveis() {
-            const apiUrl = "https://localhost:7082/Imovel/ListarImoveis";
+            const apiUrl = "https://localhost:7082/Imovel/ListarImoveisPorTipoServico?tipoServico=Comprar";
             try {
                 const response = await fetch(apiUrl, {
                     method: "GET",

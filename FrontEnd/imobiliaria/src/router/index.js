@@ -67,6 +67,18 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/ViewImovelComprar",
+      name: "ViewImovelComprar",
+      component: () => import("@/views/ViewImovelComprar.vue"),
+      props: true,
+    },
+    {
+      path: "/ViewImovelAlugar",
+      name: "ViewImovelAlugar",
+      component: () => import("@/views/ViewImovelAlugar.vue"),
+      props: true,
+    },
+    {
       path: "/UsuarioPage",
       name: "UsuarioPage",
       component: () => import("@/views/UsuarioPage.vue"),

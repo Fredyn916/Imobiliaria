@@ -7,7 +7,7 @@
                 <li class="li__Home">
                     <RouterLink to="BeforeAddImovel" class="Anunce__Bnt" @click="hideMenu">Anunciar Gratis</RouterLink>
                     <div v-if="usuario === null">
-                        <RouterLink to="Cadastro" class="Entry__Bnt" @click="hideMenu">Cadastre-se</RouterLink>
+                        <RouterLink to="Login" class="Entry__Bnt" @click="hideMenu">Entrar</RouterLink>
                     </div>
                     <div v-else>
                         <RouterLink to="UsuarioPage" class="Entry__Bnt" @click="hideMenu">{{ usuario.username }}</RouterLink>
