@@ -181,6 +181,12 @@ export default {
     color: #FFF;
     font-weight: 600;
     font-size: 18px;
+    transition: .3s;
+}
+
+.Precifier__btn:hover{
+    transform: scale(1.04);
+    cursor: pointer;
 }
 
 .AddImovel__btn {
@@ -197,6 +203,7 @@ export default {
 .AddImovel__btn:hover {
     background-color: #1A5276;
     transform: scale(1.04);
+    cursor: pointer;
 }
 
 .Banner__item__color {
