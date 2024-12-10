@@ -17,17 +17,16 @@
           <div class="User__img">
             <img :src="usuario.fotoDePerfilURL" alt="Foto de perfil">
           </div>
-          <p>{{ usuario.nome }}</p>
-          <p>{{ usuario.idade }}</p>
-          <p>{{ usuario.genero }}</p>
-          <p>{{ usuario.cep }}</p>
-          <p>{{ usuario.rua }}</p>
-          <p>{{ usuario.numero }}</p>
-          <p>{{ usuario.bairro }}</p>
-          <p>{{ usuario.cidade }}</p>
-          <p>{{ usuario.unidadeFederativa }}</p>
-          <p>{{ usuario.identificacao }}</p>
-          <p>{{ usuario.tipo }}</p>
+          <p>Nome: {{ usuario.nome }}</p>
+          <p>Idade: {{ usuario.idade }}</p>
+          <p>Genero: {{ usuario.genero }}</p>
+          <p>CEP: {{ usuario.cep }}</p>
+          <p>Rua: {{ usuario.rua }}</p>
+          <p>Numero: {{ usuario.numero }}</p>
+          <p>Bairrro: {{ usuario.bairro }}</p>
+          <p>Cidade: {{ usuario.cidade }}</p>
+          <p>Estado: {{ usuario.unidadeFederativa }}</p>
+          <p>CPF, CNPJ: {{ usuario.identificacao }}</p>
         </div>
       </div>
       <div v-if="step === 2" class="step">
@@ -118,6 +117,11 @@ export default {
   border-radius: 50%;
 }
 
+.User__Item {
+  display: flex;
+  flex-direction: column;
+}
+
 .User__Item p {
   margin: 5px 0;
   font-size: 16px;
@@ -126,9 +130,9 @@ export default {
 .step {
   margin: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
+  box-shadow: rgba(0, 0, 0, 0.2) -2px 4px 15px 0px;
   border-radius: 5px;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 </style>
