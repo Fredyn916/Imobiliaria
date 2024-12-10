@@ -3,12 +3,14 @@
         <nav>
             <ul class="Nav__ul">
                 <div class="logo">
-                    <RouterLink to="/"><img src="@/Images/logo.png" alt="logo" width="20px"></RouterLink>
+                    <RouterLink to="/">
+                        <img src="@/Images/logo.png" alt="logo" width="20px" />
+                    </RouterLink>
                 </div>
-                <RouterLink to="ViewImovel" class="Nav__Li" @click="handleClick">Comprar</RouterLink>
-                <RouterLink to="ViewImovel" class="Nav__Li" @click="handleClick">Alugar</RouterLink>
-                <RouterLink to="Contato" class="Nav__Li" @click="handleClick">Contato</RouterLink>
-                <RouterLink to="SobreNos" class="Nav__Li" @click="handleClick">Sobre nós</RouterLink>
+                <RouterLink to="/ViewImovel" class="Nav__Li">Comprar</RouterLink>
+                <RouterLink to="/ViewImovel" class="Nav__Li">Alugar</RouterLink>
+                <RouterLink to="/Contato" class="Nav__Li">Contato</RouterLink>
+                <RouterLink to="/SobreNos" class="Nav__Li">Sobre nós</RouterLink>
             </ul>
         </nav>
     </header>
@@ -51,8 +53,18 @@ export default {
     width: 100%;
     height: 2px;
     background-color: black;
-    cursor: pointer;
 }
+
+.router-link-active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
 
 .logo {
     display: block;
