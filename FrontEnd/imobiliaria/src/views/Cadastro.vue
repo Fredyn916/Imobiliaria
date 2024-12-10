@@ -137,57 +137,65 @@ export default {
     async CreateUsuario(e) {
       e.preventDefault();
 
+      try {
+        const cepResponse = await this.GetCep();
+        if (!cepResponse || !cepResponse.cep) {
+          this.message = 'CEP não encontrado ou inválido';
+          return;
+        }
 
-      const cepResponse = await this.GetCep();
-      if (!cepResponse) return;
+        const data = {
+          nome: this.nome,
+          idade: parseInt(this.idade),
+          genero: this.genero,
+          cep: cepResponse.cep,
+          rua: cepResponse.logradouro,
+          numero: parseInt(this.numero),
+          bairro: cepResponse.bairro,
+          cidade: cepResponse.localidade,
+          unidadeFederativa: cepResponse.uf,
+          identificacao: this.identificacao,
+          username: this.username,
+          password: this.password,
+        };
 
-      const data = {
-        nome: this.nome,
-        idade: parseInt(this.idade),
-        genero: this.genero,
-        cep: cepResponse.cep,
-        rua: cepResponse.logradouro,
-        numero: parseInt(this.numero),
-        bairro: cepResponse.bairro,
-        cidade: cepResponse.localidade,
-        unidadeFederativa: cepResponse.uf,
-        identificacao: this.identificacao,
-        username: this.username,
-        password: this.password,
-      };
-
-      const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      const responseID = responseData.id;
-
-      if (this.selectedFile === null) {
-        console.log('Sem Imagem')
-      }
-      else {
-        const formData = new FormData();
-        formData.append("imagem", this.selectedFile);
-
-        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
-          method: "PUT",
-          body: formData,
+        const response = await fetch('https://localhost:7082/Usuario/AdicionarUsuario', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
         });
-      }
 
-      if (response.ok) {
-        this.message = 'Sucesso ao Cadastrar o usuário.';
-      } else {
-        this.message = 'Erro ao Cadastrar o usuário.';
-      }
+        const responseData = await response.json();
+        const responseID = responseData.id;
 
-      if (responsePostImagem.ok) {
-        this.message = 'Sucesso ao Cadastrar o usuário e imagem.';
-      } else {
-        this.message = 'Erro ao Cadastrar o usuário e imagem.';
+        // Mensagem de sucesso ou erro para o cadastro do usuário
+        if (response.ok) {
+          this.message = 'Sucesso ao Cadastrar o usuário.';
+        } else {
+          this.message = 'Erro ao Cadastrar o usuário.';
+        }
+
+        // Verificar e enviar imagem, se houver
+        if (this.selectedFile !== null) {
+          const formData = new FormData();
+          formData.append("imagem", this.selectedFile);
+
+          const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
+            method: "PUT",
+            body: formData,
+          });
+
+          // Mensagem para o envio da imagem
+          if (responsePostImagem.ok) {
+            this.message += ' Sucesso ao Cadastrar a imagem.';
+          } else {
+            this.message += ' Erro ao Cadastrar a imagem.';
+          }
+        }
+
+      } catch (error) {
+        console.error('Erro ao criar usuário:', error);
+        this.message = 'Erro ao tentar cadastrar o usuário.';
       }
     },
     async GetCep() {
