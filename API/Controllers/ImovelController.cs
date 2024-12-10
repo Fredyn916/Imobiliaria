@@ -20,7 +20,7 @@ public class ImovelController : ControllerBase
     }
 
     [HttpPost("AdicionarImovel")]
-    public async Task<ReturnImovelIdDTO> Adicionar([FromBody] Imovel imovel)
+    public async Task<ReturnImovelIdDTO> Adicionar(Imovel imovel)
     {
         return await _Service.Adicionar(ReturnTipoImovel(imovel));
     }
@@ -47,6 +47,12 @@ public class ImovelController : ControllerBase
     public async Task<List<Imovel>> BuscarImoveisPorTipo(string tipo)
     {
         return await _Service.BuscarImoveisPorTipo(tipo);
+    }
+
+    [HttpGet("ListarImoveisPorTipoServico")]
+    public async Task<List<Imovel>> BuscarImoveisPorTipoServico(string tipoServico)
+    {
+        return await _Service.BuscarImoveisPorTipoServico(tipoServico);
     }
 
     [HttpGet("ListarURLsImagensPorId")]
