@@ -3,7 +3,6 @@ using Entidades.DTOs.Imoveis;
 using Entidades.Imoveis.Filho;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
-using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -68,6 +67,10 @@ public class ImovelRepository : IImovelRepository
         {
             throw new Exception(ex.Message);
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<ReturnImovelIdDTO> Adicionar(Imovel imovel)
@@ -86,6 +89,10 @@ public class ImovelRepository : IImovelRepository
         {
             throw new Exception(ex.Message);
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<List<Imovel>> Listar()
@@ -98,15 +105,25 @@ public class ImovelRepository : IImovelRepository
         {
             throw new Exception(ex.Message);
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<Imovel> BuscarImovelPorId(string id)
     {
         try
         {
-            return await _Imoveis.Find<Imovel>(imovel => imovel.Id == id).FirstOrDefaultAsync();
+            var filter = Builders<Imovel>.Filter.Eq("_id", new ObjectId(id));
+
+            return await _Imoveis.Find<Imovel>(filter).FirstOrDefaultAsync();
         }
         catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
@@ -116,9 +133,33 @@ public class ImovelRepository : IImovelRepository
     {
         try
         {
-            return await _Imoveis.Find<Imovel>(imovel => imovel.Tipo == tipo).ToListAsync();
+            var filter = Builders<Imovel>.Filter.Eq("_t", tipo);
+
+            return await _Imoveis.Find<Imovel>(filter).ToListAsync();
         }
         catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<List<Imovel>> BuscarImoveisPorTipoServico(string tipoServico)
+    {
+        try
+        {
+            var filter = Builders<Imovel>.Filter.Eq("TipoServico", tipoServico);
+
+            return await _Imoveis.Find<Imovel>(filter).ToListAsync();
+        }
+        catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
@@ -128,11 +169,15 @@ public class ImovelRepository : IImovelRepository
     {
         try
         {
-            Imovel i = _Imoveis.Find<Imovel>(imovel => imovel.Id == id).FirstOrDefault();
+            Imovel i = BuscarImovelPorId(id).Result;
 
             return i.URLsImagens;
         }
         catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
@@ -161,9 +206,15 @@ public class ImovelRepository : IImovelRepository
     {
         try
         {
-            await _Imoveis.DeleteOneAsync(imovel => imovel.Id == id);
+            var filter = Builders<Imovel>.Filter.Eq("_id", new ObjectId(id));
+
+            await _Imoveis.DeleteOneAsync(filter);
         }
         catch (MongoBulkWriteException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }

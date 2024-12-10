@@ -12,6 +12,7 @@ public interface IImovelService
     Task<List<Imovel>> Listar();
     Task<Imovel> BuscarImovelPorId(string id);
     Task<List<Imovel>> BuscarImoveisPorTipo(string tipo);
+    Task<List<Imovel>> BuscarImoveisPorTipoServico(string tipoServico);
     Task<List<string>> BuscarURLsImagensPorId(string id);
     Task Editar(Imovel imovel);
     Task Remover(string id);

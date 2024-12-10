@@ -3,10 +3,7 @@ using CloudinaryDotNet;
 using Entidades.DTOs.Imoveis;
 using Entidades.Imoveis.Pai;
 using Entidades.Interfaces.Imoveis;
-using Entidades.Usuarios;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Entidades.Imoveis.Filho;
 
 namespace Core.Services;
 
@@ -73,6 +70,11 @@ public class ImovelService : IImovelService
     public async Task<List<Imovel>> BuscarImoveisPorTipo(string tipo)
     {
         return await _Repository.BuscarImoveisPorTipo(tipo);
+    }
+
+    public async Task<List<Imovel>> BuscarImoveisPorTipoServico(string tipoServico)
+    {
+        return await _Repository.BuscarImoveisPorTipoServico(tipoServico);
     }
 
     public async Task<List<string>> BuscarURLsImagensPorId(string id)
