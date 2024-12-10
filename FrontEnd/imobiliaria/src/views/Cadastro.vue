@@ -68,7 +68,7 @@
 
           <div class="form-group">
             <label for="image">Foto de Perfil:</label>
-            <input type="file" id="image" @change="handleFileUpload" required />
+            <input type="file" id="image" @change="handleFileUpload" />
           </div>
 
         </div>
@@ -137,10 +137,6 @@ export default {
     async CreateUsuario(e) {
       e.preventDefault();
 
-      if (!this.selectedFile) {
-        this.message = 'Por favor, selecione uma imagem.';
-        return;
-      }
 
       const cepResponse = await this.GetCep();
       if (!cepResponse) return;
@@ -174,7 +170,7 @@ export default {
       }
       else {
         const formData = new FormData();
-        formData.append("imagem",);
+        formData.append("imagem", this.selectedFile);
 
         const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
           method: "PUT",
@@ -182,10 +178,16 @@ export default {
         });
       }
 
-      if (response.ok && responsePostImagem.ok) {
+      if (response.ok) {
         this.message = 'Sucesso ao Cadastrar o usuário.';
       } else {
         this.message = 'Erro ao Cadastrar o usuário.';
+      }
+
+      if (responsePostImagem.ok) {
+        this.message = 'Sucesso ao Cadastrar o usuário e imagem.';
+      } else {
+        this.message = 'Erro ao Cadastrar o usuário e imagem.';
       }
     },
     async GetCep() {
