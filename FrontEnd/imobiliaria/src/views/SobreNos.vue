@@ -35,7 +35,7 @@ export default {
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    font-family: Arial, sans-serif;
+    font-family: "Funnel Display", sans-serif;
 }
 
 .sobre-nos h1 {
