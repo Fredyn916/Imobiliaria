@@ -14,7 +14,7 @@ public class ImovelRepository : IImovelRepository
 {
     private readonly IMongoCollection<Imovel> _Imoveis;
     private readonly IMapper _Mapper;
-    private static bool _initialized = false;
+    private static bool _Initialized = false;
 
     public ImovelRepository(IMongoDatabase database, IMapper mapper)
     {
@@ -23,7 +23,7 @@ public class ImovelRepository : IImovelRepository
             _Imoveis = database.GetCollection<Imovel>("Imoveis");
             _Mapper = mapper;
 
-            if (_initialized) return;
+            if (_Initialized) return;
 
             BsonClassMap.RegisterClassMap<Apartamento>(cm =>
             {
@@ -61,7 +61,7 @@ public class ImovelRepository : IImovelRepository
                 cm.SetDiscriminator("Terreno");
             });
 
-            _initialized = true;
+            _Initialized = true;
         }
         catch (MongoBulkWriteException ex)
         {

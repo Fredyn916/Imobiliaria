@@ -6,6 +6,8 @@ using Entidades.Usuarios;
 using Microsoft.AspNetCore.Http;
 using System.Drawing;
 using static System.Net.Mime.MediaTypeNames;
+using MongoDB.Driver.Core.Configuration;
+using System.Data.SQLite;
 
 namespace Core.Services;
 
@@ -77,6 +79,16 @@ public class UsuarioService : IUsuarioService
     public void Editar(Usuario usuarioEdit)
     {
         _Repository.Editar(usuarioEdit);
+    }
+
+    public void EditarUsername(int id, string username)
+    {
+        _Repository.EditarUsername(id, username);
+    }
+
+    public void EditarSenha(int id, string senha)
+    {
+        _Repository.EditarSenha(id, senha);
     }
 
     public void Remover(int id)

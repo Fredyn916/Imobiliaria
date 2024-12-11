@@ -70,6 +70,26 @@ public class UsuarioRepository : IUsuarioRepository
         connection.Update<Usuario>(usuarioEdit);
     }
 
+    public void EditarUsername(int id, string username)
+    {
+        using var connection = new SQLiteConnection(_ConnectionString);
+
+        Usuario usuario = BuscarUsuarioPorId(id);
+        usuario.Username = username;
+
+        connection.Update<Usuario>(usuario);
+    }
+
+    public void EditarSenha(int id, string senha)
+    {
+        using var connection = new SQLiteConnection(_ConnectionString);
+
+        Usuario usuario = BuscarUsuarioPorId(id);
+        usuario.Password = senha;
+
+        connection.Update<Usuario>(usuario);
+    }
+
     public void Remover(int id)
     {
         using var connection = new SQLiteConnection(_ConnectionString);

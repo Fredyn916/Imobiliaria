@@ -65,6 +65,18 @@ public class UsuarioController : ControllerBase
         _Service.Editar(usuarioEdit);
     }
 
+    [HttpPut("EditarUsername")]
+    public void EditarUsername(int id, string username)
+    {
+        _Service.EditarUsername(id, username);
+    }
+
+    [HttpPut("EditarSenha")]
+    public void EditarSenha(int id, string senha)
+    {
+        _Service.EditarSenha(id, senha);
+    }
+
     [HttpDelete("RemoverUsuario")]
     public void Remover(int id)
     {
