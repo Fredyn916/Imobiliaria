@@ -11,20 +11,22 @@
 
                 </div>
                 <div class="btns__container">
-                    <button class="Precifier__btn">Precifique meu Imóvel
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
-                            viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
-                                stroke="none">
-                                <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+                    <RouterLink to="Precificador">
+                        <button class="Precifier__btn">Precifique meu Imóvel
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
+                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                    stroke="none">
+                                    <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
                     -30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
                     -1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
                     -103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
                     1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
                     1197 -1334 1205 -41 21 -124 26 -170 9z" />
-                            </g>
-                        </svg>
-                    </button>
+                                </g>
+                            </svg>
+                        </button>
+                    </RouterLink>
                     <RouterLink to="AnunciarSeuImovel">
                         <button class="AddImovel__btn">Publique meu Imóvel
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
@@ -310,7 +312,7 @@ export default {
     gap: 40px;
 }
 
-.Internal__Animated{
+.Internal__Animated {
     display: flex;
 }
 
