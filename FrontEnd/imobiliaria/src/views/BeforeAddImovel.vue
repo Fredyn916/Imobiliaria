@@ -77,6 +77,26 @@
             </div>
         </div>
     </div>
+
+    <div class="Animated">
+        <h1>Publique seu imóvel gratuitamente e em passos simples</h1>
+        <div class="Internal__Animated">
+            <div class="animation-container">
+                <div class="vertical-line"></div>
+                <div v-for="(step, index) in steps" :key="index" class="circle"
+                    :class="{ active: currentStep >= index }">
+                    <div class="fill" :style="{ height: currentStep >= index ? '100%' : '0%' }"></div>
+                </div>
+            </div>
+            <div class="Animated__Image">
+                <transition name="fade">
+                    <div class="image-container" v-if="imageVisible">
+                        <img :src="currentImage" alt="Step image" />
+                    </div>
+                </transition>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -87,11 +107,26 @@ export default {
             words: ["Alugue ", "Venda "], // Lista de frases
             currentWordIndex: 0,
             displayedText: "",
-            typingClass: "typing", // Classe inicial para a animação de digitação
+            typingClass: "typing", // Classe inicial para a animação de digitação,
+            steps: [
+                { id: 1, image: '@/Images/bg.png' },
+                { id: 2, image: '@/Images/bg.png' },
+                { id: 3, image: '@/Images/bg.png' },
+                { id: 4, image: '@/Images/bg.png' }
+            ],
+            currentStep: 0,
+            imageVisible: false
         };
     },
     created() {
         this.startTyping();
+    },
+    computed: {
+        currentImage() {
+            return this.steps[this.currentStep]?.image;
+        }
+    }, mounted() {
+        this.animateSteps();
     },
     methods: {
         startTyping() {
@@ -128,6 +163,26 @@ export default {
                 }
             }, 80);
         },
+        animateSteps() {
+            const interval = 2000; // Time per step in ms
+            const totalSteps = this.steps.length;
+            const stepInterval = setInterval(() => {
+                if (this.currentStep < totalSteps) {
+                    this.fillAndShowImage();
+                } else {
+                    clearInterval(stepInterval);
+                }
+            }, interval);
+        },
+        fillAndShowImage() {
+            this.imageVisible = false;
+            setTimeout(() => {
+                if (this.currentStep < this.steps.length) {
+                    this.currentStep++;
+                    this.imageVisible = true;
+                }
+            }, 1000); // Matches the fill transition duration
+        }
     },
 };
 </script>
@@ -184,7 +239,7 @@ export default {
     transition: .3s;
 }
 
-.Precifier__btn:hover{
+.Precifier__btn:hover {
     transform: scale(1.04);
     cursor: pointer;
 }
@@ -244,6 +299,89 @@ export default {
 
 .Ranger__P {
     max-width: 250px;
+}
+
+.Animated {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.Internal__Animated{
+    display: flex;
+}
+
+.animation-container {
+    position: relative;
+    width: 200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.vertical-line {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: #ccc;
+    z-index: 1;
+}
+
+.circle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    margin: 20px 0;
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle.active {
+    border-color: #4caf50;
+}
+
+.fill {
+    position: absolute;
+    width: 100%;
+    background-color: #4caf50;
+    bottom: 0;
+    transition: height 1s ease-in-out;
+}
+
+.Animated__Image {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Animated__Image img {
+    width: 300px;
+    width: 300px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 
 @keyframes blink-caret {
