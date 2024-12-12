@@ -262,8 +262,7 @@
     padding: 20px;
     font-family: "Funnel Display", sans-serif;
     background-color: #FFF;
-    min-height: 100vh;
-    height: 150vh;
+    height: auto;
     max-height: 200vh;
 }
 
@@ -322,7 +321,7 @@ label {
 .add-imoveis-box {
     width: 100%;
     max-width: 900px;
-    height: 400px;
+    height: auto;
     padding: 40px 40px 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -520,19 +519,133 @@ textarea {
     padding: 1rem;
 }
 
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .Etapas {
+        width: 90%;
+    }
+
+    .add-imoveis-box {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .internal__container {
+        padding: 10px;
+    }
+
+    .select-status-btn {
+        font-size: 14px;
+    }
+
+    .property-select,
+    button,
+    .property-inputs input[type="number"],
+    .property-inputs input[type="text"] {
+        width: 100%;
+    }
+
+    .step2 {
+        flex-direction: column;
+    }
+
+    .Step2__container {
+        flex-direction: column;
+    }
+
+    .counter-controls button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        height: auto;
+        max-height: none;
+    }
+
+    .Etapas {
+        width: 100%;
+    }
+
+    .add-imoveis-box {
+        height: auto;
+        padding: 15px;
+    }
+
+    .select-status-btn {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .property-select {
+        padding: 8px;
+    }
+
+    .counter-group,
+    .area-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
 
     .counter,
     .area-input {
         width: 100%;
     }
 
-    .select-status {
+    .input-wrapper {
         flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .step3 input,
+    .step3 textarea {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .Etapas {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .add-imoveis-box {
+        padding: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-size: 18px;
     }
 
     .select-status-btn {
-        margin: 5px 0;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .property-select,
+    .property-inputs input[type="number"],
+    .property-inputs input[type="text"],
+    button {
+        font-size: 14px;
+    }
+
+    .counter-controls button {
+        width: 30px;
+        height: 30px;
     }
 }
 </style>

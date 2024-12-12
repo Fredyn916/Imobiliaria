@@ -46,7 +46,6 @@
                     </RouterLink>
                 </div>
             </div>
-            <div class="Banner__item"></div>
         </div>
     </div>
 
@@ -82,12 +81,14 @@
 
     <div class="Animated">
         <h1>Publique seu imóvel gratuitamente e em passos simples</h1>
-        <div class="Internal__Animated">
+        <div class="container">
             <div class="animation-container">
-                <div class="vertical-line"></div>
-                <div v-for="(step, index) in steps" :key="index" class="circle"
-                    :class="{ active: currentStep >= index }">
-                    <div class="fill" :style="{ height: currentStep >= index ? '100%' : '0%' }"></div>
+                <div v-for="(step, index) in steps" :key="index" class="step">
+                    <div class="circle" :class="{ active: currentStep >= index }">
+                        <span class="number">{{ step.id }}</span>
+                        <div class="border-animation" :class="{ 'loading-animation': currentStep === index }"></div>
+                    </div>
+                    <p class="step-text">{{ step.text }}</p>
                 </div>
             </div>
             <div class="Animated__Image">
@@ -111,10 +112,10 @@ export default {
             displayedText: "",
             typingClass: "typing", // Classe inicial para a animação de digitação,
             steps: [
-                { id: 1, image: '@/Images/bg.png' },
-                { id: 2, image: '@/Images/bg.png' },
-                { id: 3, image: '@/Images/bg.png' },
-                { id: 4, image: '@/Images/bg.png' }
+                { id: 1, text: 'Localize seu imóvel no mapa', image: '@/Images/1.png' },
+                { id: 2, text: 'Diga-nos como é', image: '@/Images/1.png' },
+                { id: 3, text: 'Enviei fotos e vídeos', image: '@/Images/1.png' },
+                { id: 4, text: 'Escolha um plano', image: '@/Images/1.png' }
             ],
             currentStep: 0,
             imageVisible: false
@@ -127,7 +128,8 @@ export default {
         currentImage() {
             return this.steps[this.currentStep]?.image;
         }
-    }, mounted() {
+    },
+    mounted() {
         this.animateSteps();
     },
     methods: {
@@ -166,7 +168,7 @@ export default {
             }, 80);
         },
         animateSteps() {
-            const interval = 2000; // Time per step in ms
+            const interval = 2000; // Tempo por etapa em ms
             const totalSteps = this.steps.length;
             const stepInterval = setInterval(() => {
                 if (this.currentStep < totalSteps) {
@@ -177,13 +179,13 @@ export default {
             }, interval);
         },
         fillAndShowImage() {
-            this.imageVisible = false;
-            setTimeout(() => {
-                if (this.currentStep < this.steps.length) {
+            if (this.currentStep < this.steps.length) {
+                this.imageVisible = false;
+                setTimeout(() => {
                     this.currentStep++;
                     this.imageVisible = true;
-                }
-            }, 1000); // Matches the fill transition duration
+                }, 500); // Duração da transição de preenchimento
+            }
         }
     },
 };
@@ -314,64 +316,119 @@ export default {
 
 .Internal__Animated {
     display: flex;
+    justify-content: space-around;
 }
 
 .animation-container {
     position: relative;
-    width: 200px;
+    width: 50%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    padding-left: 200px;
     flex: 1;
 }
 
-.vertical-line {
-    position: absolute;
-    width: 4px;
+.Animated__Image {
+    flex: 1;
+    width: 50%;
     height: 100%;
-    background-color: #ccc;
-    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .circle {
     position: relative;
     width: 50px;
     height: 50px;
-    border: 2px solid #ccc;
+    border: 2px solid white;
     border-radius: 50%;
-    background-color: white;
-    margin: 20px 0;
-    overflow: hidden;
-    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    margin-right: 10px;
 }
 
 .circle.active {
     border-color: #4caf50;
+    /* Borda verde para etapas ativas */
 }
 
-.fill {
+.number {
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.border-animation {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: #4caf50;
-    bottom: 0;
-    transition: height 1s ease-in-out;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: 1;
+    transition: border-color 0.5s ease-in-out;
+    /* Transição suave */
 }
 
-.Animated__Image {
-    flex: 1;
+.border-animation.loading-animation {
+    animation: border-loading 2s linear infinite;
+}
+
+@keyframes border-loading {
+    0% {
+        border-color: transparent;
+        transform: rotate(0deg);
+    }
+
+    25% {
+        border-color: #4caf50 transparent transparent transparent;
+    }
+
+    50% {
+        border-color: #4caf50 #4caf50 transparent transparent;
+    }
+
+    75% {
+        border-color: #4caf50 #4caf50 #4caf50 transparent;
+    }
+
+    100% {
+        border-color: #4caf50 #4caf50 #4caf50 #4caf50;
+        transform: rotate(360deg);
+    }
+}
+
+.step-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.image-container {
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.Animated__Image img {
-    width: 300px;
-    width: 300px;
+.image-container img {
+    width: 400px;
+    height: 400px;
     border-radius: 8px;
     border: 2px solid #ccc;
 }
@@ -386,9 +443,113 @@ export default {
     opacity: 0;
 }
 
-@keyframes blink-caret {
-    50% {
-        border-color: transparent;
+/* Responsividade para telas pequenas (tablets e celulares maiores) */
+@media (max-width: 768px) {
+    .Banner {
+        height: 500px;
+    }
+
+
+    .Banner__item .right {
+        display: none;
+    }
+
+    .btns__container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .Precifier__btn,
+    .AddImovel__btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 16px;
+    }
+
+    .Range {
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .Range__container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Range__item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .Animated {
+        height: auto;
+        padding: 20px;
+    }
+
+    .Internal__Animated {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .animation-container {
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    .circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .Animated__Image img {
+        width: 200px;
+    }
+}
+
+/* Responsividade para telas muito pequenas (smartphones) */
+@media (max-width: 480px) {
+    .Banner {
+        height: 700px;
+    }
+
+    .Banner__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .Banner__item .right {
+        display: none;
+    }
+
+    .Precifier__btn,
+    .AddImovel__btn {
+        width: 100%;
+        padding: 0.75rem 0;
+    }
+
+    .Range__item__container {
+        text-align: center;
+    }
+
+    .Ranger__P {
+        max-width: 200px;
+    }
+
+    .Animated__Image img {
+        width: 180px;
+    }
+
+    .animation-container {
+        width: 120px;
+    }
+
+    .circle {
+        width: 35px;
+        height: 35px;
+    }
+
+    .fill {
+        transition: height 0.8s ease-in-out;
     }
 }
 </style>
