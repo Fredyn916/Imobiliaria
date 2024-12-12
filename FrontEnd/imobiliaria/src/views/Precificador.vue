@@ -217,9 +217,6 @@ export default {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.Value:hover div {
-    color: #2196F3;
-}
 
 .Precifier__Bg {
     position: relative;
