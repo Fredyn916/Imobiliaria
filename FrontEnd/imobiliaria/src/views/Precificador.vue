@@ -198,6 +198,27 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1A5276;
+    /* Cor do texto do preço */
+    text-align: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.Value div {
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Value:hover div {
+    color: #2196F3;
 }
 
 .Precifier__Bg {
@@ -450,5 +471,380 @@ button:hover {
     font-size: 16px;
     color: #333;
     cursor: pointer;
+}
+
+@media (max-width: 1600px) {
+
+    .Precifier {
+        height: 50vh;
+    }
+
+    .Precifier__Bg {
+        display: none;
+    }
+
+    .Value {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1A5276;
+        /* Cor do texto do preço */
+        text-align: center;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 1000px;
+        transition: background-color 0.3s ease;
+    }
+
+
+    .Precifier__form {
+        width: 90%;
+        left: 5%;
+        top: 100px;
+        height: auto;
+    }
+
+    .Precifier__top h1 {
+        font-size: 24px;
+    }
+
+    .Precifier__top h3 {
+        font-size: 14px;
+    }
+
+    .property-inputs {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .property__inputs__container {
+        flex-direction: column;
+    }
+
+    .counter-group {
+        flex-direction: column;
+    }
+
+    .counter {
+        width: 100%;
+    }
+
+    .select__status__container {
+        flex-direction: column;
+    }
+
+    .select-status {
+        width: 100%;
+    }
+
+    .select-status-btn {
+        margin: 0;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .form__group {
+        width: 100%;
+    }
+
+    .checkbox__container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkbox__container label {
+        margin-left: 0;
+    }
+
+    button {
+        padding: 12px 15px;
+    }
+
+    .counter-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    label {
+        text-align: center;
+    }
+}
+
+/* Para dispositivos com largura máxima de 1024px (tablets e dispositivos menores) */
+@media (max-width: 1024px) {
+
+    .Precifier {
+        height: 50vh;
+    }
+
+    .Precifier__Bg {
+        display: none;
+    }
+
+    .Value {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1A5276;
+        /* Cor do texto do preço */
+        text-align: center;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 1000px;
+        transition: background-color 0.3s ease;
+    }
+
+    .Precifier__form {
+        width: 90%;
+        left: 5%;
+        top: 100px;
+        height: auto;
+    }
+
+    .Precifier__top h1 {
+        font-size: 24px;
+    }
+
+    .Precifier__top h3 {
+        font-size: 14px;
+    }
+
+    .property-inputs {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .property__inputs__container {
+        flex-direction: column;
+    }
+
+    .counter-group {
+        flex-direction: column;
+    }
+
+    .counter {
+        width: 100%;
+    }
+
+    .select__status__container {
+        flex-direction: column;
+    }
+
+    .select-status {
+        width: 100%;
+    }
+
+    .select-status-btn {
+        margin: 0;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .form__group {
+        width: 100%;
+    }
+
+    .checkbox__container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkbox__container label {
+        margin-left: 0;
+    }
+
+    button {
+        padding: 12px 15px;
+    }
+
+    .counter-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    label {
+        text-align: center;
+    }
+}
+
+/* Para dispositivos com largura máxima de 768px (smartphones em modo retrato) */
+@media (max-width: 768px) {
+    .Precifier__form {
+        width: 95%;
+        left: 2.5%;
+        top: 100px;
+        height: auto;
+    }
+
+    .Precifier__top h1 {
+        font-size: 22px;
+    }
+
+    .Precifier__top h3 {
+        font-size: 12px;
+    }
+
+    .property-inputs {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .property__inputs__container {
+        flex-direction: column;
+    }
+
+    .counter-group {
+        flex-direction: column;
+    }
+
+    .counter {
+        width: 100%;
+    }
+
+    .select__status__container {
+        flex-direction: column;
+    }
+
+    .select-status {
+        width: 100%;
+    }
+
+    .select-status-btn {
+        margin: 0;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .form__group {
+        width: 100%;
+    }
+
+    .checkbox__container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkbox__container label {
+        margin-left: 0;
+    }
+
+    button {
+        padding: 10px 12px;
+    }
+
+    .counter-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    label {
+        text-align: center;
+    }
+}
+
+/* Para dispositivos com largura máxima de 480px (smartphones em modo paisagem e outros dispositivos menores) */
+@media (max-width: 480px) {
+
+    .Precifier {
+        height: 200vh;
+    }
+
+    .Precifier__Bg {
+        display: none;
+    }
+
+    .Precifier__form {
+        width: 100%;
+        left: 0;
+        top: 100px;
+        padding-top: 30px;
+        height: auto;
+        position: unset;
+    }
+
+    .Precifier__top h1 {
+        font-size: 20px;
+    }
+
+    .Precifier__top h3 {
+        font-size: 10px;
+    }
+
+    .property-inputs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .property__inputs__container {
+        flex-direction: column;
+    }
+
+    .counter-group {
+        flex-direction: column;
+    }
+
+    .counter {
+        width: 100%;
+    }
+
+    .select__status__container {
+        flex-direction: column;
+    }
+
+    .select-status {
+        width: 100%;
+    }
+
+    .select-status-btn {
+        margin: 0;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .form__group {
+        width: 100%;
+    }
+
+    .checkbox__container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkbox__container label {
+        margin-left: 0;
+    }
+
+    button {
+        padding: 8px 10px;
+    }
+
+    .counter-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    label {
+        text-align: center;
+    }
 }
 </style>

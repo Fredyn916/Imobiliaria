@@ -114,7 +114,7 @@ export default {
             steps: [
                 { id: 1, text: 'Localize seu imóvel no mapa', image: '@/Images/1.png' },
                 { id: 2, text: 'Diga-nos como é', image: '@/Images/1.png' },
-                { id: 3, text: 'Enviei fotos e vídeos', image: '@/Images/1.png' },
+                { id: 3, text: 'Envie fotos e vídeos', image: '@/Images/1.png' },
                 { id: 4, text: 'Escolha um plano', image: '@/Images/1.png' }
             ],
             currentStep: 0,
