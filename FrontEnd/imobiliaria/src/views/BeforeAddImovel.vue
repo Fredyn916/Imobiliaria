@@ -82,18 +82,18 @@
     <div class="Animated">
         <h1>Publique seu imóvel gratuitamente e em passos simples</h1>
         <div class="container">
-            <div class="animation-container">
+            <div class="animation__container">
                 <div v-for="(step, index) in steps" :key="index" class="step">
                     <div class="circle" :class="{ active: currentStep >= index }">
                         <span class="number">{{ step.id }}</span>
-                        <div class="border-animation" :class="{ 'loading-animation': currentStep === index }"></div>
+                        <div class="border__animation" :class="{ 'loading__animation': currentStep === index }"></div>
                     </div>
-                    <p class="step-text">{{ step.text }}</p>
+                    <p class="step__text">{{ step.text }}</p>
                 </div>
             </div>
             <div class="Animated__Image">
                 <transition name="fade">
-                    <div class="image-container" v-if="imageVisible">
+                    <div class="image__container" v-if="imageVisible">
                         <img :src="currentImage" alt="Step image" />
                     </div>
                 </transition>
@@ -319,7 +319,7 @@ export default {
     justify-content: space-around;
 }
 
-.animation-container {
+.animation__container {
     position: relative;
     width: 50%;
     margin: auto;
@@ -375,7 +375,7 @@ export default {
     z-index: 2;
 }
 
-.border-animation {
+.border__animation {
     position: absolute;
     top: 0;
     left: 0;
@@ -389,7 +389,7 @@ export default {
     /* Transição suave */
 }
 
-.border-animation.loading-animation {
+.border__animation.loading__animation {
     animation: border-loading 2s linear infinite;
 }
 
@@ -417,16 +417,16 @@ export default {
     }
 }
 
-.step-text {
+.step__text {
     font-size: 14px;
     color: #555;
 }
 
-.image-container {
+.image__container {
     text-align: center;
 }
 
-.image-container img {
+.image__container img {
     width: 400px;
     height: 400px;
     border-radius: 8px;
@@ -490,7 +490,7 @@ export default {
         gap: 20px;
     }
 
-    .animation-container {
+    .animation__container {
         width: 150px;
         margin: 0 auto;
     }
@@ -539,7 +539,7 @@ export default {
         width: 180px;
     }
 
-    .animation-container {
+    .animation__container {
         width: 120px;
     }
 

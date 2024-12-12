@@ -2,7 +2,7 @@
     <RouterLink to="ViewImovel" class="back-link">Voltar</RouterLink>
     <div class="container">
 
-        <div class="carousel-container">
+        <div class="carousel__container">
             <button class="carousel-button prev" @click="prevSlide"><svg version="1.0"
                     xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
                     preserveAspectRatio="xMidYMid meet">
@@ -19,10 +19,10 @@
             </button>
 
             <div class="carousel">
-                <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel-item"
+                <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel__container"
                     v-show="currentIndex === index">
                     <div class="imovel-box-images">
-                        <img v-if="imagem" :src="imagem" alt="Imagem do imóvel" class="imovel-image" />
+                        <img v-if="imagem" :src="imagem" alt="Imagem do imóvel" class="imovel__image" />
                     </div>
                 </div>
             </div>
@@ -46,22 +46,22 @@
         <div class="contact-box">
             <div class="internal__contact__box">
                 <h3>Contate o Anunciante</h3>
-                <form @submit.prevent="enviarMensagem" class="contact-form">
-                    <div class="form-group">
+                <form @submit.prevent="enviarMensagem" class="contact__form">
+                    <div class="form__group">
                         <input type="email" id="email" v-model="email" placeholder="E-mail" required />
                     </div>
                     <div class="name__telefon__container">
-                        <div class="form-group1">
+                        <div class="form__group1">
                             <input type="text" id="nome" v-model="nome" placeholder="Nome" required />
                         </div>
-                        <div class="form-group1">
+                        <div class="form__group1">
                             <input type="text" id="telefone" v-model="telefone" placeholder="Telefone" required />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Contatar </button>
+                    <button type="submit" class="submit__btn">Contatar </button>
                     <p class="terms">Ao enviar, você está aceitando os <a href="#">Termos e Condições de uso</a> e as <a
                             href="#">Políticas de Privacidade</a></p>
                 </form>
@@ -70,7 +70,7 @@
 
     </div>
 
-    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel-info">
+    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel__info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
         <hr />
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
@@ -210,7 +210,7 @@ export default {
 }
 
 
-.carousel-container {
+.carousel__container {
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -228,7 +228,7 @@ export default {
     transition: transform 0.3s ease-in-out;
 }
 
-.carousel-item {
+.carousel__container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,7 +244,7 @@ export default {
     align-items: center;
 }
 
-.imovel-image {
+.imovel__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -298,12 +298,11 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 300px;
     right: 0;
     height: 100vh;
     background-color: transparent;
-    z-index: 1000;
     overflow-y: auto;
 }
 
@@ -336,11 +335,11 @@ textarea {
     gap: 10px;
 }
 
-.form-group1 {
+.form__group1 {
     width: 50%;
 }
 
-.submit-btn {
+.submit__btn {
     width: 100%;
     padding: 1rem;
     border-radius: 9px;
@@ -350,7 +349,7 @@ textarea {
     font-family: "Funnel Display", sans-serif;
 }
 
-.submit-btn:hover {
+.submit__btn:hover {
     cursor: pointer;
 }
 
@@ -368,7 +367,7 @@ textarea {
     text-decoration: underline;
 }
 
-.imovel-info {
+.imovel__info {
     width: 100%;
     max-width: 65%;
     padding: 20px;
@@ -377,39 +376,39 @@ textarea {
     margin-top: 20px;
 }
 
-.imovel-info div {
+.imovel__info div {
     margin-bottom: 10px;
 }
 
-.imovel-info .Imovel__preco {
+.imovel__info .Imovel__preco {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
 }
 
-.imovel-info .Imovel__area,
-.imovel-info .Imovel__endereco,
-.imovel-info .Imovel__cep {
+.imovel__info .Imovel__area,
+.imovel__info .Imovel__endereco,
+.imovel__info .Imovel__cep {
     font-size: 1.2rem;
     color: #555;
 }
 
-.imovel-info .Imovel__descricao {
+.imovel__info .Imovel__descricao {
     font-size: 1rem;
     color: #777;
 }
 
-.imovel-info .Imovel__anos {
+.imovel__info .Imovel__anos {
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.imovel-info .Imovel__areasComuns ul {
+.imovel__info .Imovel__areasComuns ul {
     list-style-type: none;
     padding: 0;
 }
 
-.imovel-info .Imovel__areasComuns li {
+.imovel__info .Imovel__areasComuns li {
     margin-left: 1rem;
     font-size: 1rem;
 }
@@ -421,7 +420,7 @@ textarea {
         padding: 20px;
     }
 
-    .carousel-container {
+    .carousel__container {
         width: 100%;
         height: auto;
     }
@@ -453,11 +452,11 @@ textarea {
         gap: 5px;
     }
 
-    .form-group1 {
+    .form__group1 {
         width: 100%;
     }
 
-    .submit-btn {
+    .submit__btn {
         padding: 0.8rem;
     }
 
@@ -465,27 +464,27 @@ textarea {
         font-size: 10px;
     }
 
-    .imovel-info {
+    .imovel__info {
         width: 100%;
         max-width: 100%;
         padding: 15px;
     }
 
-    .imovel-info .Imovel__preco {
+    .imovel__info .Imovel__preco {
         font-size: 1.3rem;
     }
 
-    .imovel-info .Imovel__area,
-    .imovel-info .Imovel__endereco,
-    .imovel-info .Imovel__cep {
+    .imovel__info .Imovel__area,
+    .imovel__info .Imovel__endereco,
+    .imovel__info .Imovel__cep {
         font-size: 1rem;
     }
 
-    .imovel-info .Imovel__descricao {
+    .imovel__info .Imovel__descricao {
         font-size: 0.9rem;
     }
 
-    .imovel-info .Imovel__anos {
+    .imovel__info .Imovel__anos {
         font-size: 1rem;
     }
 }
@@ -518,15 +517,15 @@ textarea {
         gap: 5px;
     }
 
-    .form-group1 {
+    .form__group1 {
         width: 100%;
     }
 
-    .submit-btn {
+    .submit__btn {
         padding: 0.7rem;
     }
 
-    .imovel-info {
+    .imovel__info {
         padding: 10px;
     }
 }

@@ -14,46 +14,46 @@
                 </div>
 
                 <div class="select__status__container">
-                    <div class="select-status">
+                    <div class="select__status">
                         <label for="operacao">Tipo de operação?</label>
-                        <div class="internal-select-status">
-                            <button type="button" class="select-status-btn"
+                        <div class="internal__select__status">
+                            <button type="button" class="select__status__btn"
                                 :class="{ active: vendaOuAluguel === 'Venda' }"
                                 @click="vendaOuAluguel = 'Venda'">Venda</button>
-                            <button type="button" class="select-status-btn"
+                            <button type="button" class="select__status__btn"
                                 :class="{ active: vendaOuAluguel === 'Aluguel' }"
                                 @click="vendaOuAluguel = 'Aluguel'">Aluguel</button>
                         </div>
                     </div>
 
-                    <div class="select-status">
+                    <div class="select__status">
                         <label for="novo">Seu Imóvel é novo?</label>
-                        <div class="internal-select-status">
-                            <button type="button" class="select-status-btn" :class="{ active: novo === true }"
+                        <div class="internal__select__status">
+                            <button type="button" class="select__status__btn" :class="{ active: novo === true }"
                                 @click="novo = true">Sim</button>
-                            <button type="button" class="select-status-btn" :class="{ active: novo === false }"
+                            <button type="button" class="select__status__btn" :class="{ active: novo === false }"
                                 @click="novo = false">Não</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="select-status">
+                <div class="select__status">
                     <label for="tipoImovel">Tipo de Imóvel?</label>
-                    <div class="internal-select-status">
-                        <button type="button" class="select-status-btn"
+                    <div class="internal__select__status">
+                        <button type="button" class="select__status__btn"
                             :class="{ active: tipoImovel === 'Apartamento' }"
                             @click="tipoImovel = 'Apartamento'">Apartamento</button>
-                        <button type="button" class="select-status-btn" :class="{ active: tipoImovel === 'Casa' }"
+                        <button type="button" class="select__status__btn" :class="{ active: tipoImovel === 'Casa' }"
                             @click="tipoImovel = 'Casa'">Casa</button>
                     </div>
                 </div>
 
                 <div class="property__inputs__container">
-                    <div class="property-inputs">
-                        <div class="counter-group">
+                    <div class="property__inputs">
+                        <div class="counter__group">
                             <div class="counter">
                                 <label>Quartos</label>
-                                <div class="counter-controls">
+                                <div class="counter__controls">
                                     <button type="button" @click="quartos = Math.max(quartos - 1, 0)">-</button>
                                     <input type="number" v-model="quartos" readonly />
                                     <button type="button" @click="quartos++">+</button>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="counter">
                                 <label>Banheiros</label>
-                                <div class="counter-controls">
+                                <div class="counter__controls">
                                     <button type="button" @click="banheiros = Math.max(banheiros - 1, 0)">-</button>
                                     <input type="number" v-model="banheiros" readonly />
                                     <button type="button" @click="banheiros++">+</button>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="counter">
                                 <label>Garagens</label>
-                                <div class="counter-controls">
+                                <div class="counter__controls">
                                     <button type="button" @click="vagas = Math.max(vagas - 1, 0)">-</button>
                                     <input type="number" v-model="vagas" readonly />
                                     <button type="button" @click="vagas++">+</button>
@@ -232,7 +232,7 @@ export default {
     display: flex;
 }
 
-.property-inputs {
+.property__inputs {
     display: flex;
     gap: 2rem;
 }
@@ -242,7 +242,7 @@ export default {
     display: flex;
 }
 
-.counter-group,
+.counter__group,
 .area-group {
     display: flex;
     flex-wrap: wrap;
@@ -256,14 +256,14 @@ export default {
     width: 135px;
 }
 
-.counter-controls {
+.counter__controls {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     flex: 1;
 }
 
-.counter-controls button {
+.counter__controls button {
     width: 20px;
     height: 40px;
     background-color: rgb(0, 43, 82);
@@ -279,11 +279,11 @@ export default {
     justify-content: center;
 }
 
-.counter-controls button:hover {
+.counter__controls button:hover {
     background-color: #1A5276;
 }
 
-.property-inputs input[type="number"] {
+.property__inputs input[type="number"] {
     width: 60px;
     text-align: center;
     border: 1px solid #ddd;
@@ -292,7 +292,7 @@ export default {
     padding: 5px;
 }
 
-.property-inputs input[type="text"] {
+.property__inputs input[type="text"] {
     width: 60px;
     text-align: center;
     border: 1px solid #ddd;
@@ -307,7 +307,7 @@ export default {
     gap: 0.5rem;
 }
 
-.property-inputs span {
+.property__inputs span {
     font-size: 1rem;
 }
 
@@ -376,7 +376,7 @@ export default {
 }
 
 
-.select-status {
+.select__status {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -385,7 +385,7 @@ export default {
     flex: 1;
 }
 
-.internal-select-status {
+.internal__select__status {
     width: 100%;
     height: 100%;
     display: flex;
@@ -393,7 +393,7 @@ export default {
     justify-content: space-around;
 }
 
-.select-status-btn {
+.select__status__btn {
     flex: 1;
     margin: 0 5px;
     padding: 15px;
@@ -406,7 +406,7 @@ export default {
     transition: 0.3s;
 }
 
-.select-status-btn.active {
+.select__status__btn.active {
     background-color: #FFF;
     border: 3px solid rgb(0, 43, 82);
     color: #000;
@@ -511,7 +511,7 @@ button:hover {
         font-size: 14px;
     }
 
-    .property-inputs {
+    .property__inputs {
         flex-direction: column;
         gap: 1rem;
     }
@@ -520,7 +520,7 @@ button:hover {
         flex-direction: column;
     }
 
-    .counter-group {
+    .counter__group {
         flex-direction: column;
     }
 
@@ -532,11 +532,11 @@ button:hover {
         flex-direction: column;
     }
 
-    .select-status {
+    .select__status {
         width: 100%;
     }
 
-    .select-status-btn {
+    .select__status__btn {
         margin: 0;
         padding: 12px;
         font-size: 14px;
@@ -559,7 +559,7 @@ button:hover {
         padding: 12px 15px;
     }
 
-    .counter-controls {
+    .counter__controls {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -589,7 +589,7 @@ button:hover {
         font-size: 12px;
     }
 
-    .property-inputs {
+    .property__inputs {
         flex-direction: column;
         gap: 0.8rem;
     }
@@ -618,7 +618,7 @@ button:hover {
         font-size: 12px;
     }
 
-    .property-inputs {
+    .property__inputs {
         flex-direction: column;
         gap: 0.8rem;
     }

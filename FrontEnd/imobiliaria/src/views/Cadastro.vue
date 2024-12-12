@@ -1,25 +1,25 @@
 <template>
-  <div class="page-container">
-    <div class="form-container">
-      <form @submit="CreateUsuario" class="user-form-container">
-        <h1 class="form-title">Cadastre-se</h1>
+  <div class="page__container">
+    <div class="form__container">
+      <form @submit="CreateUsuario" class="user__form__container">
+        <h1 class="form__title">Cadastre-se</h1>
 
         <div v-if="message" :class="['message', message === 'Sucesso ao Cadastrar o usuário.' ? 'success' : 'error']">
           {{ message }}
         </div>
 
-        <div class="form-grid">
-          <div class="form-group">
+        <div class="form__grid">
+          <div class="form__group">
             <label for="nome">Nome :</label>
             <input type="text" id="nome" v-model="nome" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="idade">Idade :</label>
             <input type="number" id="idade" v-model="idade" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="genero">Gênero :</label>
             <select id="genero" v-model="genero" required>
               <option value="" disabled>Selecione...</option>
@@ -28,17 +28,17 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="numero">Número :</label>
             <input type="number" id="numero" v-model="numero" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="cep">CEP :</label>
             <input type="text" id="cep" v-model="cep" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="tipoIdentificacao">Tipo de Identificação :</label>
             <select id="tipoIdentificacao" v-model="tipoIdentificacao" required>
               <option value="" disabled>Selecione...</option>
@@ -50,30 +50,30 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="identificacao">Identificação :</label>
             <input v-if="tipoIdentificacao" :placeholder="placeholderIdentificacao" v-model="identificacao" type="text"
               @input="atualizarIdentificacao" :maxlength="tipoIdentificacao === 'cnpj' ? 18 : 14" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="username">Username :</label>
             <input type="text" id="username" v-model="username" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="password">Password :</label>
             <input type="password" id="password" v-model="password" required />
           </div>
 
-          <div class="form-group">
+          <div class="form__group">
             <label for="image">Foto de Perfil:</label>
             <input type="file" id="image" @change="handleFileUpload" />
           </div>
 
         </div>
 
-        <button type="submit" class="submit-btn">Cadastrar Usuário</button>
+        <button type="submit" class="submit__btn">Cadastrar Usuário</button>
       </form>
     </div>
 
@@ -118,20 +118,31 @@ export default {
     }
   },
   methods: {
-    formatarCPF(cpf) {
-      cpf = cpf.replace(/\D/g, ""); // Remove caracteres não numéricos
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
-      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
-      return cpf;
+    formatarCNPJ(cnpj) {
+      cnpj = cnpj.replace(/\D/g, ""); // Remove caracteres não numéricos
+      cnpj = cnpj.replace(/(\d{2})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
+      cnpj = cnpj.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
+      cnpj = cnpj.replace(/(\d{3})(\d)/, "$1/$2"); // Adiciona a barra
+      cnpj = cnpj.replace(/(\d{4})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+      return cnpj;
     },
+
     atualizarIdentificacao(event) {
+      const value = event.target.value;
       if (this.tipoIdentificacao === 'cpf') {
-        this.identificacao = this.formatarCPF(event.target.value);
+        this.identificacao = this.formatarCPF(value);
+      } else if (this.tipoIdentificacao === 'cnpj') {
+        this.identificacao = this.formatarCNPJ(value);
       }
     },
+
     handleFileUpload(event) {
-      this.selectedFile = event.target.files[0];
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) { // Verifica se o arquivo é uma imagem
+        this.selectedFile = file;
+      } else {
+        this.message = 'Por favor, selecione um arquivo de imagem válido.';
+      }
     },
 
     async CreateUsuario(e) {
@@ -165,6 +176,8 @@ export default {
           body: JSON.stringify(data),
         });
 
+        console.log(response)
+
         const responseData = await response.json();
         const responseID = responseData.id;
 
@@ -175,22 +188,19 @@ export default {
           this.message = 'Erro ao Cadastrar o usuário.';
         }
 
-        // Verificar e enviar imagem, se houver
-        if (this.selectedFile !== null) {
-          const formData = new FormData();
-          formData.append("imagem", this.selectedFile);
+        const formData = new FormData();
+        formData.append("imagem", this.selectedFile);
 
-          const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
-            method: "PUT",
-            body: formData,
-          });
+        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
+          method: "PUT",
+          body: formData,
+        });
 
-          // Mensagem para o envio da imagem
-          if (responsePostImagem.ok) {
-            this.message += ' Sucesso ao Cadastrar a imagem.';
-          } else {
-            this.message += ' Erro ao Cadastrar a imagem.';
-          }
+        // Mensagem para o envio da imagem
+        if (responsePostImagem.ok) {
+          this.message += ' Sucesso ao Cadastrar a imagem.';
+        } else {
+          this.message += ' Erro ao Cadastrar a imagem.';
         }
 
       } catch (error) {
@@ -217,7 +227,7 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
+.page__container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,7 +239,7 @@ export default {
   font-family: "Funnel Display", sans-serif;
 }
 
-.form-container {
+.form__container {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 30px;
   border-radius: 12px;
@@ -252,14 +262,14 @@ export default {
   }
 }
 
-.user-form-container {
+.user__form__container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-title {
+.form__title {
   font-size: 1.8rem;
   color: #333;
   margin-bottom: 20px;
@@ -268,14 +278,14 @@ export default {
   font-weight: 600;
 }
 
-.form-grid {
+.form__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
 }
 
-.form-group {
+.form__group {
   display: flex;
   flex-direction: column;
 }
@@ -296,7 +306,7 @@ select:focus {
   background-color: #fff;
 }
 
-.submit-btn {
+.submit__btn {
   padding: 12px;
   background-color: rgb(0, 43, 82);
   color: white;
@@ -309,7 +319,7 @@ select:focus {
   transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.submit__btn:hover {
   background-color: #1a5276;
 }
 
@@ -344,34 +354,34 @@ select:focus {
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .form-grid {
+  .form__grid {
     grid-template-columns: 1fr;
   }
 
-  .form-title {
+  .form__title {
     font-size: 1.5rem;
   }
 
-  .submit-btn {
+  .submit__btn {
     font-size: 1rem;
   }
 
-  .page-container {
+  .page__container {
     padding: 20px;
   }
 
-  .form-container {
+  .form__container {
     padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .form-title {
+  .form__title {
     font-size: 1.3rem;
   }
 
-  .form-group input,
-  .form-group select {
+  .form__group input,
+  .form__group select {
     font-size: 0.9rem;
   }
 }

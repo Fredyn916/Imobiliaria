@@ -2,14 +2,14 @@
   <div ref="targetSection">
     <div class="container">
       <!-- Filtro de busca -->
-      <div class="filter-container">
+      <div class="filter__container">
         <input type="text" id="searchBar" v-model="searchQuery" @input="filterImoveis"
-          placeholder="Digite a cidade, bairro ou Rua..." class="filter-input" />
+          placeholder="Digite a cidade, bairro ou Rua..." class="filter__input" />
       </div>
 
       <!-- Filtro por tipo de imóvel -->
-      <div class="filter-container">
-        <select id="categoryFilter" v-model="selectedCategory" @change="filterImoveis" class="filter-select">
+      <div class="filter__container">
+        <select id="categoryFilter" v-model="selectedCategory" @change="filterImoveis" class="filter__select">
           <option value="">Todos os tipos</option>
           <option value="Apartamento">Apartamento</option>
           <option value="Casa">Casa</option>
@@ -21,8 +21,8 @@
       </div>
 
       <!-- Filtro por tipo de serviço (compra, alugar, etc.) -->
-      <div class="filter-container">
-        <select id="serviceTypeFilter" v-model="selectedServiceType" @change="filterImoveis" class="filter-select">
+      <div class="filter__container">
+        <select id="serviceTypeFilter" v-model="selectedServiceType" @change="filterImoveis" class="filter__select">
           <option value="">Todos os serviços</option>
           <option value="Compra">Compra</option>
           <option value="Alugar">Alugar</option>
@@ -30,16 +30,16 @@
       </div>
 
       <!-- Filtro por faixa de preço -->
-      <div class="filter-container">
+      <div class="filter__container">
         <label for="priceFilter">Preço:</label>
-        <input type="number" id="minPrice" v-model.number="minPrice" placeholder="Preço mínimo" class="filter-input"
+        <input type="number" id="minPrice" v-model.number="minPrice" placeholder="Preço mínimo" class="filter__input"
           @input="filterImoveis" />
-        <input type="number" id="maxPrice" v-model.number="maxPrice" placeholder="Preço máximo" class="filter-input"
+        <input type="number" id="maxPrice" v-model.number="maxPrice" placeholder="Preço máximo" class="filter__input"
           @input="filterImoveis" />
       </div>
 
-      <div class="filter-container">
-        <button @click="clearFilters" class="clear-filters-btn">Limpar filtros</button>
+      <div class="filter__container">
+        <button @click="clearFilters" class="clear__filters__btn">Limpar filtros</button>
       </div>
     </div>
 
@@ -94,22 +94,22 @@
 
                     <div v-if="isPopupVisible" class="popup">
                       <span @click="closePopup" class="close-btn">&times;</span>
-                      <div class="contact-box">
+                      <div class="contact__box">
                         <div class="internal__contact__box">
                           <h3>Contate o Anunciante</h3>
                           <form @submit.prevent="enviarMensagem" class="contact-form">
-                            <div class="form-group">
+                            <div class="form__group">
                               <input type="email" id="email" v-model="email" placeholder="E-mail" required />
                             </div>
                             <div class="name__telefon__container">
-                              <div class="form-group1">
+                              <div class="form__group1">
                                 <input type="text" id="nome" v-model="nome" placeholder="Nome" required />
                               </div>
-                              <div class="form-group1">
+                              <div class="form__group1">
                                 <input type="text" id="telefone" v-model="telefone" placeholder="Telefone" required />
                               </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form__group">
                               <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                             </div>
                             <button type="submit" class="submit-btn">Contatar </button>
@@ -348,12 +348,12 @@ body {
   gap: 15px;
 }
 
-.filter-container {
+.filter__container {
   display: flex;
   gap: 10px;
 }
 
-.filter-input {
+.filter__input {
   width: 100%;
   height: 90%;
   padding: 12px;
@@ -362,7 +362,7 @@ body {
   font-size: 1rem;
 }
 
-.filter-select {
+.filter__select {
   width: 100%;
   height: 90%;
   padding: 0.90rem 1rem;
@@ -371,7 +371,7 @@ body {
   font-size: 1rem;
 }
 
-.filter-select {
+.filter__select {
   background: #fff;
   font-family: "Funnel Display", sans-serif;
   font-weight: 600;
@@ -379,7 +379,7 @@ body {
 }
 
 
-.clear-filters-btn {
+.clear__filters__btn {
   padding: 12px;
   width: 100%;
   height: 90%;
@@ -394,7 +394,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.clear-filters-btn:hover {
+.clear__filters__btn:hover {
   background-color: #e04343;
   transform: translateY(-2px);
 }
@@ -416,13 +416,14 @@ body {
 
 .Imovel__Container__box__Left img {
   width: 100%;
+  min-width: 400px;
   max-width: 400px;
-  height: 100%;
+  height: auto;
+  /* Use 'auto' para manter a proporção */
   max-height: 300px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-
 
 .Imovel__Container__box__Right {
   flex: 2;
@@ -484,6 +485,7 @@ li {
   list-style: none;
 }
 
+
 .Imovel__box__rigth__buttons {
   width: 100%;
   height: auto;
@@ -518,7 +520,7 @@ li {
   font-size: 18px;
 }
 
-.filter-container label {
+.filter__container label {
   width: 30%;
   height: 90%;
   padding: 0.8rem;
@@ -743,7 +745,7 @@ li {
 }
 
 
-.contact-box {
+.contact__box {
   width: 30%;
   padding: 20px;
   display: flex;
@@ -789,7 +791,7 @@ textarea {
   gap: 10px;
 }
 
-.form-group1 {
+.form__group1 {
   width: 50%;
 }
 

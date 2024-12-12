@@ -3,8 +3,8 @@
         <div class="Echo__Box">
             <div class="Echo__Box__left">
                 <h1 class="Echo__box__left__tittle">Você conhece nossas opções de imóveis?</h1>
-                <p class="Echo__box__left__text">Você pode vê-los de acordo com o estágio da obra que melhor se adequa à
-                    sua pesquisa.</p>
+                <p class="Echo__box__left__text">Você pode vê-los de acordo com o que melhor se adequa à sua pesquisa.
+                </p>
             </div>
 
             <div class="Echo__Box__rigth">
@@ -211,6 +211,7 @@ export default {
 }
 
 .Echo__box__left__text {
+    padding-top: 20px;
     font-size: 1rem;
 }
 
@@ -315,6 +316,10 @@ export default {
     flex-direction: column;
     justify-content: center;
     text-align: justify;
+}
+
+.imovel-box-txt p{
+    max-width: 250px;
 }
 
 .carousel-button {
