@@ -469,7 +469,7 @@ button:hover {
     cursor: pointer;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
 
     .Precifier {
         height: 50vh;
