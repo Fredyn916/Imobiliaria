@@ -206,7 +206,6 @@ export default {
     display: flex;
     padding-right: 30%;
     box-sizing: border-box;
-    padding-top: 100px;
 }
 
 
@@ -237,8 +236,8 @@ export default {
 }
 
 .imovel__box__images {
-    width: 900px;
-    height: 600px;
+    width: 800px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -299,7 +298,7 @@ export default {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 300px;
+    top: 0;
     right: 0;
     height: 100vh;
     background-color: transparent;
