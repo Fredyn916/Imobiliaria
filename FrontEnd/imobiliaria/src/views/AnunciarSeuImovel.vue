@@ -103,7 +103,7 @@
                                         <input type="number" v-model="quartos" readonly />
                                         <button type="button" @click="quartos++">+</button>
                                     </div>
-                                </div>
+                        vagas        </div>
                                 <div class="counter">
                                     <label>Banheiros</label>
                                     <div class="counter__controls">
@@ -113,11 +113,11 @@
                                     </div>
                                 </div>
                                 <div class="counter">
-                                    <label>Garagens</label>
+                                    <label>vagas</label>
                                     <div class="counter__controls">
-                                        <button type="button" @click="garagens = Math.max(garagens - 1, 0)">-</button>
-                                        <input type="number" v-model="garagens" readonly />
-                                        <button type="button" @click="garagens++">+</button>
+                                        <button type="button" @click="vagas = Math.max(vagas - 1, 0)">-</button>
+                                        <input type="number" v-model="vagas" readonly />
+                                        <button type="button" @click="vagas++">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
             bairro: "",
             quartos: 0,
             banheiros: 0,
-            garagens: 0,
+            vagas: 0,
             area: 0,
             preco: "",
             titulo: "",
@@ -225,7 +225,7 @@
                 areasComuns: [
                     `Quartos: ${this.quartos}`,
                     `Banheiros: ${this.banheiros}`,
-                    `Garagens: ${this.garagens}`,
+                    `vagas: ${this.vagas}`,
                 ],
             };
             const dataJson = JSON.stringify(data)
