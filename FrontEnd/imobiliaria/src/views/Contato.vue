@@ -7,7 +7,7 @@
           <img src="/src/Images/Fred.png" alt="" class="person__img">
         </div>
         <p class="person__Name">Fred</p>
-        <p class="person__Number">+55 (31) 98242-4359</p>
+        <p class="person__Number">+55 (31) 99446-8205</p>
         <p><button class="person__Contact__btn">WhatsApp</button></p>
       </div>
       <div class="Container__person">
@@ -15,7 +15,7 @@
           <img src="/src/Images/Guilherme.png" alt="" class="person__img">
         </div>
         <p class="person__Name">Guilherme</p>
-        <p class="person__Number">+55 (31) 98242-4359</p>
+        <p class="person__Number">+55 (31) 97578-2180</p>
         <p><button class="person__Contact__btn">WhatsApp</button></p>
       </div>
     </div>

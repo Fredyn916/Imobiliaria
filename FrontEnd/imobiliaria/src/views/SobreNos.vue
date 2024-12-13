@@ -1,8 +1,12 @@
 <template>
     <section class="sobre__nos">
-        <h1> 1. Quem somos</h1>
-        <p> <img src="https://res.cloudinary.com/fredmarques/image/upload/v1734056496/LogoSweetHome_tzwyjv.png"
-                alt="ImagemDoSite" width="50px"> Escrito por SweetHome</p>
+        <div class="sobre__nos__Img__container">
+            <h1> 1. Quem somos</h1>
+            <img src="https://res.cloudinary.com/fredmarques/image/upload/v1734056496/LogoSweetHome_tzwyjv.png"
+                alt="ImagemDoSite" width="150px" class="about__us__Image">
+        </div>
+
+        <p> Escrito por SweetHome</p>
         <p>Atualizado há mais de um ano</p>
         <hr />
 
@@ -43,6 +47,17 @@ export default {
     /* Aplica bordas arredondadas com raio de 8px */
     font-family: "Funnel Display", sans-serif;
     /* Define a fonte do texto como "Funnel Display", com uma fonte alternativa sans-serif caso não esteja disponível */
+}
+
+.sobre__nos__Img__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.about__us__Image {
+    padding-right: 10px;
 }
 
 /* Estilos para o título da seção "Sobre Nós" (h1) */

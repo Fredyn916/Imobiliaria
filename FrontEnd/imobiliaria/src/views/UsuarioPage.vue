@@ -27,9 +27,7 @@
             <p><strong>Bairro:</strong> {{ usuario.bairro }}</p>
             <p><strong>Cidade:</strong> {{ usuario.cidade }}</p>
             <p><strong>Estado:</strong> {{ usuario.unidadeFederativa }}</p>
-            <p><strong>CPF, CNPJ:</strong> {{ usuario.identificacao }}</p>
-            <p v-if="isCpfValid !== null"><strong>CPF Válido:</strong> {{ isCpfValid ? 'Sim' : 'Não' }}</p>
-            <p v-if="isCnpjValid !== null"><strong>CNPJ Válido:</strong> {{ isCnpjValid ? 'Sim' : 'Não' }}</p>
+            <p><strong>Identificação:</strong> {{ usuario.identificacao }}</p>
           </div>
         </div>
       </div>
@@ -264,6 +262,8 @@ export default {
   /* Organiza os itens em uma coluna */
   width: 100%;
   /* O container ocupa 100% da largura disponível */
+  padding-top: 30px;
+  /* Adiciona padding de 30px em cima do conteúdo */
 }
 
 /* Estilos para os botões dentro da página */
