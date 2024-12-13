@@ -43,7 +43,7 @@
                 </svg></button>
         </div>
 
-        <div class="contact__box">
+        <div class="contact-box">
             <div class="internal__contact__box">
                 <h3>Contate o Anunciante</h3>
                 <form @submit.prevent="enviarMensagem" class="contact__form">
@@ -61,7 +61,7 @@
                     <div class="form__group">
                         <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="submit__btn">Contatar </button>
+                    <button type="submit" class="submit-btn">Contatar </button>
                     <p class="terms">Ao enviar, você está aceitando os <a href="#">Termos e Condições de uso</a> e as <a
                             href="#">Políticas de Privacidade</a></p>
                 </form>
@@ -70,7 +70,7 @@
 
     </div>
 
-    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel__info">
+    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel_info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
         <hr />
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
@@ -264,7 +264,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 15px;
-    z-index: 10;
+    z-index: 1;
     border-radius: 50%;
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -304,6 +304,7 @@ export default {
     background-color: transparent;
     overflow-y: auto;
 }
+
 .internal__contact__box {
     width: 100%;
     text-align: left;
@@ -337,7 +338,7 @@ textarea {
     width: 50%;
 }
 
-.submit__btn {
+.submit-btn {
     width: 100%;
     padding: 1rem;
     border-radius: 9px;
@@ -347,7 +348,7 @@ textarea {
     font-family: "Funnel Display", sans-serif;
 }
 
-.submit__btn:hover {
+.submit-btn:hover {
     cursor: pointer;
 }
 
@@ -365,48 +366,51 @@ textarea {
     text-decoration: underline;
 }
 
-.imovel__info {
+.imovel_info {
     width: 100%;
     max-width: 65%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 9px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.imovel__info div {
+.imovel_info div {
     margin-bottom: 10px;
 }
 
-.imovel__info .Imovel__preco {
+.imovel_info .Imovel__preco {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
 }
 
-.imovel__info .Imovel__area,
-.imovel__info .Imovel__endereco,
-.imovel__info .Imovel__cep {
+.imovel_info .Imovel__area,
+.imovel_info .Imovel__endereco,
+.imovel_info .Imovel__cep {
     font-size: 1.2rem;
     color: #555;
 }
 
-.imovel__info .Imovel__descricao {
+.imovel_info .Imovel__descricao {
     font-size: 1rem;
     color: #777;
 }
 
-.imovel__info .Imovel__anos {
+.imovel_info .Imovel__anos {
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.imovel__info .Imovel__areasComuns ul {
+.imovel_info .Imovel__areasComuns ul {
     list-style-type: none;
     padding: 0;
 }
 
-.imovel__info .Imovel__areasComuns li {
+.imovel_info .Imovel__areasComuns li {
     margin-left: 1rem;
     font-size: 1rem;
 }
@@ -433,7 +437,7 @@ textarea {
         height: 300px;
     }
 
-    .contact__box {
+    .contact-box {
         position: static;
         width: 100%;
         height: auto;
@@ -454,7 +458,7 @@ textarea {
         width: 100%;
     }
 
-    .submit__btn {
+    .submit-btn {
         padding: 0.8rem;
     }
 
@@ -462,27 +466,27 @@ textarea {
         font-size: 10px;
     }
 
-    .imovel__info {
+    .imovel_info {
         width: 100%;
         max-width: 100%;
         padding: 15px;
     }
 
-    .imovel__info .Imovel__preco {
+    .imovel_info .Imovel__preco {
         font-size: 1.3rem;
     }
 
-    .imovel__info .Imovel__area,
-    .imovel__info .Imovel__endereco,
-    .imovel__info .Imovel__cep {
+    .imovel_info .Imovel__area,
+    .imovel_info .Imovel__endereco,
+    .imovel_info .Imovel__cep {
         font-size: 1rem;
     }
 
-    .imovel__info .Imovel__descricao {
+    .imovel_info .Imovel__descricao {
         font-size: 0.9rem;
     }
 
-    .imovel__info .Imovel__anos {
+    .imovel_info .Imovel__anos {
         font-size: 1rem;
     }
 }
@@ -502,7 +506,7 @@ textarea {
         height: 250px;
     }
 
-    .contact__box {
+    .contact-box {
         padding: 8px;
     }
 
@@ -519,11 +523,11 @@ textarea {
         width: 100%;
     }
 
-    .submit__btn {
+    .submit-btn {
         padding: 0.7rem;
     }
 
-    .imovel__info {
+    .imovel_info {
         padding: 10px;
     }
 }
