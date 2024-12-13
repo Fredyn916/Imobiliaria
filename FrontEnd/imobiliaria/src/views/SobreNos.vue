@@ -2,7 +2,7 @@
     <section class="sobre__nos">
         <h1> 1. Quem somos</h1>
         <p> <img src="https://res.cloudinary.com/fredmarques/image/upload/v1734056496/LogoSweetHome_tzwyjv.png"
-                alt="ImagemDoSite"> Escrito por SweetHome</p>
+                alt="ImagemDoSite" width="50px"> Escrito por SweetHome</p>
         <p>Atualizado há mais de um ano</p>
         <hr />
 

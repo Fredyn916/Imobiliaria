@@ -94,7 +94,7 @@
             <div class="Animated__Image">
                 <transition name="fade">
                     <div class="image__container" v-if="imageVisible">
-                        <img :src="currentImage" alt="Step image" />
+                        <img src="@/Images/bg.png" alt="Step image" />
                     </div>
                 </transition>
             </div>
@@ -573,12 +573,13 @@ export default {
 /* Estilo do container de imagem */
 .image__container {
     text-align: center;
+    margin-right: -200px;
     /* Alinha a imagem ao centro */
 }
 
 /* Estilo da imagem */
 .image__container img {
-    width: 400px;
+    width: 600px;
     /* Largura de 400px */
     height: 400px;
     /* Altura de 400px */
