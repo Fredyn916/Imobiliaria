@@ -373,6 +373,9 @@ textarea {
     background-color: #ffffff;
     border-radius: 9px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .imovel_info div {

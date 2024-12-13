@@ -3,7 +3,7 @@
     <div class="container">
 
         <div class="carousel__container">
-            <button class="carousel-button prev" @click="prevSlide"><svg version="1.0"
+            <button class="carousel__button prev" @click="prevSlide"><svg version="1.0"
                     xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
                     preserveAspectRatio="xMidYMid meet">
 
@@ -19,15 +19,15 @@
             </button>
 
             <div class="carousel">
-                <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel__container"
+                <div v-for="(imagem, index) in Imovel.urLsImagens" :key="index" class="carousel__item"
                     v-show="currentIndex === index">
-                    <div class="imovel-box-images">
+                    <div class="imovel__box__images">
                         <img v-if="imagem" :src="imagem" alt="Imagem do imóvel" class="imovel__image" />
                     </div>
                 </div>
             </div>
 
-            <button class="carousel-button next" @click="nextSlide"><svg version="1.0"
+            <button class="carousel__button next" @click="nextSlide"><svg version="1.0"
                     xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 512.000000 512.000000"
                     preserveAspectRatio="xMidYMid meet">
 
@@ -61,7 +61,7 @@
                     <div class="form__group">
                         <textarea id="mensagem" v-model="mensagem" placeholder="Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="submit__btn">Contatar </button>
+                    <button type="submit" class="submit-btn">Contatar </button>
                     <p class="terms">Ao enviar, você está aceitando os <a href="#">Termos e Condições de uso</a> e as <a
                             href="#">Políticas de Privacidade</a></p>
                 </form>
@@ -70,7 +70,7 @@
 
     </div>
 
-    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel__info">
+    <div v-if="Imovel && Object.keys(Imovel).length > 0" class="imovel_info">
         <div class="Imovel__area">Terreno : {{ Imovel.area }} m²</div>
         <hr />
         <div class="Imovel__preco"><strong>R$ {{ Imovel.preco }}</strong></div>
@@ -227,7 +227,7 @@ export default {
     transition: transform 0.3s ease-in-out;
 }
 
-.carousel__container {
+.carousel__item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -235,7 +235,7 @@ export default {
     height: 100%;
 }
 
-.imovel-box-images {
+.imovel__box__images {
     width: 800px;
     height: 500px;
     display: flex;
@@ -251,7 +251,7 @@ export default {
 }
 
 
-.carousel-button {
+.carousel__button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -264,7 +264,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 15px;
-    z-index: 10;
+    z-index: 1;
     border-radius: 50%;
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -272,20 +272,20 @@ export default {
     height: 60px;
 }
 
-.carousel-button:hover {
+.carousel__button:hover {
     background-color: #ededed;
     transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-button:active {
+.carousel__button:active {
     transform: translateY(-50%) scale(1);
 }
 
-.carousel-button.prev {
+.carousel__button.prev {
     left: 15px;
 }
 
-.carousel-button.next {
+.carousel__button.next {
     right: 15px;
 }
 
@@ -338,7 +338,7 @@ textarea {
     width: 50%;
 }
 
-.submit__btn {
+.submit-btn {
     width: 100%;
     padding: 1rem;
     border-radius: 9px;
@@ -348,7 +348,7 @@ textarea {
     font-family: "Funnel Display", sans-serif;
 }
 
-.submit__btn:hover {
+.submit-btn:hover {
     cursor: pointer;
 }
 
@@ -366,48 +366,51 @@ textarea {
     text-decoration: underline;
 }
 
-.imovel__info {
+.imovel_info {
     width: 100%;
     max-width: 65%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 9px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.imovel__info div {
+.imovel_info div {
     margin-bottom: 10px;
 }
 
-.imovel__info .Imovel__preco {
+.imovel_info .Imovel__preco {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
 }
 
-.imovel__info .Imovel__area,
-.imovel__info .Imovel__endereco,
-.imovel__info .Imovel__cep {
+.imovel_info .Imovel__area,
+.imovel_info .Imovel__endereco,
+.imovel_info .Imovel__cep {
     font-size: 1.2rem;
     color: #555;
 }
 
-.imovel__info .Imovel__descricao {
+.imovel_info .Imovel__descricao {
     font-size: 1rem;
     color: #777;
 }
 
-.imovel__info .Imovel__anos {
+.imovel_info .Imovel__anos {
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.imovel__info .Imovel__areasComuns ul {
+.imovel_info .Imovel__areasComuns ul {
     list-style-type: none;
     padding: 0;
 }
 
-.imovel__info .Imovel__areasComuns li {
+.imovel_info .Imovel__areasComuns li {
     margin-left: 1rem;
     font-size: 1rem;
 }
@@ -424,12 +427,12 @@ textarea {
         height: auto;
     }
 
-    .carousel-button {
+    .carousel__button {
         width: 40px;
         height: 40px;
     }
 
-    .imovel-box-images {
+    .imovel__box__images {
         width: 100%;
         height: 300px;
     }
@@ -455,7 +458,7 @@ textarea {
         width: 100%;
     }
 
-    .submit__btn {
+    .submit-btn {
         padding: 0.8rem;
     }
 
@@ -463,27 +466,27 @@ textarea {
         font-size: 10px;
     }
 
-    .imovel__info {
+    .imovel_info {
         width: 100%;
         max-width: 100%;
         padding: 15px;
     }
 
-    .imovel__info .Imovel__preco {
+    .imovel_info .Imovel__preco {
         font-size: 1.3rem;
     }
 
-    .imovel__info .Imovel__area,
-    .imovel__info .Imovel__endereco,
-    .imovel__info .Imovel__cep {
+    .imovel_info .Imovel__area,
+    .imovel_info .Imovel__endereco,
+    .imovel_info .Imovel__cep {
         font-size: 1rem;
     }
 
-    .imovel__info .Imovel__descricao {
+    .imovel_info .Imovel__descricao {
         font-size: 0.9rem;
     }
 
-    .imovel__info .Imovel__anos {
+    .imovel_info .Imovel__anos {
         font-size: 1rem;
     }
 }
@@ -494,12 +497,12 @@ textarea {
         padding: 0.75rem;
     }
 
-    .carousel-button {
+    .carousel__button {
         width: 35px;
         height: 35px;
     }
 
-    .imovel-box-images {
+    .imovel__box__images {
         height: 250px;
     }
 
@@ -520,11 +523,11 @@ textarea {
         width: 100%;
     }
 
-    .submit__btn {
+    .submit-btn {
         padding: 0.7rem;
     }
 
-    .imovel__info {
+    .imovel_info {
         padding: 10px;
     }
 }

@@ -12,7 +12,7 @@
 
     <!-- Logo no centro do footer -->
     <div class="footer__logo-container">
-      <img src="@/Images/logo.png" alt="Logo Do Site" class="footer__logo" />
+      <img src="https://res.cloudinary.com/fredmarques/image/upload/v1734056496/LogoSweetHome_tzwyjv.png" alt="Logo Do Site" class="footer__logo" />
     </div>
 
     <!-- Seções do footer em colunas -->
@@ -38,7 +38,7 @@
       <div class="footer__section">
         <h3>Links Úteis</h3>
         <ul>
-          <li><a href="#">Precificador</a></li>
+          <li><RouterLink to="Precificador" >Precificador</RouterLink></li>
         </ul>
       </div>
     </div>
