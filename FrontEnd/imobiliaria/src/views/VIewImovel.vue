@@ -268,7 +268,7 @@ export default {
         apartamento: 'ViewOneImovelApartamento',
         comercial: 'ViewOneImovelComercial',
         lote: 'ViewOneImovelLote',
-        rural: 'ViewOneImoveRural',
+        rural: 'ViewOneImovelRural',
         terreno: 'ViewOneImovelTerreno',
       };
 

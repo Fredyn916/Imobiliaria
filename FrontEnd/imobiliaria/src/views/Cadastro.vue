@@ -81,8 +81,8 @@
     <RouterLink to="Login" class="Entry__Bnt">Clique aqui para logar</RouterLink>
   </div>
 </template>
-
 <script>
+
 export default {
   name: "Cadastro",
   data() {
@@ -96,7 +96,6 @@ export default {
       identificacao: '',
       username: '',
       password: '',
-      UsuarioId: '',
       selectedFile: null,
       message: ''
     };
@@ -127,6 +126,14 @@ export default {
       return cnpj;
     },
 
+    formatarCPF(cpf) {
+      cpf = cpf.replace(/\D/g, ""); // Remove caracteres não numéricos
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
+      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+      return cpf;
+    },
+
     atualizarIdentificacao(event) {
       const value = event.target.value;
       if (this.tipoIdentificacao === 'cpf') {
@@ -139,9 +146,15 @@ export default {
     handleFileUpload(event) {
       const file = event.target.files[0];
       if (file && file.type.startsWith('image/')) { // Verifica se o arquivo é uma imagem
-        this.selectedFile = file;
+        if (file.size > 5 * 1024 * 1024) { // Limita o tamanho a 5MB
+          this.message = 'O arquivo é muito grande. O tamanho máximo permitido é 5MB.';
+          this.selectedFile = null;
+        } else {
+          this.selectedFile = file;
+        }
       } else {
         this.message = 'Por favor, selecione um arquivo de imagem válido.';
+        this.selectedFile = null;
       }
     },
 
@@ -176,38 +189,46 @@ export default {
           body: JSON.stringify(data),
         });
 
-        console.log(response)
-
         const responseData = await response.json();
-        const responseID = responseData.id;
+        const UsuarioId = responseData.id;
 
-        // Mensagem de sucesso ou erro para o cadastro do usuário
-        if (response.ok) {
-          this.message = 'Sucesso ao Cadastrar o usuário.';
+        if (response.status === 200) {
+          await this.PostImage(UsuarioId);
         } else {
-          this.message = 'Erro ao Cadastrar o usuário.';
+          this.message = 'Erro ao cadastrar o usuário.';
         }
-
-        const formData = new FormData();
-        formData.append("imagem", this.selectedFile);
-
-        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${responseID}`, {
-          method: "PUT",
-          body: formData,
-        });
-
-        // Mensagem para o envio da imagem
-        if (responsePostImagem.ok) {
-          this.message += ' Sucesso ao Cadastrar a imagem.';
-        } else {
-          this.message += ' Erro ao Cadastrar a imagem.';
-        }
-
       } catch (error) {
         console.error('Erro ao criar usuário:', error);
         this.message = 'Erro ao tentar cadastrar o usuário.';
       }
     },
+
+    async PostImage(UsuarioId) {
+      if (!this.selectedFile) {
+        this.message = 'Por favor, selecione uma imagem antes de enviar.';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("imagem", this.selectedFile);
+
+      try {
+        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${UsuarioId}`, {
+          method: "PUT",
+          body: formData,
+        });
+
+        if (responsePostImagem.status === 200) {
+          this.message = 'Imagem carregada com sucesso!';
+        } else {
+          this.message = 'Erro ao carregar a imagem.';
+        }
+      } catch (error) {
+        console.error('Erro ao enviar imagem:', error);
+        this.message = 'Erro ao tentar enviar a imagem.';
+      }
+    },
+
     async GetCep() {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
@@ -225,6 +246,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 /* Container principal da página */

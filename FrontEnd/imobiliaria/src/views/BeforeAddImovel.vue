@@ -1,102 +1,105 @@
 <template>
-    <div class="Banner">
-        <div class="Banner__container">
-            <div class="Banner__item">
-                <div class="Banner__item__color">
-                    <h1>
-                        <span class="typing__text" :class="typingClass">{{ displayedText }}</span> seu imóvel
-                    </h1>
-                    <h2>de forma rápida e fácil</h2>
-                    Publique gratuitamente no portal líder do mercado imobiliário.
+    <div class="All">
+        <div class="Banner">
+            <div class="Banner__container">
+                <div class="Banner__item">
+                    <div class="Banner__item__color">
+                        <h1>
+                            <span class="typing__text" :class="typingClass">{{ displayedText }}</span> seu imóvel
+                        </h1>
+                        <h2>de forma rápida e fácil</h2>
+                        Publique gratuitamente no portal líder do mercado imobiliário.
 
-                </div>
-                <div class="btns__container">
-                    <RouterLink to="Precificador">
-                        <button class="Precifier__btn">Precifique meu Imóvel
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
-                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
-                                    stroke="none">
-                                    <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+                    </div>
+                    <div class="btns__container">
+                        <RouterLink to="Precificador">
+                            <button class="Precifier__btn">Precifique meu Imóvel
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
+                                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                        fill="#000000" stroke="none">
+                                        <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
                     -30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
                     -1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
                     -103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
                     1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
                     1197 -1334 1205 -41 21 -124 26 -170 9z" />
-                                </g>
-                            </svg>
-                        </button>
-                    </RouterLink>
-                    <RouterLink to="AnunciarSeuImovel">
-                        <button class="AddImovel__btn">Publique meu Imóvel
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
-                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
-                                    stroke="none">
-                                    <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
+                                    </g>
+                                </svg>
+                            </button>
+                        </RouterLink>
+                        <RouterLink to="AnunciarSeuImovel">
+                            <button class="AddImovel__btn">Publique meu Imóvel
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"
+                                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                        fill="#000000" stroke="none">
+                                        <path d="M1206 5106 c-46 -17 -99 -67 -121 -113 -24 -51 -21 -134 7 -185 16
                     -30 378 -366 1228 -1141 663 -604 1205 -1102 1205 -1107 0 -5 -542 -503 -1205
                     -1107 -850 -775 -1212 -1111 -1228 -1141 -28 -51 -31 -134 -7 -186 24 -50 86
                     -103 137 -116 48 -13 115 -7 156 14 15 8 614 549 1332 1203 1026 935 1309
                     1199 1324 1230 24 54 24 152 0 206 -14 31 -300 297 -1324 1229 -718 655 -1318
                     1197 -1334 1205 -41 21 -124 26 -170 9z" />
-                                </g>
-                            </svg>
-                        </button>
+                                    </g>
+                                </svg>
+                            </button>
 
-                    </RouterLink>
+                        </RouterLink>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="Range">
-        <div class="Range__container">
-            <div class="Range__item">
-                <img src="@/Images/icon__people.svg" alt="img" class="Ranger__Img">
-                <div class="Ranger__item__container">
+        <div class="Range">
+            <div class="Range__container">
+                <div class="Range__item">
+                    <img src="@/Images/icon__people.svg" alt="img" class="Ranger__Img">
+                    <div class="Ranger__item__container">
 
-                    <h1> 4,7 milhões</h1>
+                        <h1> 4,7 milhões</h1>
 
-                    <p class="Ranger__P">de pessoas entram por mês procurando um lar.</p>
+                        <p class="Ranger__P">de pessoas entram por mês procurando um lar.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="Range__item">
-                <img src="@/Images/icon__chat.svg" alt="img" class="Ranger__Img">
-                <div class="Ranger__item__container">
-                    <h1> 28 mil</h1>
+                <div class="Range__item">
+                    <img src="@/Images/icon__chat.svg" alt="img" class="Ranger__Img">
+                    <div class="Ranger__item__container">
+                        <h1> 28 mil</h1>
 
-                    <p class="Ranger__P">consultas que recebem nossos avisos por mês.</p>
+                        <p class="Ranger__P">consultas que recebem nossos avisos por mês.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="Range__item">
-                <img src="@/Images/icon__key.svg" alt="img" class="Ranger__Img">
-                <div class="Ranger__item__container">
-                    <h1> + 3 mil</h1>
+                <div class="Range__item">
+                    <img src="@/Images/icon__key.svg" alt="img" class="Ranger__Img">
+                    <div class="Ranger__item__container">
+                        <h1> + 3 mil</h1>
 
-                    <p class="Ranger__P">proprietários confiam em nós para publicar seus imóveis.</p>
+                        <p class="Ranger__P">proprietários confiam em nós para publicar seus imóveis.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="Animated">
-        <h1>Publique seu imóvel gratuitamente e em passos simples</h1>
-        <div class="container">
-            <div class="animation__container">
-                <div v-for="(step, index) in steps" :key="index" class="step">
-                    <div class="circle" :class="{ active: currentStep >= index }">
-                        <span class="number">{{ step.id }}</span>
-                        <div class="border__animation" :class="{ 'loading__animation': currentStep === index }"></div>
+        <div class="Animated">
+            <h1>Publique seu imóvel gratuitamente e em passos simples</h1>
+            <div class="container">
+                <div class="animation__container">
+                    <div v-for="(step, index) in steps" :key="index" class="step">
+                        <div class="circle" :class="{ active: currentStep >= index }">
+                            <span class="number">{{ step.id }}</span>
+                            <div class="border__animation" :class="{ 'loading__animation': currentStep === index }">
+                            </div>
+                        </div>
+                        <p class="step__text">{{ step.text }}</p>
                     </div>
-                    <p class="step__text">{{ step.text }}</p>
                 </div>
-            </div>
-            <div class="Animated__Image">
-                <transition name="fade">
-                    <div class="image__container" v-if="imageVisible">
-                        <img :src="currentImage" alt="Step image" />
-                    </div>
-                </transition>
+                <div class="Animated__Image">
+                    <transition name="fade">
+                        <div class="image__container" v-if="imageVisible">
+                            <img src="@/Images/bg.png" alt="Step image" />
+                        </div>
+                    </transition>
+                </div>
             </div>
         </div>
     </div>
@@ -192,6 +195,12 @@ export default {
 </script>
 
 <style>
+.All {
+    width: 100%;
+    height: auto;
+    padding-bottom: 50px;
+}
+
 /* Estilos para o banner principal */
 .Banner {
     width: 100%;
@@ -396,6 +405,11 @@ export default {
     /* Espaçamento entre os itens */
 }
 
+.Animated h1 {
+    color: #333;
+    padding-top: 30px
+}
+
 /* Container de animação interna */
 .Internal__Animated {
     display: flex;
@@ -573,12 +587,13 @@ export default {
 /* Estilo do container de imagem */
 .image__container {
     text-align: center;
+    margin-left: -200px;
     /* Alinha a imagem ao centro */
 }
 
 /* Estilo da imagem */
 .image__container img {
-    width: 400px;
+    width: 600px;
     /* Largura de 400px */
     height: 400px;
     /* Altura de 400px */

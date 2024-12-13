@@ -113,11 +113,11 @@
                                     </div>
                                 </div>
                                 <div class="counter">
-                                    <label>Garagens</label>
+                                    <label>vagas</label>
                                     <div class="counter__controls">
-                                        <button type="button" @click="garagens = Math.max(garagens - 1, 0)">-</button>
-                                        <input type="number" v-model="garagens" readonly />
-                                        <button type="button" @click="garagens++">+</button>
+                                        <button type="button" @click="vagas = Math.max(vagas - 1, 0)">-</button>
+                                        <input type="number" v-model="vagas" readonly />
+                                        <button type="button" @click="vagas++">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
             bairro: "",
             quartos: 0,
             banheiros: 0,
-            garagens: 0,
+            vagas: 0,
             area: 0,
             preco: "",
             titulo: "",
@@ -225,7 +225,7 @@
                 areasComuns: [
                     `Quartos: ${this.quartos}`,
                     `Banheiros: ${this.banheiros}`,
-                    `Garagens: ${this.garagens}`,
+                    `vagas: ${this.vagas}`,
                 ],
             };
             const dataJson = JSON.stringify(data)
@@ -238,16 +238,40 @@
             });
 
             const responseData = await response.json();
-            const responseID = responseData.id;
+            const UsuarioId = responseData.id;
+
+            if (response.status === 200) {
+                await this.PostImage(UsuarioId);
+            } else {
+                this.message = 'Erro ao cadastrar o usuário.';
+            }
+
+        },
+
+        async PostImage(UsuarioId) {
+            if (!this.selectedFile) {
+                this.message = 'Por favor, selecione uma imagem antes de enviar.';
+                return;
+            }
 
             const formData = new FormData();
             formData.append("imagem", this.selectedFile);
 
-            const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${responseID}`, {
-                method: "PUT",
-                body: formData,
-            });
+            try {
+                const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${UsuarioId}`, {
+                    method: "PUT",
+                    body: formData,
+                });
 
+                if (responsePostImagem.status === 200) {
+                    this.message = 'Imagem carregada com sucesso!';
+                } else {
+                    this.message = 'Erro ao carregar a imagem.';
+                }
+            } catch (error) {
+                console.error('Erro ao enviar imagem:', error);
+                this.message = 'Erro ao tentar enviar a imagem.';
+            }
         },
     },
 };
@@ -559,6 +583,11 @@ button:hover {
     /* Cursor de ponteiro */
     transition: background-color 0.3s ease;
     /* Transição suave da cor de fundo */
+    display: flex;
+    align-items: center;
+    /* Alinha os itens na horizontal */
+    justify-content: center;
+    /* Alinha os itens na vertical */
 }
 
 .counter__controls button:hover {

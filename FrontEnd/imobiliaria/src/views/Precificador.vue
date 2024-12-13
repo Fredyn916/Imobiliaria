@@ -191,8 +191,10 @@ export default {
 .Precifier {
     width: 100%;
     /* Largura total */
-    height: 120vh;
-    /* Altura 120% da altura da tela */
+    height: auto;
+    /* Altura automatica para a altura da tela */
+    padding-bottom: 100px;
+    /* padding para espaçamento */
 }
 
 /* Estilo para o bloco de valor na tela */
@@ -403,7 +405,7 @@ export default {
 .Precifier__form {
     width: 500px;
     /* Largura do formulário */
-    height: 100vh;
+    height: auto;
     /* Altura da tela */
     background-color: #FFF;
     /* Cor de fundo */

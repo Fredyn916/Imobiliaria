@@ -48,9 +48,15 @@
 
     <!-- Seção de Redes Sociais -->
     <div class="footer__social">
-      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
-      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-twitter" /></a>
-      <a href="#" class="social__icon"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
+      <button @click="navigateToInstagram" class="social__icon">
+        <font-awesome-icon icon="fa-brands fa-instagram" />
+      </button>
+      <button @click="navigateToFacebook" class="social__icon">
+        <font-awesome-icon icon="fa-brands fa-facebook" />
+      </button>
+      <button @click="navigateToTwitter" class="social__icon">
+        <font-awesome-icon icon="fa-brands fa-twitter" />
+      </button>
     </div>
 
     <!-- Copyright no final -->
@@ -72,6 +78,15 @@ export default {
     };
   },
   methods: {
+    navigateToInstagram() {
+      window.open("https://www.instagram.com/", "_blank");
+    },
+    navigateToFacebook() {
+      window.open("https://www.facebook.com/", "_blank");
+    },
+    navigateToTwitter() {
+      window.open("https://twitter.com/", "_blank");
+    },
     async sendEmail() {
       if (!this.email) {
         alert('Por favor, insira um email válido.');
@@ -186,6 +201,7 @@ export default {
   /* Tamanho da fonte */
   transition: .3s;
   /* Transição suave */
+  height: 39px;
 }
 
 /* Efeito ao passar o mouse sobre o botão de inscrição */
@@ -276,11 +292,17 @@ export default {
   /* Espaçamento entre os ícones */
   text-decoration: none;
   /* Remove o sublinhado */
+  border: none;
+  /* Remove a borda */
 }
+
+
 
 /* Efeito ao passar o mouse sobre os ícones das redes sociais */
 .footer__social .social__icon:hover {
-  color: #007bff;
+  cursor: pointer;
+  /* Muda o cursor ao passar o mouse */
+  color: rgb(0, 43, 82);
   /* Muda a cor do ícone para azul ao passar o mouse */
 }
 

@@ -1,5 +1,6 @@
 <template>
     <RouterLink to="ViewImovel" class="back-link">Voltar</RouterLink>
+    <hr />
     <div class="container">
 
         <div class="carousel__container">
@@ -79,15 +80,17 @@
         <div class="Imovel__anos" v-else>O Imóvel Está em construção</div>
         <div class="Imovel__cep">{{ Imovel.cep }}</div>
         <hr />
+        <div class="Imovel__titulo" style="color: black; font-weight: 600; font-size: 20px;">{{ Imovel.titulo }}</div>
         <div class="Imovel__descricao">{{ Imovel.descricao }}</div>
         <hr />
         <div v-if="!Imovel.areasComuns || Imovel.areasComuns.length === 0"></div>
         <div class="Imovel__areasComuns" v-else>
-            Areas Comuns:
+            <h2>Areas Comuns:</h2>
             <ul>
                 <li v-for="area in Imovel.areasComuns" :key="area">{{ area }}</li>
             </ul>
         </div>
+        <hr />
     </div>
 </template>
 
@@ -224,6 +227,7 @@ export default {
     display: flex;
     /* Usa o modelo flexbox */
     padding-right: 30%;
+    padding-top: 20px;
     /* Adiciona preenchimento à direita */
     box-sizing: border-box;
     /* Inclui o padding na largura total */
@@ -371,7 +375,7 @@ export default {
 .contact-box {
     width: 30%;
     /* Largura do contêiner */
-    padding: 20px;
+    padding-top: 60px;
     /* Preenchimento interno */
     display: flex;
     /* Flexbox para o layout */
@@ -561,10 +565,14 @@ textarea {
 
 /* Estilo para as áreas comuns do imóvel */
 .imovel_info .Imovel__areasComuns ul {
-    list-style-type: none;
-    /* Remove marcadores de lista */
-    padding: 0;
+    padding-left: 40px;
     /* Remove o preenchimento da lista */
+}
+
+.Imovel__areasComuns h2 {
+    color: #000;
+    font-weight: 600;
+    padding-bottom: 20px
 }
 
 /* Estilo para cada item das áreas comuns */
@@ -573,6 +581,8 @@ textarea {
     /* Espaço à esquerda */
     font-size: 1rem;
     /* Tamanho da fonte */
+    padding-bottom: 10px;
+    /* padding em baixo de cada item */
 }
 
 /* Responsividade para telas menores que 768px */
