@@ -9,7 +9,6 @@
         <section class="Alpha__left">
           <div class="person__info">
             <div class="personal">
-              <img src="@/Images/1.png" alt="Joana Rockefeller" class="profile-pic">
               <h2>Joana Rockefeller</h2>
             </div>
             <hr class="name__underline">
@@ -25,7 +24,6 @@
         <section class="Alpha__right">
           <div class="person__info">
             <div class="personal">
-              <img src="@/Images/1.png" alt="Andrew Carnegie" class="profile-pic">
               <h2>Andrew Carnegie</h2>
             </div>
             <hr class="name__underline">

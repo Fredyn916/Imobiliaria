@@ -195,7 +195,7 @@ export default {
 .Banner {
     width: 100%;
     height: 450px;
-    background: url('@/Images/bg.png') no-repeat center center;
+    background: url('https://res.cloudinary.com/fredmarques/image/upload/v1734056495/BgPublicarImovel_kmcsgq.png') no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
