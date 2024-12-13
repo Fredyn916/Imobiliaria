@@ -27,7 +27,7 @@ public class UsuarioController : ControllerBase
         Usuario usuario = _Mapper.Map<Usuario>(usuarioDTO);
         usuario.Endereco = $"{usuarioDTO.Rua}, {usuarioDTO.Numero}, {usuarioDTO.Bairro}, {usuarioDTO.Cidade}, {usuarioDTO.UnidadeFederativa} - {usuarioDTO.CEP}";
         usuario.Tipo = "Usuario";
-        usuario.FotoDePerfilURL = "https://res.cloudinary.com/fredmarques/image/upload/v1733852127/ImagemPadraoUsuario_ups5qk.png";
+        usuario.FotoDePerfilURL = "https://res.cloudinary.com/fredmarques/image/upload/v1734056424/ImagemUsuario_cnlcqp.png";
 
         return _Service.Adicionar(usuario);
     }

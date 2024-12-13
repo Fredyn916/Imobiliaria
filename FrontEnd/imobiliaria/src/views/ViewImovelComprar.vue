@@ -303,19 +303,21 @@ export default {
 </script>
 
 
-
 <style scoped>
+/* Aplica um comportamento de rolagem suave em todo o documento */
 html {
     scroll-behavior: smooth;
 }
 
+/* Define a fonte padrão da página */
 body {
     font-family: "Funnel Display", sans-serif;
 }
 
-
+/* Estilo do botão fixo na tela */
 .buttontosection {
     position: fixed;
+    /* Fixa o botão no canto da tela */
     bottom: 20px;
     right: 20px;
     width: 60px;
@@ -327,15 +329,20 @@ body {
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Transição para o efeito de hover */
     border: 1px solid black;
+    /* Borda preta */
 }
 
-
+/* Efeito de hover no botão */
 .buttontosection:hover {
     transform: scale(1.1);
+    /* Aumenta o botão */
     background-color: #f0f0f0;
+    /* Muda a cor do fundo */
 }
 
+/* Estilo da container que contém os filtros */
 .container {
     display: flex;
     padding-inline: 3rem;
@@ -343,11 +350,13 @@ body {
     gap: 15px;
 }
 
+/* Estilo do contêiner de filtros */
 .filter__container {
     display: flex;
     gap: 10px;
 }
 
+/* Estilo do campo de entrada de filtro */
 .filter__input {
     width: 100%;
     height: 90%;
@@ -357,6 +366,7 @@ body {
     font-size: 1rem;
 }
 
+/* Estilo do seletor de filtro */
 .filter__select {
     width: 100%;
     height: 90%;
@@ -364,21 +374,19 @@ body {
     border-radius: 8px;
     border: 1px solid #7c98a7;
     font-size: 1rem;
-}
-
-.filter__select {
     background: #fff;
     font-family: "Funnel Display", sans-serif;
     font-weight: 600;
     color: #333;
 }
 
-
+/* Estilo do botão de limpar filtros */
 .clear__filters__btn {
     padding: 12px;
     width: 100%;
     height: 90%;
     background-color: #ff4c4c;
+    /* Cor vermelha */
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -389,37 +397,46 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Efeito de hover no botão de limpar filtros */
 .clear__filters__btn:hover {
     background-color: #e04343;
+    /* Muda a cor para um tom mais escuro */
     transform: translateY(-2px);
+    /* Move o botão para cima */
 }
 
+/* Estilo do contêiner de imóveis */
 .Imovel__container {
     width: 100%;
 }
 
+/* Contêiner interno de imóveis, permitindo layout flexível */
 .Imovel__Container__internal__container {
     display: flex;
     flex-wrap: wrap;
+    /* Permite que os itens se ajustem em várias linhas */
 }
 
+/* Estilo do lado esquerdo do item de imóvel */
 .Imovel__Container__box__Left {
     max-width: 30%;
     max-height: 100%;
     display: flex;
 }
 
+/* Estilo da imagem no lado esquerdo */
 .Imovel__Container__box__Left img {
     width: 100%;
     min-width: 400px;
     max-width: 400px;
     height: auto;
-    /* Use 'auto' para manter a proporção */
+    /* Mantém a proporção da imagem */
     max-height: 300px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
+/* Estilo do lado direito do item de imóvel */
 .Imovel__Container__box__Right {
     flex: 2;
     max-width: 70%;
@@ -427,17 +444,21 @@ body {
     background: #fff;
 }
 
+/* Estilo do contêiner de cada item de imóvel */
 .Imovel__item__container {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+/* Estilo da descrição do imóvel */
 .Imovel__descricao {
     max-height: 17px;
     overflow: hidden;
+    /* Oculta o conteúdo que ultrapassa o limite */
 }
 
+/* Estilo da lista de imóveis */
 .imovel__container__list {
     display: flex;
     flex-direction: column;
@@ -448,6 +469,7 @@ body {
     padding-bottom: 20px;
 }
 
+/* Estilo de cada item dentro da lista de imóveis */
 .imovel__container__item {
     width: 95%;
     max-width: 100%;
@@ -460,26 +482,31 @@ body {
     overflow: hidden;
 }
 
+/* Estilo do texto dentro dos itens da lista de imóveis */
 .Imove__item__container__item p,
 li {
     font-size: 13px;
 }
 
+/* Efeito de hover nos itens da lista de imóveis */
 .imovel__container__item:hover {
     cursor: pointer;
 }
 
+/* Estilo da seção de áreas comuns */
 .Imovel__areasComuns {
     display: flex;
     gap: 20px;
 }
 
+/* Estilo da lista de áreas comuns */
 .Ul__AreasComuns {
     display: flex;
     gap: 20px;
     list-style: none;
 }
 
+/* Estilo dos botões no lado direito do item de imóvel */
 .Imovel__box__rigth__buttons {
     width: 100%;
     height: auto;
@@ -489,10 +516,11 @@ li {
     gap: 20px;
 }
 
-
+/* Estilo dos botões do lado direito */
 .Imovel__box__rigth__buttons button {
     margin-top: 10px;
     background-color: rgb(0, 43, 82);
+    /* Cor azul */
     padding: 0.90rem 1rem;
     border-radius: 8px;
     border: none;
@@ -500,20 +528,22 @@ li {
     transition: .3S;
 }
 
+/* Efeito de hover nos botões do lado direito */
 .Imovel__box__rigth__buttons button:hover {
     background-color: #1A5276;
-    padding: 0.90rem 1rem;
-    border-radius: 8px;
-    border: none;
+    /* Cor azul mais escura */
     transform: scale(1.1);
+    /* Aumenta o botão */
 }
 
+/* Estilo da rua no imóvel */
 .Imovel__rua p {
     color: #1f1e1e;
     font-weight: 600;
     font-size: 18px;
 }
 
+/* Estilo do label dentro do filtro */
 .filter__container label {
     width: 30%;
     height: 90%;
@@ -521,6 +551,7 @@ li {
     border-radius: 9px;
 }
 
+/* Estilos responsivos para telas entre 1024px e 1600px */
 @media (min-width: 1024px) and (max-width: 1600px) {
     .imovel__container__item {
         width: 95%;
@@ -531,19 +562,16 @@ li {
         border-radius: 10px;
         list-style: none;
     }
-
 }
 
+/* Estilos responsivos para telas entre 768px e 1024px */
 @media (min-width: 768px) and (max-width: 1024px) {
     .Imovel__Container__box__Left img {
         width: 100%;
         max-width: 400px;
         height: 100%;
         max-height: 400px;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
     }
-
 
     .imovel__container__item {
         width: 95%;
@@ -554,7 +582,6 @@ li {
         border-radius: 10px;
         list-style: none;
     }
-
 
     .Imovel__areasComuns {
         display: flex;
@@ -569,7 +596,7 @@ li {
     }
 }
 
-
+/* Estilos responsivos para telas menores que 768px */
 @media(max-width: 768px) {
     .container {
         padding: 10px;
@@ -594,226 +621,25 @@ li {
         border-radius: 10px;
     }
 
-
     .imovel__container__item {
         width: 100%;
     }
 
     .imovel__container__list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding: 0;
-        padding-bottom: 20px;
-        height: auto;
+        padding: 0 20px;
     }
 
-    .imovel__container__item {
-        width: 90%;
-        max-width: 100%;
-        max-height: 900px;
-        height: auto;
-        color: #000;
-        border-radius: 10px;
-        padding: 20px;
-        list-style: none;
+    .buttontosection {
+        right: 10px;
+        bottom: 10px;
     }
-
 
     .Imovel__areasComuns {
-        display: flex;
         flex-direction: column;
     }
 
     .Ul__AreasComuns {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        list-style: none;
-    }
-}
-
-@media(max-width: 480px) {
-    .container {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .Imovel__Container__internal__container {
         flex-direction: column;
     }
-
-    .Imovel__Container__box__Left,
-    .Imovel__Container__box__Right {
-        max-width: 100%;
-        padding: 10px;
-    }
-
-    .imovel__container__item {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .imovel__container__list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding: 0;
-        padding-bottom: 20px;
-        height: auto;
-    }
-
-    .imovel__container__item {
-        width: 90%;
-        max-width: 100%;
-        max-height: 1000px;
-        height: auto;
-        border: 5px solid #ededed;
-        color: #000;
-        border-radius: 10px;
-        padding: 20px;
-        list-style: none;
-    }
-
-    .Imovel__Container__box__Left img {
-        width: 100%;
-        max-width: 400px;
-        height: 100%;
-        max-height: 400px;
-        border-radius: 10px;
-    }
-
-
-    .Imovel__areasComuns {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .Ul__AreasComuns {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        list-style: none;
-    }
-
-    .Imovel__descricao {
-        display: none;
-    }
-
-}
-
-/* Estilo para o popup */
-.popup {
-    display: block;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-/* Estilo para o fundo escuro */
-.overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 500;
-}
-
-/* Botão de fechar */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-
-.contact__box {
-    width: 30%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    background-color: transparent;
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.internal__contact__box {
-    width: 100%;
-    text-align: left;
-    padding: 20px;
-    border: 3px solid #d4d4d4;
-    border-radius: 9px;
-}
-
-.internal__contact__box p {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-input[type="email"],
-input[type="text"],
-textarea {
-    width: 100%;
-    height: 90%;
-    padding: 0.8rem;
-    border: 3px solid #ededed;
-    border-radius: 9px;
-    margin-bottom: 10px;
-}
-
-.name__telefon__container {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-}
-
-.form-group1 {
-    width: 50%;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 9px;
-    border: 3px solid #ededed;
-    color: #000;
-    font-weight: 600;
-    font-family: "Funnel Display", sans-serif;
-}
-
-.submit-btn:hover {
-    cursor: pointer;
-}
-
-.terms {
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.terms a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-.terms a:hover {
-    text-decoration: underline;
 }
 </style>

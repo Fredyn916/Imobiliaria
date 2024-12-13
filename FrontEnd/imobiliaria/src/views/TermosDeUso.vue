@@ -123,64 +123,104 @@ export default {
   name: 'TermosDeUso',
 };
 </script>
-
 <style scoped>
+/* Estilos para o container principal da página de Termos e Condições */
 .terms__container {
   display: flex;
+  /* Usa o modelo de layout flexbox */
   justify-content: center;
+  /* Centraliza o conteúdo horizontalmente */
   align-items: center;
+  /* Centraliza o conteúdo verticalmente */
   height: 100vh;
+  /* Define a altura do container como 100% da altura da tela */
   background-color: #FFF;
+  /* Define o fundo como branco */
   padding: 20px;
+  /* Adiciona um preenchimento interno de 20px */
 }
 
+/* Estilos para o conteúdo dos Termos e Condições */
 .terms__content {
   background: #fff;
+  /* Define o fundo do conteúdo como branco */
   padding: 40px;
+  /* Adiciona um preenchimento interno de 40px */
   border-radius: 12px;
+  /* Aplica bordas arredondadas com raio de 12px */
   width: 80%;
+  /* Define a largura do conteúdo como 80% do tamanho do container */
   max-width: 900px;
+  /* Define a largura máxima do conteúdo como 900px */
   overflow-y: auto;
+  /* Permite rolagem vertical caso o conteúdo ultrapasse a altura */
   max-height: 90vh;
+  /* Define a altura máxima do conteúdo como 90% da altura da tela */
   font-family: "Funnel Display", sans-serif;
+  /* Define a fonte do conteúdo */
 }
 
+/* Estilos para o título principal da página (h1) */
 h1 {
   font-size: 2.5rem;
+  /* Define o tamanho da fonte como 2.5rem */
   margin-bottom: 20px;
+  /* Adiciona uma margem inferior de 20px */
   color: rgb(0, 43, 82);
+  /* Define a cor do texto como um tom de azul escuro */
   text-align: center;
+  /* Centraliza o texto */
   font-weight: bold;
+  /* Aplica um peso de fonte negrito */
 }
 
+/* Estilos para os subtítulos da página (h2) */
 h2 {
   font-size: 1.8rem;
+  /* Define o tamanho da fonte como 1.8rem */
   color: rgb(0, 43, 82);
+  /* Define a cor do texto como um tom de azul escuro */
   margin-top: 20px;
+  /* Adiciona uma margem superior de 20px */
 }
 
+/* Estilos para os parágrafos dentro da classe .terms__text */
 .terms__text p {
   font-size: 1.1rem;
+  /* Define o tamanho da fonte como 1.1rem */
   color: #555;
+  /* Define a cor do texto como um tom de cinza médio */
   line-height: 1.8;
+  /* Define a altura da linha como 1.8, proporcionando mais espaçamento entre as linhas de texto */
   margin-bottom: 16px;
+  /* Adiciona uma margem inferior de 16px */
 }
 
+/* Estilos para os parágrafos destacados dentro da classe .terms__text */
 .terms__text p strong {
   color: #333;
+  /* Define a cor do texto em negrito como um tom de cinza escuro */
 }
 
+/* Estilos para listas dentro da página */
 ul {
   margin-left: 20px;
+  /* Adiciona uma margem à esquerda para as listas */
 }
 
+/* Estilos para os itens da lista */
 ul li {
   font-size: 1.1rem;
+  /* Define o tamanho da fonte como 1.1rem */
   color: #555;
+  /* Define a cor do texto como um tom de cinza médio */
   line-height: 1.8;
+  /* Define a altura da linha como 1.8, proporcionando mais espaçamento entre as linhas */
 }
 
+/* Remove a margem inferior do último parágrafo na classe .term__text */
 .term__text p:last-child {
   margin-bottom: 0;
+  /* Define a margem inferior como 0 para o último parágrafo */
 }
 </style>

@@ -22,7 +22,7 @@ public static class UsuarioScripts
                  'Praça Getúlio Vargas', 168, 'Centro', 'Sabará', 'MG',
                  'Praça Getúlio Vargas, 168, Centro, Sabará, MG - 34505-730',
                  '00.000.000/0001-00', 'Admin', 'Admin',
-                 'Administrador', 'https://res.cloudinary.com/fredmarques/image/upload/v1733105742/AdmImage_fzfael.png');";
+                 'Administrador', 'https://res.cloudinary.com/fredmarques/image/upload/v1734056424/ImagemAdmin_tvdavt.png');";
 
         return InsertCommand;
     }
