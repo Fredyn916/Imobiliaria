@@ -176,17 +176,8 @@ export default {
           body: JSON.stringify(data),
         });
 
-        console.log(response)
-
         const responseData = await response.json();
         const responseID = responseData.id;
-
-        // Mensagem de sucesso ou erro para o cadastro do usuário
-        if (response.ok) {
-          this.message = 'Sucesso ao Cadastrar o usuário.';
-        } else {
-          this.message = 'Erro ao Cadastrar o usuário.';
-        }
 
         const formData = new FormData();
         formData.append("imagem", this.selectedFile);
@@ -195,13 +186,6 @@ export default {
           method: "PUT",
           body: formData,
         });
-
-        // Mensagem para o envio da imagem
-        if (responsePostImagem.ok) {
-          this.message += ' Sucesso ao Cadastrar a imagem.';
-        } else {
-          this.message += ' Erro ao Cadastrar a imagem.';
-        }
 
       } catch (error) {
         console.error('Erro ao criar usuário:', error);
