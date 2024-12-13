@@ -365,9 +365,11 @@ export default {
 }
 
 .circle.active {
-    border-color: #4caf50;
-    /* Borda verde para etapas ativas */
+    border-color: rgb(0, 43, 82);
+    /* Azul presente no site */
 }
+
+
 
 .number {
     font-size: 16px;
@@ -400,22 +402,23 @@ export default {
     }
 
     25% {
-        border-color: #4caf50 transparent transparent transparent;
+        border-color: rgb(0, 43, 82) transparent transparent transparent;
     }
 
     50% {
-        border-color: #4caf50 #4caf50 transparent transparent;
+        border-color: rgb(0, 43, 82) rgb(0, 43, 82) transparent transparent;
     }
 
     75% {
-        border-color: #4caf50 #4caf50 #4caf50 transparent;
+        border-color: rgb(0, 43, 82) rgb(0, 43, 82) rgb(0, 43, 82) transparent;
     }
 
     100% {
-        border-color: #4caf50 #4caf50 #4caf50 #4caf50;
+        border-color: rgb(0, 43, 82) rgb(0, 43, 82) rgb(0, 43, 82) rgb(0, 43, 82);
         transform: rotate(360deg);
     }
 }
+
 
 .step__text {
     font-size: 14px;
