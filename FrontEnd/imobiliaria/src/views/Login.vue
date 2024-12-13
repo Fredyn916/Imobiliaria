@@ -1,24 +1,24 @@
 <template>
   <div class="Login__container">
-    <div class="login-background">
+    <div class="login__background">
       <form @submit="loginUsuario" class="login-form">
         <h1 class="form-title">Faça Login</h1>
 
-        <div class="form-group">
+        <div class="form__group">
           <label for="username">Username:</label>
           <input type="text" id="username" v-model="username" required />
         </div>
 
-        <div class="form-group">
+        <div class="form__group">
           <label for="password">Password:</label>
           <input type="password" id="password" v-model="password" required />
         </div>
 
-        <button type="submit" class="submit-btn">Entrar</button>
+        <button type="submit" class="submit__btn">Entrar</button>
 
-        <div class="signup-prompt">
+        <div class="signup__prompt">
           <h2>Ainda não tem cadastro?</h2>
-          <RouterLink to="/Cadastro" class="signup-link">Criar Conta</RouterLink>
+          <RouterLink to="/Cadastro" class="signup__link">Criar Conta</RouterLink>
         </div>
       </form>
     </div>
@@ -89,7 +89,7 @@ export default {
   position: relative;
 }
 
-.login-background {
+.login__background {
   position: relative;
   display: flex;
   justify-content: center;
@@ -125,17 +125,17 @@ export default {
   letter-spacing: 1px;
 }
 
-.form-group {
+.form__group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form__group label {
   font-size: 1.1rem;
   color: #666;
   margin-bottom: 8px;
 }
 
-.form-group input {
+.form__group input {
   width: 100%;
   padding: 15px;
   border: 2px solid #ddd;
@@ -146,12 +146,12 @@ export default {
   transition: all 0.3s ease;
 }
 
-.form-group input:focus {
+.form__group input:focus {
   border-color: #1c92d2;
   background-color: #fff;
 }
 
-.submit-btn {
+.submit__btn {
   width: 100%;
   padding: 12px;
   background-color: rgb(0, 43, 82);
@@ -163,22 +163,22 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.submit__btn:hover {
   background-color: #1A5276;
 }
 
-.signup-prompt {
+.signup__prompt {
   text-align: center;
   margin-top: 20px;
 }
 
-.signup-prompt h2 {
+.signup__prompt h2 {
   font-size: 1.2rem;
   color: #666;
   margin-bottom: 10px;
 }
 
-.signup-link {
+.signup__link {
   font-weight: bold;
   color: rgb(0, 43, 82);
   text-decoration: none;
@@ -186,7 +186,7 @@ export default {
   transition: color 0.3s ease;
 }
 
-.signup-link:hover {
+.signup__link:hover {
   color: #1A5276;
 }
 </style>

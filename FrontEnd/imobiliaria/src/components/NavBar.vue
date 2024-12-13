@@ -79,6 +79,8 @@ export default {
     transform: scale(1.05);
 }
 
+
+
 .Entry__Bnt {
     background-color: rgb(0, 43, 82);
     border: none;

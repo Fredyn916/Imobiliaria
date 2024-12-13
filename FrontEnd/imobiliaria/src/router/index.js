@@ -103,6 +103,11 @@ const router = createRouter({
       name: "BeforeAddImovel",
       component: () => import("@/views/BeforeAddImovel.vue"),
     },
+    {
+      path: "/Precificador",
+      name: "Precificador",
+      component: () => import("@/views/Precificador.vue"),
+    },
   ],
 
   // Função para rolar a página para o topo

@@ -30,8 +30,8 @@
                 <div class="Delta__container__box__img">
                     <img src="@/Images/4.png" alt="Somos o Casa Mineira!">
                 </div>
-                <p class="Delta__container__box__tittle">Somos o Casa Mineira!</p>
-                <p class="Delta__container__box__text">39 anos no mercado e um milhão de imóveis oferecidos nos apoiam
+                <p class="Delta__container__box__tittle">Somos a Sweet Home!</p>
+                <p class="Delta__container__box__text">39 anos no mercado e varios imóveis oferecidos nos apoiam
                     na busca pela sua casa.</p>
             </div>
         </div>
@@ -113,7 +113,6 @@ export default {
     font-size: 13px;
     padding-top: 2em;
     color: #2C3E50;
-    text-align: justify;
     width: 100%;
     word-wrap: break-word;
 }

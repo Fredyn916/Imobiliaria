@@ -66,15 +66,15 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("EditarUsername")]
-    public void EditarUsername(int id, string username)
+    public void EditarUsername(UpdateUsuarioDTO usuarioEdit)
     {
-        _Service.EditarUsername(id, username);
+        _Service.EditarUsername(usuarioEdit.Id, usuarioEdit.Valor);
     }
 
     [HttpPut("EditarSenha")]
-    public void EditarSenha(int id, string senha)
+    public void EditarSenha(UpdateUsuarioDTO usuarioEdit)
     {
-        _Service.EditarSenha(id, senha);
+        _Service.EditarSenha(usuarioEdit.Id, usuarioEdit.Valor);
     }
 
     [HttpDelete("RemoverUsuario")]

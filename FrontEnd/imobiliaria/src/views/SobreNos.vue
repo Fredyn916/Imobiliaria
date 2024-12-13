@@ -1,5 +1,5 @@
 <template>
-    <section class="sobre-nos">
+    <section class="sobre__nos">
         <h1> 1. Quem somos</h1>
         <p> <img src="" alt="ImagemDoSite"> Escrito por SweetHome</p>
         <p>Atualizado há mais de um ano</p>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-.sobre-nos {
+.sobre__nos {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
@@ -38,20 +38,20 @@ export default {
     font-family: "Funnel Display", sans-serif;
 }
 
-.sobre-nos h1 {
+.sobre__nos h1 {
     font-size: 2rem;
     color: #333;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.sobre-nos p {
+.sobre__nos p {
     line-height: 1.6;
     color: #555;
     margin-bottom: 10px;
 }
 
-.sobre-nos hr {
+.sobre__nos hr {
     border: 0;
     height: 1px;
     background-color: #e0e0e0;

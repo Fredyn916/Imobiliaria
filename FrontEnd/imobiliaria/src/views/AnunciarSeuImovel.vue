@@ -10,20 +10,20 @@
             <div class="container__tittle">
                 <h1>Vamos começar a montar seu anúncio!</h1>
             </div>
-            <div class="add-imoveis-box">
+            <div class="add__imoveis__box">
                 <form @submit.prevent="PostImovel">
                     <!-- Etapa 1 -->
                     <div v-if="step === 1">
                         <h3 class="h3">Diga qual tipo de operaçao deseja realizar</h3>
-                        <div class="select-status">
+                        <div class="select__status">
                             <label for="status">Tipo de operação</label>
-                            <div class="internal-select-status">
-                                <button type="button" class="select-status-btn"
+                            <div class="internal__select__status">
+                                <button type="button" class="select__status-btn"
                                     :class="{ active: selectedStatus === 'Comprar' }"
                                     @click="selectedStatus = 'Comprar'">
                                     Venda
                                 </button>
-                                <button type="button" class="select-status-btn"
+                                <button type="button" class="select__status-btn"
                                     :class="{ active: selectedStatus === 'Alugar' }" @click="selectedStatus = 'Alugar'">
                                     Aluguel
                                 </button>
@@ -31,7 +31,7 @@
                         </div>
 
                         <label for="status">Tipo de Imóvel</label>
-                        <select v-model="selectedProperty" class="property-select">
+                        <select v-model="selectedProperty" class="property__select">
                             <option value="">Selecione um tipo de imóvel</option>
                             <option value="Apartamento">Apartamento</option>
                             <option value="Casa">Casa</option>
@@ -94,11 +94,11 @@
                     <!-- Etapa 3 -->
                     <div v-if="step === 3" class="step3">
                         <h2>Informações Adicionais</h2>
-                        <div class="property-inputs">
-                            <div class="counter-group">
+                        <div class="property__inputs">
+                            <div class="counter__group">
                                 <div class="counter">
                                     <label>Quartos</label>
-                                    <div class="counter-controls">
+                                    <div class="counter__controls">
                                         <button type="button" @click="quartos = Math.max(quartos - 1, 0)">-</button>
                                         <input type="number" v-model="quartos" readonly />
                                         <button type="button" @click="quartos++">+</button>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="counter">
                                     <label>Banheiros</label>
-                                    <div class="counter-controls">
+                                    <div class="counter__controls">
                                         <button type="button" @click="banheiros = Math.max(banheiros - 1, 0)">-</button>
                                         <input type="number" v-model="banheiros" readonly />
                                         <button type="button" @click="banheiros++">+</button>
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="counter">
                                     <label>Garagens</label>
-                                    <div class="counter-controls">
+                                    <div class="counter__controls">
                                         <button type="button" @click="garagens = Math.max(garagens - 1, 0)">-</button>
                                         <input type="number" v-model="garagens" readonly />
                                         <button type="button" @click="garagens++">+</button>
@@ -122,7 +122,7 @@
                                 </div>
                             </div>
 
-                            <div class="area-group">
+                            <div class="area__group">
                                 <label>Área (m²):</label>
                                 <input type="number" v-model="area" />
 
@@ -262,8 +262,7 @@
     padding: 20px;
     font-family: "Funnel Display", sans-serif;
     background-color: #FFF;
-    min-height: 100vh;
-    height: 150vh;
+    height: auto;
     max-height: 200vh;
 }
 
@@ -319,10 +318,10 @@ label {
     font-weight: 600;
 }
 
-.add-imoveis-box {
+.add__imoveis__box {
     width: 100%;
     max-width: 900px;
-    height: 400px;
+    height: auto;
     padding: 40px 40px 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -342,7 +341,7 @@ h3 {
     padding-bottom: 20px;
 }
 
-.select-status {
+.select__status {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -350,7 +349,7 @@ h3 {
     height: 60px;
 }
 
-.internal-select-status {
+.internal__select__status {
     width: 100%;
     height: 100%;
     display: flex;
@@ -358,7 +357,7 @@ h3 {
     justify-content: space-around;
 }
 
-.select-status-btn {
+.select__status-btn {
     flex: 1;
     margin: 0 5px;
     padding: 15px;
@@ -371,14 +370,14 @@ h3 {
     transition: 0.3s;
 }
 
-.select-status-btn.active {
+.select__status-btn.active {
     background-color: #FFF;
     border: 3px solid rgb(0, 43, 82);
     color: #000;
     transform: scale(1.1);
 }
 
-.property-select {
+.property__select {
     width: 100%;
     padding: 10px;
     margin: 20px 0;
@@ -411,14 +410,14 @@ button:hover {
 
 
 
-.property-inputs {
+.property__inputs {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-.counter-group,
-.area-group {
+.counter__group,
+.area__group {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -431,13 +430,13 @@ button:hover {
     width: 200px;
 }
 
-.counter-controls {
+.counter__controls {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.counter-controls button {
+.counter__controls button {
     width: 40px;
     height: 40px;
     background-color: #1A5276;
@@ -450,11 +449,11 @@ button:hover {
     transition: background-color 0.3s ease;
 }
 
-.counter-controls button:hover {
+.counter__controls button:hover {
     background-color: #154360;
 }
 
-.property-inputs input[type="number"] {
+.property__inputs input[type="number"] {
     width: 60px;
     text-align: center;
     border: 1px solid #ddd;
@@ -463,7 +462,7 @@ button:hover {
     padding: 5px;
 }
 
-.property-inputs input[type="text"] {
+.property__inputs input[type="text"] {
     width: 60px;
     text-align: center;
     border: 1px solid #ddd;
@@ -478,7 +477,7 @@ button:hover {
     gap: 0.5rem;
 }
 
-.property-inputs span {
+.property__inputs span {
     font-size: 1rem;
 }
 
@@ -520,19 +519,133 @@ textarea {
     padding: 1rem;
 }
 
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .Etapas {
+        width: 90%;
+    }
+
+    .add__imoveis__box {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .internal__container {
+        padding: 10px;
+    }
+
+    .select__status-btn {
+        font-size: 14px;
+    }
+
+    .property__select,
+    button,
+    .property__inputs input[type="number"],
+    .property__inputs input[type="text"] {
+        width: 100%;
+    }
+
+    .step2 {
+        flex-direction: column;
+    }
+
+    .Step2__container {
+        flex-direction: column;
+    }
+
+    .counter__controls button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        height: auto;
+        max-height: none;
+    }
+
+    .Etapas {
+        width: 100%;
+    }
+
+    .add__imoveis__box {
+        height: auto;
+        padding: 15px;
+    }
+
+    .select__status-btn {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .property__select {
+        padding: 8px;
+    }
+
+    .counter__group,
+    .area__group {
+        flex-direction: column;
+        gap: 1rem;
+    }
 
     .counter,
     .area-input {
         width: 100%;
     }
 
-    .select-status {
+    .input-wrapper {
         flex-direction: column;
+        align-items: flex-start;
     }
 
-    .select-status-btn {
-        margin: 5px 0;
+    .step3 input,
+    .step3 textarea {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .Etapas {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .add__imoveis__box {
+        padding: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-size: 18px;
+    }
+
+    .select__status-btn {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .property__select,
+    .property__inputs input[type="number"],
+    .property__inputs input[type="text"],
+    button {
+        font-size: 14px;
+    }
+
+    .counter__controls button {
+        width: 30px;
+        height: 30px;
     }
 }
 </style>
