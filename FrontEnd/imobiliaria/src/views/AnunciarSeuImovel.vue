@@ -559,6 +559,11 @@ button:hover {
     /* Cursor de ponteiro */
     transition: background-color 0.3s ease;
     /* Transição suave da cor de fundo */
+    display: flex;
+    align-items: center;
+    /* Alinha os itens na horizontal */
+    justify-content: center;
+    /* Alinha os itens na vertical */
 }
 
 .counter__controls button:hover {
