@@ -193,7 +193,7 @@ export default {
         const UsuarioId = responseData.id;
 
         if (response.status === 200) {
-          await this.PostImage(UsuarioId);
+          this.PostImage(UsuarioId);
         } else {
           this.message = 'Erro ao cadastrar o usuário.';
         }
@@ -203,13 +203,13 @@ export default {
       }
     },
 
-    async PostImage(UsuarioId) {
+    PostImage(UsuarioId) {
 
       const formData = new FormData();
       formData.append("imagem", this.selectedFile);
 
       try {
-        const responsePostImagem = await fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${UsuarioId}`, {
+        const responsePostImagem = fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${UsuarioId}`, {
           method: "PUT",
           body: formData,
         });

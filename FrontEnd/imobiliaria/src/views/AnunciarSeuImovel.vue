@@ -241,14 +241,14 @@
             const UsuarioId = responseData.id;
 
             if (response.status === 200) {
-                await this.PostImage(UsuarioId);
+                this.PostImage(UsuarioId);
             } else {
                 this.message = 'Erro ao cadastrar o usuário.';
             }
 
         },
 
-        async PostImage(UsuarioId) {
+        PostImage(UsuarioId) {
             if (!this.selectedFile) {
                 this.message = 'Por favor, selecione uma imagem antes de enviar.';
                 return;
@@ -258,7 +258,7 @@
             formData.append("imagem", this.selectedFile);
 
             try {
-                const responsePostImagem = await fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${UsuarioId}`, {
+                const responsePostImagem = fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${UsuarioId}`, {
                     method: "PUT",
                     body: formData,
                 });
