@@ -96,7 +96,7 @@
                 <div class="Animated__Image">
                     <transition name="fade">
                         <div class="image__container" v-if="imageVisible">
-                            <img src="@/Images/bg.png" alt="Step image" />
+                            <img src="https://res.cloudinary.com/fredmarques/image/upload/v1734363595/ImageBeforeAddImovel_p2ta87.png" alt="Step image" />
                         </div>
                     </transition>
                 </div>
@@ -115,10 +115,10 @@ export default {
             displayedText: "",
             typingClass: "typing", // Classe inicial para a animação de digitação,
             steps: [
-                { id: 1, text: 'Localize seu imóvel no mapa', image: '@/Images/1.png' },
-                { id: 2, text: 'Diga-nos como é', image: '@/Images/1.png' },
+                { id: 1, text: 'Localize seu imóvel no mapa', image: 'https://res.cloudinary.com/fredmarques/image/upload/v1734363595/ImageBeforeAddImovel_p2ta87.png' },
+                { id: 2, text: 'Diga-nos como é', image: 'https://res.cloudinary.com/fredmarques/image/upload/v1734363595/ImageBeforeAddImovel_p2ta87.png' },
                 { id: 3, text: 'Envie fotos e vídeos', image: '@/Images/1.png' },
-                { id: 4, text: 'Escolha um plano', image: '@/Images/1.png' }
+                { id: 4, text: 'Escolha um plano', image: 'https://res.cloudinary.com/fredmarques/image/upload/v1734363595/ImageBeforeAddImovel_p2ta87.png' }
             ],
             currentStep: 0,
             imageVisible: false

@@ -204,10 +204,6 @@ export default {
     },
 
     async PostImage(UsuarioId) {
-      if (!this.selectedFile) {
-        this.message = 'Por favor, selecione uma imagem antes de enviar.';
-        return;
-      }
 
       const formData = new FormData();
       formData.append("imagem", this.selectedFile);
