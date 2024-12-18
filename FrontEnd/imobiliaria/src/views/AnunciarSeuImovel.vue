@@ -103,7 +103,8 @@
                                         <input type="number" v-model="quartos" readonly />
                                         <button type="button" @click="quartos++">+</button>
                                     </div>
-                        vagas        </div>
+                                    vagas
+                                </div>
                                 <div class="counter">
                                     <label>Banheiros</label>
                                     <div class="counter__controls">
@@ -243,34 +244,30 @@
             if (response.status === 200) {
                 this.PostImage(UsuarioId);
             } else {
-                this.message = 'Erro ao cadastrar o usuário.';
+                alert('Erro ao cadastrar o usuário.');
             }
 
         },
 
         PostImage(UsuarioId) {
-            if (!this.selectedFile) {
-                this.message = 'Por favor, selecione uma imagem antes de enviar.';
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append("imagem", this.selectedFile);
 
             try {
+
+                const formData = new FormData();
+                formData.append("imagem", this.selectedFile);
+
                 const responsePostImagem = fetch(`https://localhost:7082/Imovel/UploadImage?imovelId=${UsuarioId}`, {
                     method: "PUT",
                     body: formData,
                 });
 
                 if (responsePostImagem.status === 200) {
-                    this.message = 'Imagem carregada com sucesso!';
+                    alert('Imagem carregada com sucesso!');
                 } else {
-                    this.message = 'Erro ao carregar a imagem.';
+                    alert('Erro ao carregar a imagem.');
                 }
             } catch (error) {
-                console.error('Erro ao enviar imagem:', error);
-                this.message = 'Erro ao tentar enviar a imagem.';
+                alert('Erro ao tentar enviar a imagem.');
             }
         },
     },

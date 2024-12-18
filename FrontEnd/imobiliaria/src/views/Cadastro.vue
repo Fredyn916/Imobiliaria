@@ -3,11 +3,6 @@
     <div class="form__container">
       <form @submit="CreateUsuario" class="user__form__container">
         <h1 class="form__title">Cadastre-se</h1>
-
-        <div v-if="message" :class="['message', message === 'Sucesso ao Cadastrar o usuário.' ? 'success' : 'error']">
-          {{ message }}
-        </div>
-
         <div class="form__grid">
           <div class="form__group">
             <label for="nome">Nome :</label>
@@ -96,8 +91,7 @@ export default {
       identificacao: '',
       username: '',
       password: '',
-      selectedFile: null,
-      message: ''
+      selectedFile: null
     };
   },
   computed: {
@@ -147,13 +141,13 @@ export default {
       const file = event.target.files[0];
       if (file && file.type.startsWith('image/')) { // Verifica se o arquivo é uma imagem
         if (file.size > 5 * 1024 * 1024) { // Limita o tamanho a 5MB
-          this.message = 'O arquivo é muito grande. O tamanho máximo permitido é 5MB.';
+          alert('O arquivo é muito grande. O tamanho máximo permitido é 5MB.');
           this.selectedFile = null;
         } else {
           this.selectedFile = file;
         }
       } else {
-        this.message = 'Por favor, selecione um arquivo de imagem válido.';
+        alert('Por favor, selecione um arquivo de imagem válido.');
         this.selectedFile = null;
       }
     },
@@ -164,7 +158,7 @@ export default {
       try {
         const cepResponse = await this.GetCep();
         if (!cepResponse || !cepResponse.cep) {
-          this.message = 'CEP não encontrado ou inválido';
+          alert('CEP não encontrado ou inválido');
           return;
         }
 
@@ -195,33 +189,33 @@ export default {
         if (response.status === 200) {
           this.PostImage(UsuarioId);
         } else {
-          this.message = 'Erro ao cadastrar o usuário.';
+          alert('Erro ao cadastrar o usuário.');
         }
       } catch (error) {
-        console.error('Erro ao criar usuário:', error);
-        this.message = 'Erro ao tentar cadastrar o usuário.';
+        alert('Erro ao tentar cadastrar o usuário.');
       }
     },
 
     PostImage(UsuarioId) {
 
-      const formData = new FormData();
-      formData.append("imagem", this.selectedFile);
 
       try {
+
+        const formData = new FormData();
+        formData.append("imagem", this.selectedFile);
+
         const responsePostImagem = fetch(`https://localhost:7082/Usuario/UploadImage?usuarioId=${UsuarioId}`, {
           method: "PUT",
           body: formData,
         });
 
         if (responsePostImagem.status === 200) {
-          this.message = 'Imagem carregada com sucesso!';
+          alert('Imagem carregada com sucesso!');
         } else {
-          this.message = 'Erro ao carregar a imagem.';
+          alert('Erro ao carregar a imagem.');
         }
       } catch (error) {
-        console.error('Erro ao enviar imagem:', error);
-        this.message = 'Erro ao tentar enviar a imagem.';
+        alert('Erro ao tentar enviar a imagem.');
       }
     },
 
@@ -229,13 +223,13 @@ export default {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${this.cep}/json/`);
         if (!response.ok) {
-          this.message = "Erro ao buscar o CEP.";
+          alert("Erro ao buscar o CEP.");
           return null;
         }
         const data = await response.json();
         return data;
       } catch (error) {
-        this.message = "Erro ao buscar o CEP.";
+        alert("Erro ao buscar o CEP.");
         return null;
       }
     }
@@ -406,34 +400,6 @@ select:focus {
 .submit__btn:hover {
   background-color: #1a5276;
   /* Cor de fundo azul mais claro */
-}
-
-/* Estilo da mensagem (sucesso ou erro) */
-.message {
-  margin-bottom: 20px;
-  /* Espaçamento inferior */
-  padding: 10px;
-  /* Padding de 10px */
-  border-radius: 5px;
-  /* Bordas arredondadas */
-  text-align: center;
-  /* Alinha o texto ao centro */
-}
-
-/* Estilo para mensagens de sucesso */
-.message.success {
-  background-color: #d4edda;
-  /* Fundo verde claro */
-  color: #155724;
-  /* Texto verde escuro */
-}
-
-/* Estilo para mensagens de erro */
-.message.error {
-  background-color: #f8d7da;
-  /* Fundo vermelho claro */
-  color: #721c24;
-  /* Texto vermelho escuro */
 }
 
 /* Link de entrada */
